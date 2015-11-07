@@ -4,6 +4,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.IngredientClass do
   def change do
     create table(:ingredientclasses) do
       add :name, :string
+      add :thscode, :string
 
       timestamps
     end
