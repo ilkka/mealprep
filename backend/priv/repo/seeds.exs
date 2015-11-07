@@ -9,3 +9,11 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+File.stream!(Path.expand('../../seed_data/igclass.csv', __DIR__))
+|> CSV.decode(separator: ?;)
+|> Stream.drop(1)
+|> Enum.each(fn([t, n | _]) ->
+  MealprepBackend.Repo.insert!(%MealprepBackend.V1.IngredientClass{name: n,
+                                                                   thscode: t})
+end)
