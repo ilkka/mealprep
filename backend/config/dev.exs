@@ -25,8 +25,5 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :mealprep_backend, MealprepBackend.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "mealprep_backend_dev",
-  hostname: "localhost",
+  url: System.get_env("DATABASE_URL"),
   pool_size: 10

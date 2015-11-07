@@ -12,8 +12,5 @@ config :logger, level: :warn
 # Configure your database
 config :mealprep_backend, MealprepBackend.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "mealprep_backend_test",
-  hostname: "localhost",
+  url: System.get_env("DATABASE_URL"),
   pool: Ecto.Adapters.SQL.Sandbox
