@@ -1,12 +1,10 @@
-defmodule MealprepBackend.V1.Ingredient do
+defmodule MealprepBackend.V1.Process do
   use MealprepBackend.Web, :model
 
-  schema "ingredients" do
+  schema "processes" do
     field :name, :string
-    field :edible_portion, :integer, default: 100
 
-    has_one :process, MealprepBackend.V1.Process
-    belongs_to :ingredientclass, MealprepBackend.V1.IngredientClass
+    has_many :ingredients, MealprepBackend.V1.Ingredient
 
     timestamps
   end

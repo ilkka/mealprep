@@ -6,6 +6,8 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.IngredientClass do
       add :name, :string
       add :thscode, :string
 
+      add :parent_id, references(:ingredientclasses)
+
       timestamps
     end
 
