@@ -4,6 +4,8 @@ defmodule MealprepBackend.V1.Ingredient do
   schema "ingredients" do
     field :name, :string
 
+    belongs_to :ingredientclass, MealprepBackend.V1.IngredientClass
+
     timestamps
   end
 
