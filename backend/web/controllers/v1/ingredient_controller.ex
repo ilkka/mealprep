@@ -1,4 +1,4 @@
-defmodule MealprepBackend.IngredientController do
+defmodule MealprepBackend.V1.IngredientController do
   use MealprepBackend.Web, :controller
 
   alias MealprepBackend.Ingredient

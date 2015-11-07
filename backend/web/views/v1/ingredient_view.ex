@@ -1,4 +1,4 @@
-defmodule MealprepBackend.IngredientView do
+defmodule MealprepBackend.V1.IngredientView do
   use MealprepBackend.Web, :view
 
   def render("index.json", %{ingredients: ingredients}) do

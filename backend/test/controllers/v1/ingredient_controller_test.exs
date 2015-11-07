@@ -1,4 +1,4 @@
-defmodule MealprepBackend.IngredientControllerTest do
+defmodule MealprepBackend.V1.IngredientControllerTest do
   use MealprepBackend.ConnCase
 
   alias MealprepBackend.Ingredient
