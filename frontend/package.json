@@ -1,0 +1,45 @@
+{
+  "name": "cycle-webpack-starter",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "env NODE_ENV=production webpack --config webpack-prod.config.babel.js --progress",
+    "lint": "eslint .",
+    "start": "webpack-dev-server --config webpack-dev.config.babel.js --progress",
+    "test": "npm run lint"
+  },
+  "author": "Pascal Hertleif <killercup@gmail.com> (http://pascalhertleif.de/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/killercup/cycle-webpack-starter.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.0.15",
+    "babel-core": "^6.1.2",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.0.1",
+    "babel-plugin-closure-elimination": "0.0.2",
+    "babel-plugin-typecheck": "^2.0.0",
+    "babel-runtime": "^6.0.14",
+    "clean-webpack-plugin": "^0.1.3",
+    "compression-webpack-plugin": "^0.2.0",
+    "eslint": "^1.6.0",
+    "eslint-loader": "^1.0.0",
+    "eslint-plugin-babel": "^2.1.1",
+    "eslint-plugin-no-class": "^0.1.0",
+    "eslint-plugin-react": "^3.5.1",
+    "html-webpack-plugin": "^1.6.1",
+    "node-libs-browser": "^0.5.3",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0",
+    "webpack-merge": "^0.2.0"
+  },
+  "dependencies": {
+    "@cycle/core": "^5.0.1",
+    "@cycle/dom": "^7.1.1",
+    "rx": "^4.0.0",
+    "virtual-dom": "^2.1.1"
+  }
+}
