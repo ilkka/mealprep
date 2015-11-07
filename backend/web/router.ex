@@ -7,5 +7,9 @@ defmodule MealprepBackend.Router do
 
   scope "/api", MealprepBackend do
     pipe_through :api
+
+    scope "/v1", V1, as: :v1 do
+      resources "/ingredients", IngredientController
+    end
   end
 end
