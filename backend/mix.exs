@@ -29,11 +29,11 @@ defmodule MealprepBackend.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 0.16"},
-     {:phoenix_ecto, "~> 0.9"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.0"},
-     {:phoenix_live_reload, "~> 0.6", only: :dev},
+    [{:phoenix, "~> 1.0"},
+     {:phoenix_ecto, "~> 1.2"},
+     {:postgrex, "~> 0.9"},
+     {:phoenix_html, "~> 2.2"},
+     {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"}]
   end
 end
