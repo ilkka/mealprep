@@ -9,7 +9,8 @@ defmodule MealprepBackend.Router do
     pipe_through :api
 
     scope "/v1", V1, as: :v1 do
-      resources "/ingredients", IngredientController
+      resources "/ingredients", IngredientController, except: [:new, :edit]
+      resources "/ingredientclasses", IngredientClassController, except: [:new, :edit]
     end
   end
 end
