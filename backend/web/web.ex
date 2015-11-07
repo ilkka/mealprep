@@ -19,6 +19,9 @@ defmodule MealprepBackend.Web do
   def model do
     quote do
       use Ecto.Model
+
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 
@@ -28,7 +31,7 @@ defmodule MealprepBackend.Web do
 
       alias MealprepBackend.Repo
       import Ecto.Model
-      import Ecto.Query, only: [from: 2]
+      import Ecto.Query, only: [from: 1, from: 2]
 
       import MealprepBackend.Router.Helpers
     end
@@ -40,9 +43,6 @@ defmodule MealprepBackend.Web do
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
-
-      # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
 
       import MealprepBackend.Router.Helpers
     end
@@ -60,8 +60,7 @@ defmodule MealprepBackend.Web do
 
       alias MealprepBackend.Repo
       import Ecto.Model
-      import Ecto.Query, only: [from: 2]
-
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 

@@ -104,13 +104,13 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
 // channels are mulitplexed over the connection.
 // Connect to the server using the `Socket` class:
 //
-//     let socket = new Socket("/ws")
-//     socket.connect({userToken: "123"})
+//     let socket = new Socket("/ws", {params: {userToken: "123"}})
+//     socket.connect()
 //
-// The `Socket` constructor takes the mount point of the socket
-// as well as options that can be found in the Socket docs,
-// such as configuring the `LongPoll` transport, and heartbeat.
-// Socket params can also be passed as an object literal to `connect`.
+// The `Socket` constructor takes the mount point of the socket,
+// the authentication params, as well as options that can be found in
+// the Socket docs, such as configuring the `LongPoll` transport, and
+// heartbeat.
 //
 // ## Channels
 //
@@ -183,6 +183,7 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
 // `channel.leave()`
 //
 
+var VSN = "1.0.0";
 var SOCKET_STATES = { connecting: 0, open: 1, closing: 2, closed: 3 };
 var CHANNEL_STATES = {
   closed: "closed",
@@ -205,7 +206,7 @@ var Push = (function () {
 
   // Initializes the Push
   //
-  // channel - The Channelnel
+  // channel - The Channel
   // event - The event, for example `"phx_join"`
   // payload - The payload, for example `{user_id: 123}`
   //
@@ -564,6 +565,8 @@ var Socket = exports.Socket = (function () {
   //   longpollerTimeout - The maximum timeout of a long poll AJAX request.
   //                        Defaults to 20s (double the server long poll timer).
   //
+  //   params - The optional params to pass when connecting
+  //
   // For IE8 support use an ES5-shim (https://github.com/es-shims/es5-shim)
   //
 
@@ -585,11 +588,13 @@ var Socket = exports.Socket = (function () {
     };
     this.logger = opts.logger || function () {}; // noop
     this.longpollerTimeout = opts.longpollerTimeout || 20000;
-    this.params = {};
-    this.reconnectTimer = new Timer(function () {
-      return _this.connect(_this.params);
-    }, this.reconnectAfterMs);
+    this.params = opts.params || {};
     this.endPoint = "" + endPoint + "/" + TRANSPORTS.websocket;
+    this.reconnectTimer = new Timer(function () {
+      _this.disconnect(function () {
+        return _this.connect();
+      });
+    }, this.reconnectAfterMs);
   }
 
   _prototypeProperties(Socket, null, {
@@ -602,7 +607,7 @@ var Socket = exports.Socket = (function () {
     },
     endPointURL: {
       value: function endPointURL() {
-        var uri = Ajax.appendParams(this.endPoint, this.params);
+        var uri = Ajax.appendParams(Ajax.appendParams(this.endPoint, this.params), { vsn: VSN });
         if (uri.charAt(0) !== "/") {
           return uri;
         }
@@ -635,27 +640,31 @@ var Socket = exports.Socket = (function () {
 
       // params - The params to send when connecting, for example `{user_id: userToken}`
 
-      value: function connect() {
+      value: function connect(params) {
         var _this = this;
 
-        var params = arguments[0] === undefined ? {} : arguments[0];
-        this.params = params;
-        this.disconnect(function () {
-          _this.conn = new _this.transport(_this.endPointURL());
-          _this.conn.timeout = _this.longpollerTimeout;
-          _this.conn.onopen = function () {
-            return _this.onConnOpen();
-          };
-          _this.conn.onerror = function (error) {
-            return _this.onConnError(error);
-          };
-          _this.conn.onmessage = function (event) {
-            return _this.onConnMessage(event);
-          };
-          _this.conn.onclose = function (event) {
-            return _this.onConnClose(event);
-          };
-        });
+        if (params) {
+          console && console.log("passing params to connect is deprecated. Instead pass :params to the Socket constructor");
+          this.params = params;
+        }
+        if (this.conn) {
+          return;
+        }
+
+        this.conn = new this.transport(this.endPointURL());
+        this.conn.timeout = this.longpollerTimeout;
+        this.conn.onopen = function () {
+          return _this.onConnOpen();
+        };
+        this.conn.onerror = function (error) {
+          return _this.onConnError(error);
+        };
+        this.conn.onmessage = function (event) {
+          return _this.onConnMessage(event);
+        };
+        this.conn.onclose = function (event) {
+          return _this.onConnClose(event);
+        };
       },
       writable: true,
       configurable: true
@@ -913,10 +922,7 @@ var LongPoll = exports.LongPoll = (function () {
     },
     endpointURL: {
       value: function endpointURL() {
-        return Ajax.appendParams(this.pollEndpoint, {
-          token: this.token,
-          format: "json"
-        });
+        return Ajax.appendParams(this.pollEndpoint, { token: this.token });
       },
       writable: true,
       configurable: true

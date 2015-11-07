@@ -15,4 +15,5 @@ config :mealprep_backend, MealprepBackend.Repo,
   username: "postgres",
   password: "postgres",
   database: "mealprep_backend_test",
+  hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

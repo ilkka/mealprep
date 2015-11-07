@@ -9,8 +9,8 @@ use Mix.Config
 config :mealprep_backend, MealprepBackend.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "Xce878NuUbk4Pp2kw2T9nfOwR54bktIhgLeDTyZoxtpfIyHQDHal96vMWxy/YjI7",
-  render_errors: [default_format: "html"],
+  secret_key_base: "TVcG2Eed4opMCyFZqY1JWKZLt/63515xHqt7V8rNAegzIdAsTtZ4c5JnQKLXzsNJ",
+  render_errors: [accepts: ~w(json)],
   pubsub: [name: MealprepBackend.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -22,3 +22,8 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+# Configure phoenix generators
+config :phoenix, :generators,
+  migration: true,
+  binary_id: false
