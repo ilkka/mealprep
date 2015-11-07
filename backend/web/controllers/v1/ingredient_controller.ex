@@ -3,8 +3,6 @@ defmodule MealprepBackend.V1.IngredientController do
 
   alias MealprepBackend.V1.Ingredient
 
-  plug :scrub_params, "ingredient" when action in [:create, :update]
-
   def index(conn, _params) do
     ingredients = Repo.all(Ingredient)
     render(conn, "index.json", ingredients: ingredients)
