@@ -2,9 +2,13 @@
 set -e -o pipefail
 
 SCRIPTDIR=$(cd -P $(dirname $0); pwd)
+DOCKERFILE=${SCRIPTDIR}/docker-compose-test.yml
 
-docker-compose -f ${SCRIPTDIR}/docker-compose-test.yml up -d
-sleep 2
+docker-compose -f $DOCKERFILE stop
+docker-compose -f $DOCKERFILE rm -f
+docker-compose -f $DOCKERFILE up -d
+
+sleep 4
 
 DBPORT=$(docker inspect -f '{{index .NetworkSettings.Ports "5432/tcp" 0 "HostPort"}}' backend_test-db_1)
 DBHOST=$(docker-machine ip $(docker-machine active))
