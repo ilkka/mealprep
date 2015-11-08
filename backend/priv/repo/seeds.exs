@@ -42,5 +42,5 @@ File.stream!(Path.expand('../../seed_data/ig.csv', __DIR__))
                                         edible_portion: portion,
                                         process_id: proc.id,
                                         ingredientclass_id: cls.id})
-  Repo.update!(%{cls | parent: pcls.id})
+  Repo.update!(%{cls | parent_id: pcls.id})
 end)
