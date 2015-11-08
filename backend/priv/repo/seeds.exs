@@ -33,7 +33,6 @@ end)
 File.stream!(Path.expand('../../seed_data/ig.csv', __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
-|> Stream.take(10)
 |> Enum.each(fn([_fid, name, _ft, process, portion, cls, pcls | _]) ->
   cls = Repo.get_by!(IngredientClass, thscode: cls)
   pcls = Repo.get_by!(IngredientClass, thscode: pcls)
