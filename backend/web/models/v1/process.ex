@@ -3,6 +3,7 @@ defmodule MealprepBackend.V1.Process do
 
   schema "processes" do
     field :name, :string
+    field :thscode, :string
 
     has_many :ingredients, MealprepBackend.V1.Ingredient
 

@@ -4,7 +4,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.Process do
   def change do
     create table(:processes) do
       add :name, :string
-
+      add :thscode, :string
       timestamps
     end
 

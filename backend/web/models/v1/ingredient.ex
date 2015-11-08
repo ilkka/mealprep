@@ -5,7 +5,7 @@ defmodule MealprepBackend.V1.Ingredient do
     field :name, :string
     field :edible_portion, :integer, default: 100
 
-    has_one :process, MealprepBackend.V1.Process
+    belongs_to :process, MealprepBackend.V1.Process
     belongs_to :ingredientclass, MealprepBackend.V1.IngredientClass
 
     timestamps

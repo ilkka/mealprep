@@ -6,6 +6,7 @@ defmodule MealprepBackend.V1.IngredientClass do
     field :thscode, :string
 
     has_many :ingredients, MealprepBackend.V1.Ingredient
+    belongs_to :parent, MealprepBackend.V1.IngredientClass
 
     timestamps
   end
