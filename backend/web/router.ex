@@ -13,6 +13,7 @@ defmodule MealprepBackend.Router do
       resources "/ingredientclasses", IngredientClassController, except: [:new, :edit]
       resources "/processes", ProcessController, except: [:new, :edit]
       resources "/componentclasses", ComponentClassController, except: [:new, :edit]
+      resources "/units", UnitController, except: [:new, :edit]
     end
   end
 end

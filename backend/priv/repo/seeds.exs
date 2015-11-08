@@ -14,6 +14,7 @@ alias MealprepBackend.V1.IngredientClass, as: IngredientClass
 alias MealprepBackend.V1.Ingredient, as: Ingredient
 alias MealprepBackend.V1.Process, as: Process
 alias MealprepBackend.V1.ComponentClass, as: ComponentClass
+alias MealprepBackend.V1.Unit, as: Unit
 alias MealprepBackend.Repo, as: Repo
 
 File.stream!(Path.expand('../../seed_data/igclass_FI.csv', __DIR__))
@@ -51,4 +52,11 @@ File.stream!(Path.expand('../../seed_data/cmpclass_FI.csv', __DIR__))
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, name | _]) ->
   Repo.insert!(%ComponentClass{name: name, thscode: thscode})
+end)
+
+File.stream!(Path.expand('../../seed_data/compunit_FI.csv', __DIR__))
+|> CSV.decode(separator: ?;)
+|> Stream.drop(1)
+|> Enum.each(fn([thscode, name | _]) ->
+  Repo.insert!(%Unit{name: name, thscode: thscode})
 end)
