@@ -13,6 +13,7 @@
 alias MealprepBackend.V1.IngredientClass, as: IngredientClass
 alias MealprepBackend.V1.Ingredient, as: Ingredient
 alias MealprepBackend.V1.Process, as: Process
+alias MealprepBackend.V1.ComponentClass, as: ComponentClass
 alias MealprepBackend.Repo, as: Repo
 
 File.stream!(Path.expand('../../seed_data/igclass_FI.csv', __DIR__))
@@ -43,4 +44,11 @@ File.stream!(Path.expand('../../seed_data/food.csv', __DIR__))
                                         process_id: proc.id,
                                         ingredientclass_id: cls.id})
   Repo.update!(%{cls | parent_id: pcls.id})
+end)
+
+File.stream!(Path.expand('../../seed_data/cmpclass_FI.csv', __DIR__))
+|> CSV.decode(separator: ?;)
+|> Stream.drop(1)
+|> Enum.each(fn[thscode, name | _]) ->
+  Repo.insert!(%ComponentClass{name: name, thscode: thscode})
 end)
