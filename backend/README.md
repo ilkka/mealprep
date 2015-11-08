@@ -1,19 +1,46 @@
-# MealprepBackend
+# MealprepBackend #
 
-To start your Phoenix app:
+Backend for Mealprep service, written in [Elixir] using the [Phoenix Framework].
 
-  1. Install dependencies with `mix deps.get`
-  2. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  3. Start Phoenix endpoint with `mix phoenix.server`
+.. [Elixir]: http://elixir-lang.org/
+.. [Phoenix Framework]: http://www.phoenixframework.org/
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Developing ##
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+To run in development mode, you need Docker Engine, Composer and Machine.
 
-## Learn more
+### OS X prerequisites ###
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+If you are on OS X, install [Homebrew] and then run
+
+```
+$ brew install docker docker-machine docker-composer
+```
+
+After this, you need a machine to run Docker containers in, because Docker Engine does not support OS X natively. I recommend a combination of [VirtualBox] and [Dinghy]. Install VirtualBox from the official image, and then run
+
+```
+$ brew install https://github.com/codekitchen/dinghy/raw/latest/dinghy.rb
+```
+
+Note that since Dinghy's formula is not in Homebrew itself, to upgrade you unfortunately have to uninstall, then reinstall.
+
+.. [Homebrew]: http://brew.sh/
+.. [VirtualBox]: https://virtualbox.org/
+.. [Dinghy]: https://github.com/codekitchen/dinghy
+
+### Running the backend ###
+
+Use the `with-dev-env` script to run your normal `mix` commands in the context of the development environment:
+
+```
+$ ./with-dev-env mix ecto.setup
+$ ./with-dev-env iex -S mix phoenix.server
+```
+
+## Food constituent data
+
+The food constituent database is from the [National Institute for Health and Welfare, Fineli][Fineli], and used under the terms of the [Creative Commons Attribution 4.0 (CC-BY 4.0)][cc-by 4.0] licence.
+
+.. [Fineli]: http://www.fineli.fi/
+.. [cc-by 4.0]: https://creativecommons.org/licenses/by/4.0/
