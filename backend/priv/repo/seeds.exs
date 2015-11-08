@@ -49,6 +49,6 @@ end)
 File.stream!(Path.expand('../../seed_data/cmpclass_FI.csv', __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
-|> Enum.each(fn[thscode, name | _]) ->
+|> Enum.each(fn([thscode, name | _]) ->
   Repo.insert!(%ComponentClass{name: name, thscode: thscode})
 end)
