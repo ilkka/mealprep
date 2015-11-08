@@ -2,6 +2,12 @@
 set -e -o pipefail
 
 SCRIPTDIR=$(cd -P $(dirname $0); pwd)
+DOCKERFILE=${SCRIPTDIR}/docker-compose-dev.yml
+if ! docker-compose -f $DOCKERFILE ps | egrep -q db.*Up; then
+  docker-compose -f $DOCKERFILE up -d
+  echo "Sleeping 4 secs to give DB time to start..."
+  sleep 4
+fi
 
 DBPORT=$(docker inspect -f '{{index .NetworkSettings.Ports "5432/tcp" 0 "HostPort"}}' backend_dev-db_1)
 DBHOST=$(docker-machine ip $(docker-machine active))
