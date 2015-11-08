@@ -15,7 +15,7 @@ alias MealprepBackend.V1.Ingredient, as: Ingredient
 alias MealprepBackend.V1.Process, as: Process
 alias MealprepBackend.Repo, as: Repo
 
-File.stream!(Path.expand('../../seed_data/igclass.csv', __DIR__))
+File.stream!(Path.expand('../../seed_data/igclass_FI.csv', __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([t, n | _]) ->
@@ -23,14 +23,14 @@ File.stream!(Path.expand('../../seed_data/igclass.csv', __DIR__))
                                 thscode: t})
 end)
 
-File.stream!(Path.expand('../../seed_data/process.csv', __DIR__))
+File.stream!(Path.expand('../../seed_data/process_FI.csv', __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, name | _]) ->
   Repo.insert!(%Process{name: name, thscode: thscode})
 end)
 
-File.stream!(Path.expand('../../seed_data/ig.csv', __DIR__))
+File.stream!(Path.expand('../../seed_data/food.csv', __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([_fid, name, _ft, process, portion, cls, pcls | _]) ->
