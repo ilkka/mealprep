@@ -4,9 +4,11 @@ defmodule MealprepBackend.V1.Ingredient do
   schema "ingredients" do
     field :name, :string
     field :edible_portion, :integer, default: 100
+    field :fineli_foodid, :integer, default: 0
 
     belongs_to :process, MealprepBackend.V1.Process
     belongs_to :ingredientclass, MealprepBackend.V1.IngredientClass
+    has_many :components, MealprepBackend.V1.ComponentValue
 
     timestamps
   end

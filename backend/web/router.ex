@@ -14,6 +14,8 @@ defmodule MealprepBackend.Router do
       resources "/processes", ProcessController, except: [:new, :edit]
       resources "/componentclasses", ComponentClassController, except: [:new, :edit]
       resources "/units", UnitController, except: [:new, :edit]
+      resources "/components", ComponentController, except: [:new, :edit]
+      resources "/componentvalues", ComponentValueController, except: [:new, :edit]
     end
   end
 end

@@ -1,16 +1,16 @@
-defmodule MealprepBackend.V1.ComponentClass do
+defmodule MealprepBackend.V1.Component do
   use MealprepBackend.Web, :model
 
-  schema "componentclasses" do
+  schema "components" do
     field :name, :string
-    field :thscode, :string
 
-    belongs_to :parent, MealprepBackend.V1.ComponentClass
+    belongs_to :unit, MealprepBackend.V1.Unit
+    belongs_to :componentclass, MealprepBackend.V1.ComponentClass
 
     timestamps
   end
 
-  @required_fields ~w(name thscode)
+  @required_fields ~w(name)
   @optional_fields ~w()
 
   @doc """

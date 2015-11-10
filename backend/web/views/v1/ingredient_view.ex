@@ -1,5 +1,10 @@
 defmodule MealprepBackend.V1.IngredientView do
   use MealprepBackend.Web, :view
+  alias MealprepBackend.V1.ProcessView
+  alias MealprepBackend.V1.IngredientClassView
+  alias MealprepBackend.V1.ComponentValueView
+
+  @attributes ~w(id name edible_portion inserted_at updated_at)a
 
   def render("index.json", %{ingredients: ingredients}) do
     %{data: render_many(ingredients, MealprepBackend.V1.IngredientView, "ingredient.json")}
@@ -10,7 +15,12 @@ defmodule MealprepBackend.V1.IngredientView do
   end
 
   def render("ingredient.json", %{ingredient: ingredient}) do
-    %{id: ingredient.id,
-      name: ingredient.name}
+    ingredient
+    |> Map.take(@attributes)
+    |> Map.put(:process, ProcessView.render("process.json", process: ingredient.process))
+    |> Map.put(:class, IngredientClassView.render("ingredient_class.json", ingredient_class: ingredient.ingredientclass))
+    |> Map.put(:components, Enum.map(ingredient.components,
+          fn(c) -> ComponentValueView.render("component_value.json", component_value: c)
+          end))
   end
 end
