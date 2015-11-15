@@ -38,6 +38,7 @@
   "dependencies": {
     "@cycle/core": "^6.0.0-rc2",
     "@cycle/dom": "^8.0.0-rc2",
+    "@cycle/http": "^6.1.0",
     "rx": "^4.0.0",
     "virtual-dom": "^2.1.1"
   }
