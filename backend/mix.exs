@@ -34,7 +34,8 @@ defmodule MealprepBackend.Mixfile do
      {:phoenix_ecto, "~> 1.1"},
      {:postgrex, ">= 0.0.0"},
      {:cowboy, "~> 1.0"},
-     {:csv, "~> 1.2"}]
+     {:csv, "~> 1.2"},
+     {:cors_plug, "~> 0.1.4"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

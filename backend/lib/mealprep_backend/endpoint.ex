@@ -33,5 +33,6 @@ defmodule MealprepBackend.Endpoint do
     key: "_mealprep_backend_key",
     signing_salt: "7ygeXNt2"
 
+  plug CORSPlug
   plug MealprepBackend.Router
 end
