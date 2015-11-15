@@ -1,8 +1,8 @@
-import merge from 'webpack-merge';
+var merge = require('webpack-merge');
 
-import commonConfig from './webpack-common.config.js';
+var commonConfig = require('./webpack-common.config.js');
 
-export default merge(commonConfig, {
+module.exports = merge(commonConfig, {
   debug: true,
   devtool: "cheap-module-inline-source-map",
   profile: false,

@@ -1,11 +1,11 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-let name = 'Cycle!';
+var name = 'Cycle!';
 
-let vendorModules = /(node_modules|bower_components)/;
+var vendorModules = /(node_modules|bower_components)/;
 
-export default {
+module.exports = {
   target: "web",
   entry: {
     app: "./app/index.js",
@@ -29,21 +29,14 @@ export default {
         exclude: vendorModules,
         loader: "babel",
         query: {
-          optional: [
-            "runtime",
-            "validation.undeclaredVariableCheck",
-            "optimisation.react.constantElements",
-          ],
           env: {
             development: {
               plugins: [
                 "typecheck",
-                "closure-elimination",
               ],
             },
           },
-          jsxPragma: "hJSX",
-          stage: 0,
+          presets: ['es2015', 'stage-2']  
         },
       },
     ],
