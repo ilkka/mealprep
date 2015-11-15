@@ -9,6 +9,23 @@ Backend for Mealprep service, written in [Elixir] using the [Phoenix Framework].
 
 To run in development mode, you need Docker Engine, Composer and Machine.
 
+### Prerequisites ###
+
+Before the backend can be run, you must download the deps:
+
+```
+$ dev mix hex.info
+$ dev mix deps.get
+```
+
+Ecto is used e.g. to preseed the database, and the Postgres client `psql` is required for that. Therefore you must install Postgres so that `psql` ends up on your `$PATH`.
+
+On Ubuntu, for example, it is enough to
+
+```
+$ sudo apt-get install postgresql-client
+```
+
 ### OS X prerequisites ###
 
 If you are on OS X, install [Homebrew] and then run
@@ -31,11 +48,11 @@ Note that since Dinghy's formula is not in Homebrew itself, to upgrade you unfor
 
 ### Running the backend ###
 
-Use the `with-dev-env` script to run your normal `mix` commands in the context of the development environment:
+Use the `with-env` script to run your normal `mix` commands in the context of an environment:
 
 ```
-$ ./with-dev-env mix ecto.setup
-$ ./with-dev-env iex -S mix phoenix.server
+$ ./with-env dev mix ecto.setup
+$ ./with-env dev iex -S mix phoenix.server
 ```
 
 ## Food constituent data ##

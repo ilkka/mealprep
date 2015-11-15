@@ -4,4 +4,4 @@ dev-db:
   ports:
     - "5432"
   env_file:
-    - development.env
+    - dev.env

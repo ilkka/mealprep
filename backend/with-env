@@ -1,0 +1,65 @@
+#!/bin/bash
+set -e -o pipefail
+SCRIPTDIR=$(cd -P $(dirname $0); pwd)
+
+HELP=0
+INVALID_ENV=""
+ENV=""
+while (( $# )); do
+    arg=$1
+    shift
+    case "$arg" in
+        -h|--help)
+            HELP=1
+            break
+            ;;
+        dev|test)
+            ENV=$arg
+            break
+            ;;
+        *)
+            INVALID_ENV=$arg
+            break
+            ;;
+    esac
+done
+
+if [[ $HELP -eq 1 ]]; then
+    echo "Usage: $0 ENV CMD [ARGS ... ]"
+    echo ""
+    echo "Where ENV is the environment (dev, test etc) and the rest"
+    echo "is the command to run and arguments."
+    exit 0
+fi
+
+if [[ -n $INVALID_ENV ]]; then
+    echo "$INVALID_ENV is not a valid environment"
+    exit 1
+fi
+
+DOCKERFILE=${SCRIPTDIR}/docker-compose-${ENV}.yml
+if ! docker-compose -f $DOCKERFILE ps | egrep -q db.*Up; then
+  docker-compose -f $DOCKERFILE up -d
+  echo "Sleeping 4 secs to give DB time to start..."
+  sleep 4
+fi
+
+DBSERVICE=${ENV}-db
+DBPORT=$(docker-compose -f $DOCKERFILE port $DBSERVICE 5432 | sed 's/.*://')
+
+if which docker-machine &>/dev/null && docker-machine active &>/dev/null; then
+    DBHOST=$(docker-machine ip $(docker-machine active))
+else
+    DBHOST=127.0.0.1
+fi
+
+source $SCRIPTDIR/$ENV.env
+export DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DBHOST}:${DBPORT}/${POSTGRES_USER}
+
+# if we're gonna run psql, splice in the db conninfo argument:
+if [[ $1 == "psql" ]]; then
+  shift
+  set -- "psql" "-d" "$DATABASE_URL" "$@"
+fi
+
+exec "$@"
