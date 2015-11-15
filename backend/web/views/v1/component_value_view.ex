@@ -11,7 +11,16 @@ defmodule MealprepBackend.V1.ComponentValueView do
 
   def render("component_value.json", %{component_value: component_value}) do
     %{id: component_value.id,
+      component_id: component_value.component.id,
       name: component_value.component.name,
-      value: component_value.value}
+      value: component_value.value,
+      unit: component_value.component.unit.thscode}
+  end
+
+  def render("component_value_in_ingredient.json", %{component_value: component_value}) do
+    %{id: component_value.component.id,
+      name: component_value.component.name,
+      value: component_value.value,
+      unit: component_value.component.unit.thscode}
   end
 end
