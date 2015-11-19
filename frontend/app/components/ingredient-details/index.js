@@ -1,5 +1,6 @@
 import Rx from 'rx';
 import {h} from '@cycle/dom';
+import numeral from 'numeral';
 
 export default function ingredientDetails(responses) {
   function intent(/*DOM*/) {
@@ -17,15 +18,15 @@ export default function ingredientDetails(responses) {
 
   function view(state$) {
     return state$
-    .filter(({ingredient, amount}) => ingredient.components)
-    .map(({ingredient, amount}) => h('div.ingredient', [
-      h('h2', `${ingredient.name}, ${amount} g`),
-      h('h3', 'Ravintotekijät:'),
-      h('dl', ingredient.components.reduce((l, c) => l.concat(
-        h('dt', `${c.name}`),
-        h('dd', `${c.value * (amount / 100.0)} ${c.unit}`),
-      ), [])),
-    ]));
+      .filter(({ingredient, amount}) => ingredient.components)
+      .map(({ingredient, amount}) => h('div.ingredient', [
+        h('h2', `${ingredient.name}, ${amount} g`),
+        h('h3', 'Ravintotekijät:'),
+        h('dl', ingredient.components.reduce((l, c) => l.concat(
+          h('dt', `${c.name}`),
+          h('dd', `${numeral(c.value * (amount / 100.0)).format('0.00')} ${c.unit}`),
+        ), [])),
+      ]));
   }
 
   let actions = intent(responses.DOM);
