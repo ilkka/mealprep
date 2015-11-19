@@ -1,29 +1,41 @@
-import {Rx} from '@cycle/core';
+import Rx from 'rx';
 import {h} from '@cycle/dom';
 
 export default function labeledSlider(responses) {
-    const initialValue$ = responses.props.get('initial').first();
-    const newValue$ = responses.DOM.get('.slider', 'input')
-          .map((ev) => parseInt(ev.target.value), 10);
-
-    const value$ = initialValue$.concat(newValue$);
-    const props$ = responses.props.get('*');
-
-    const vtree$ = Rx.Observable
-          .combineLatest(props$, value$, (props, value) =>
-                         h('div.labeled-slider', [
-                             h('div.label', [props.children.concat(value + props.unit)]),
-                             h('input.slider', {type: 'range',
-                                                min: props.min,
-                                                max: props.max,
-                                                value: value})
-                         ])
-                        );
-
+  function intent(DOM) {
     return {
-        DOM: vtree$,
-        events: {
-            newValue: newValue$,
-        },
+      changeValue$: DOM.select('.slider').events('input')
+        .map((ev) => ev.target.value),
     };
+  }
+
+  function model(context, actions) {
+    let initialValue$ = context.props.get('initial').first();
+    let value$ = initialValue$.concat(actions.changeValue$);
+    let props$ = context.props.getAll();
+    return Rx.Observable.combineLatest(props$, value$,
+      (props, value) => { return {props, value}; }
+    );
+  }
+
+  function view(state$) {
+    return state$.map((state) => {
+      let {label, unit, min, max} = state.props;
+      let value = state.value;
+      return h('div.labeled-slider', [
+        h('span.label', [label + ' ' + value + unit]),
+        h('input.slider', {type: 'range', min, max, value}),
+      ]);
+    });
+  }
+
+  let actions = intent(responses.DOM);
+  let vtree$ = view(model(responses, actions));
+
+  return {
+    DOM: vtree$,
+    events: {
+      newValue: actions.changeValue$,
+    },
+  };
 }
