@@ -1,7 +1,6 @@
 import Rx from 'rx';
 import {h} from '@cycle/dom';
 import numeral from 'numeral';
-import labeledSlider from '../labeled-slider';
 
 const {div, h2, h3, dl, dt, dd} = require('hyperscript-helpers')(h);
 
@@ -23,9 +22,9 @@ export default function ingredientDetails(responses) {
 
   function view(state$) {
     return state$
-      .filter(({ingredient, amount}) => ingredient.components)
+      .filter(({ingredient}) => ingredient.components)
       .map(({ingredient, amount}) => div('.ingredient', [
-        h2(ingredient.name),
+        h2(`${ingredient.name}`),
         h('labeled-slider#amount', {
           key: 1, label: 'Määrä', unit: 'g', min: 0, initial: amount, max: 100,
         }),

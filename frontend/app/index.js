@@ -24,7 +24,7 @@ function model(actions) {
     (ingredient) => ({ingredient}));
 }
 
-function intent({DOM, HTTP}) {
+function intent({HTTP}) {
   return {
     changeIngredient: HTTP.filter((res$) => res$.request === INGREDIENT_URL)
       .mergeAll()
