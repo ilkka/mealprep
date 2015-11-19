@@ -36,7 +36,7 @@
     "no-cond-assign": [2, "always"],
     "no-ex-assign": 2,
     "curly": 2,
-    "max-len": [1, 80, 4],
+    "max-len": [1, 160, 4],
     "max-depth": [2, 5],
     "complexity": [1, 8],
     "indent": [2, 2],
