@@ -24,7 +24,7 @@ export default function ingredientDetails(responses) {
         h('h3', 'Ravintotekijät:'),
         h('dl', ingredient.components.reduce((l, c) => l.concat(
           h('dt', `${c.name}`),
-          h('dd', `${numeral(c.value * (amount / 100.0)).format('0.00')} ${c.unit}`),
+          h('dd', `${numeral(c.value * (amount / 100.0)).format('0.00')} ${c.unit}`)
         ), [])),
       ]));
   }
