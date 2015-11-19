@@ -3,6 +3,8 @@ import Cycle from '@cycle/core';
 import {makeDOMDriver, h} from '@cycle/dom';
 import {makeHTTPDriver} from '@cycle/http';
 
+const {div} = require('hyperscript-helpers')(h);
+
 import labeledSlider from './components/labeled-slider';
 import ingredientDetails from './components/ingredient-details';
 
@@ -10,20 +12,16 @@ import ingredientDetails from './components/ingredient-details';
 
 const INGREDIENT_URL = 'http://localhost:4000/api/v1/ingredients/123';
 
-function view(state) {
-  return state.map(({amount, ingredient}) => h('div', [
-    h('labeled-slider#amount', {
-      key: 1, label: ingredient.name, unit: 'g', min: 0, initial: amount, max: 100,
-    }),
-    h('ingredient-details', {ingredient, amount})
+function view(state$) {
+  return state$.map(({ingredient}) => div([
+    h('ingredient-details', {ingredient}),
   ]));
 }
 
 function model(actions) {
   return Rx.Observable.combineLatest(
-    actions.changeAmount.startWith(50),
     actions.changeIngredient,
-    (amount, ingredient) => ({amount, ingredient}));
+    (ingredient) => ({ingredient}));
 }
 
 function intent({DOM, HTTP}) {
@@ -32,7 +30,6 @@ function intent({DOM, HTTP}) {
       .mergeAll()
       .map((req) => JSON.parse(req.text))
       .map((ing) => ing.data),
-    changeAmount: DOM.select('#amount').events('newValue').map((ev) => ev.detail),
   };
 }
 
