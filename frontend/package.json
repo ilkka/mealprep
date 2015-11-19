@@ -39,6 +39,7 @@
     "@cycle/core": "^5.0.0",
     "@cycle/dom": "^7.0.0",
     "@cycle/http": "^6.1.0",
+    "hyperscript-helpers": "^2.0.2",
     "numeral": "^1.5.3",
     "rx": "^4.0.0",
     "virtual-dom": "^2.1.1"
