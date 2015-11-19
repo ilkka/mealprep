@@ -9,35 +9,39 @@ import labeledSlider from './components/labeled-slider';
 import ingredientDetails from './components/ingredient-details';
 import ingredientSelector from './components/ingredient-selector';
 
-const INGREDIENT_URL = 'http://localhost:4000/api/v1/ingredients/123';
+const INGREDIENT_URL = 'http://localhost:4000/api/v1/ingredients/';
 
 function view(state$) {
-  return state$.map(({ingredient}) => div([
-    h('ingredient-selector#selector'),
-  ].concat(
-    h('ingredient-details', {ingredient})
-  )));
+  return state$.map(({ingredients}) => {
+    return div([
+      h('ingredient-selector#selector'),
+    ].concat(
+      ingredients.map((i) => h('ingredient-details', {ingredient: i}))
+    ));
+  });
 }
 
 function model(actions) {
+  let ingredients$ = actions.setIngredients.startWith([]);
   return Rx.Observable.combineLatest(
-    actions.changeIngredient,
-    (ingredient) => ({ingredient}));
+    ingredients$,
+    (ingredients) => ({ingredients}));
 }
 
 function intent({HTTP}) {
   return {
-    changeIngredient: HTTP.filter((res$) => res$.request === INGREDIENT_URL)
+    setIngredients: HTTP.filter((res$) => res$.request.startsWith(INGREDIENT_URL))
       .mergeAll()
       .map((req) => JSON.parse(req.text))
-      .map((ing) => ing.data),
+      .map((ing) => [ing.data])
+      .scan((acc, cur) => acc.concat(cur)),
   };
 }
 
 function main({DOM, HTTP}) {
   return {
     DOM: view(model(intent({DOM, HTTP}))),
-    HTTP: Rx.Observable.just(INGREDIENT_URL),
+    HTTP: Rx.Observable.from([123, 321, 456].map((id) => INGREDIENT_URL + id)),
   };
 }
 
