@@ -22,7 +22,7 @@ function view(state) {
 function model(actions) {
   return Rx.Observable.combineLatest(
     actions.changeAmount.startWith(50),
-    actions.changeIngredient.startWith({name: 'Loading...'}),
+    actions.changeIngredient,
     (amount, ingredient) => ({amount, ingredient}));
 }
 

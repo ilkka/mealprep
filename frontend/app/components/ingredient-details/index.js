@@ -16,8 +16,15 @@ export default function ingredientDetails(responses) {
   }
 
   function view(state$) {
-    return state$.map(({ingredient, amount}) => h('div.ingredient', [
-      h('p', `${ingredient.name}, ${amount} g`),
+    return state$
+    .filter(({ingredient, amount}) => ingredient.components)
+    .map(({ingredient, amount}) => h('div.ingredient', [
+      h('h2', `${ingredient.name}, ${amount} g`),
+      h('h3', 'Ravintotekijät:'),
+      h('dl', ingredient.components.reduce((l, c) => l.concat(
+        h('dt', `${c.name}`),
+        h('dd', `${c.value * (amount / 100.0)} ${c.unit}`),
+      ), [])),
     ]));
   }
 
