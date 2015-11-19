@@ -19,7 +19,7 @@ export default function ingredientSelector(responses) {
   }
 
   function view(state$) {
-    return state$.map(({id}) => div([
+    return state$.map(({id}) => div('.ingredient-selector', [
       label('Ingredient ID'),
       input('#ingredientId', {value: id}),
     ]));
