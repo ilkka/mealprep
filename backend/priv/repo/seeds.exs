@@ -65,6 +65,8 @@ File.stream!(Path.expand('../../seed_data/compunit_FI.csv', __DIR__))
   Repo.insert!(%Unit{name: name, thscode: thscode})
 end)
 
+visibleIngredients = Enum.into(['ENERC', 'CHOAVL', 'FAT', 'PROT', 'FIBC'], HashSet.new)
+
 File.stream!(Path.expand('../../seed_data/component.csv', __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
@@ -72,9 +74,11 @@ File.stream!(Path.expand('../../seed_data/component.csv', __DIR__))
   unit = Repo.get_by!(Unit, thscode: unitname)
   cls = Repo.get_by!(ComponentClass, thscode: clsname)
   pcls = Repo.get_by!(ComponentClass, thscode: pclsname)
+  visible = Set.member?(visibleIngredients, )
   Repo.insert!(%Component{thscode: eufdname,
                           unit_id: unit.id,
-                          componentclass_id: cls.id})
+                          componentclass_id: cls.id,
+                          visible: visible})
   Repo.update!(%{cls | parent_id: pcls.id})
 end)
 

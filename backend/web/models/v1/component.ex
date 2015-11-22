@@ -4,7 +4,8 @@ defmodule MealprepBackend.V1.Component do
   schema "components" do
     field :name, :string
     field :thscode, :string
-
+    field :visible, :boolean
+    
     belongs_to :unit, MealprepBackend.V1.Unit
     belongs_to :componentclass, MealprepBackend.V1.ComponentClass
 

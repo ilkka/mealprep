@@ -19,7 +19,8 @@ defmodule MealprepBackend.V1.IngredientView do
     |> Map.take(@attributes)
     |> Map.put(:process, ProcessView.render("process.json", process: ingredient.process))
     |> Map.put(:class, IngredientClassView.render("ingredient_class.json", ingredient_class: ingredient.ingredientclass))
-    |> Map.put(:components, Enum.map(ingredient.components,
+    |> Map.put(:components, Enum.filter_map(ingredient.components,
+          fn(c) -> c.component.visible end,
           fn(c) -> ComponentValueView.render("component_value_in_ingredient.json", component_value: c)
           end))
   end
