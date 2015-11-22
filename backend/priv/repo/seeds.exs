@@ -72,7 +72,7 @@ File.stream!(Path.expand('../../seed_data/component.csv', __DIR__))
   unit = Repo.get_by!(Unit, thscode: unitname)
   cls = Repo.get_by!(ComponentClass, thscode: clsname)
   pcls = Repo.get_by!(ComponentClass, thscode: pclsname)
-  Repo.insert!(%Component{name: eufdname,
+  Repo.insert!(%Component{thscode: eufdname,
                           unit_id: unit.id,
                           componentclass_id: cls.id})
   Repo.update!(%{cls | parent_id: pcls.id})
@@ -83,7 +83,7 @@ File.stream!(Path.expand('../../seed_data/component_value.csv', __DIR__))
 |> Stream.drop(1)
 |> Enum.each(fn([fid, eufdname, value | _]) ->
   ingredient = Repo.get_by!(Ingredient, fineli_foodid: fid)
-  component = Repo.get_by!(Component, name: eufdname)
+  component = Repo.get_by!(Component, thscode: eufdname)
   {value, _} = Float.parse(String.replace(value, ",", "."))
   Repo.insert!(%ComponentValue{value: value,
                                ingredient_id: ingredient.id,
@@ -94,7 +94,7 @@ File.stream!(Path.expand('../../seed_data/eufdname_FI.csv', __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, name | _]) ->
-  comp = Repo.get_by(Component, name: thscode)
+  comp = Repo.get_by(Component, thscode: thscode)
   if comp != nil do
     Repo.update!(%{comp | name: name})
   end

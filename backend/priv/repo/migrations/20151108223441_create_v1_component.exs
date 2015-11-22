@@ -4,7 +4,8 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.Component do
   def change do
     create table(:components) do
       add :name, :string
-
+      add :thscode, :string
+      
       add :unit_id, references(:units)
       add :componentclass_id, references(:componentclasses)
 
