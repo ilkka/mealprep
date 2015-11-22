@@ -1,5 +1,4 @@
 import {h} from '@cycle/dom';
-
 const {input, label, div} = require('hyperscript-helpers')(h);
 
 export default function ingredientSelector(responses) {

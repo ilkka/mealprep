@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var name = 'Cycle!';
 
@@ -39,6 +40,10 @@ module.exports = {
           presets: ['es2015', 'stage-2'],
         },
       },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'),
+      },
     ],
   },
 
@@ -64,5 +69,6 @@ module.exports = {
       } : false,
       template: './app/index.html',
     }),
+    new ExtractTextPlugin('style.css', {allChunks: true}),
   ],
 };

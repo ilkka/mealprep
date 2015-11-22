@@ -1,8 +1,9 @@
 import Rx from 'rx';
 import {h} from '@cycle/dom';
 import numeral from 'numeral';
-
 const {div, h2, h3, dl, dt, dd} = require('hyperscript-helpers')(h);
+
+import styles from './style.css';
 
 export default function ingredientDetails(responses) {
   function intent(DOM) {
@@ -23,8 +24,8 @@ export default function ingredientDetails(responses) {
   function view(state$) {
     return state$
       .filter(({ingredient}) => ingredient.components)
-      .map(({ingredient, amount}) => div('.ingredient', [
-        h2(`${ingredient.name}`),
+      .map(({ingredient, amount}) => div(`.${styles.ingredientContainer}`, [
+        h2(`.${styles.ingredientTitle}`, `${ingredient.name}`),
         h('labeled-slider#amount', {
           key: 1, label: 'Määrä', unit: 'g', min: 0, initial: amount, max: 100,
         }),
