@@ -13,7 +13,7 @@ export default function ingredientDetails(responses) {
   }
 
   function model(context, actions) {
-    let ingredient$ = context.props.get('ingredient').startWith('Loading...');
+    let ingredient$ = context.props.get('ingredient');
     let amount$ = actions.changeAmount.startWith(50);
     return Rx.Observable.combineLatest(
       ingredient$,
