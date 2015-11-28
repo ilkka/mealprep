@@ -8,6 +8,7 @@ const {div} = require('hyperscript-helpers')(h);
 import labeledSlider from './components/labeled-slider';
 import ingredientDetails from './components/ingredient-details';
 import ingredientSelector from './components/ingredient-selector';
+import mealView from './components/meal-view';
 
 const INGREDIENT_URL = 'http://localhost:4000/api/v1/ingredients/';
 
@@ -16,7 +17,8 @@ function view(state$) {
     return div([
       h('ingredient-selector#selector'),
     ].concat(
-      ingredients.map((i) => h('ingredient-details', {ingredient: i}))
+      ingredients.map((i) => h(`ingredient-details#ingredient-${i.id}`, {ingredient: i})),
+      [h('meal-view', {ingredients})]
     ));
   });
 }
@@ -50,6 +52,7 @@ Cycle.run(main, {
     'labeled-slider': labeledSlider,
     'ingredient-details': ingredientDetails,
     'ingredient-selector': ingredientSelector,
+    'meal-view': mealView,
   }),
   HTTP: makeHTTPDriver(),
 });
