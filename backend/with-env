@@ -56,10 +56,13 @@ fi
 source $SCRIPTDIR/$ENV.env
 export DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DBHOST}:${DBPORT}/${POSTGRES_USER}
 
-# if we're gonna run psql, splice in the db conninfo argument:
-if [[ $1 == "psql" ]]; then
-  shift
-  set -- "psql" "-d" "$DATABASE_URL" "$@"
-fi
+# if we're gonna run postgres commands, splice in the db conninfo argument:
+SPLICED=("psql" "pg_dump")
+for s in "${SPLICED[@]}"; do
+  if [[ $1 == $s ]]; then
+    shift
+    set -- "$s" "-d" "$DATABASE_URL" "$@"
+  fi
+done
 
 exec "$@"
