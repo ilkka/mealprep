@@ -19,7 +19,7 @@ alias MealprepBackend.V1.Component
 alias MealprepBackend.V1.ComponentValue
 alias MealprepBackend.Repo
 
-File.stream!(Path.expand('../../seed_data/igclass_FI.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/igclass_FI.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([t, n | _]) ->
@@ -27,14 +27,14 @@ File.stream!(Path.expand('../../seed_data/igclass_FI.csv', __DIR__))
                                 thscode: t})
 end)
 
-File.stream!(Path.expand('../../seed_data/process_FI.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/process_FI.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, name | _]) ->
   Repo.insert!(%Process{name: name, thscode: thscode})
 end)
 
-File.stream!(Path.expand('../../seed_data/food.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/food.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([fid, name, _ft, process, portion, cls, pcls | _]) ->
@@ -51,23 +51,23 @@ File.stream!(Path.expand('../../seed_data/food.csv', __DIR__))
   Repo.update!(%{cls | parent_id: pcls.id})
 end)
 
-File.stream!(Path.expand('../../seed_data/cmpclass_FI.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/cmpclass_FI.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, name | _]) ->
   Repo.insert!(%ComponentClass{name: name, thscode: thscode})
 end)
 
-File.stream!(Path.expand('../../seed_data/compunit_FI.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/compunit_FI.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, name | _]) ->
   Repo.insert!(%Unit{name: name, thscode: thscode})
 end)
 
-visibleComponents = Enum.into(['ENERC', 'CHOAVL', 'FAT', 'PROT', 'FIBC'], HashSet.new)
+visibleComponents = Enum.into(["ENERC", "CHOAVL", "FAT", "PROT", "FIBC"], HashSet.new)
 
-File.stream!(Path.expand('../../seed_data/component.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/component.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([eufdname, unitname, clsname, pclsname]) ->
@@ -82,7 +82,7 @@ File.stream!(Path.expand('../../seed_data/component.csv', __DIR__))
   Repo.update!(%{cls | parent_id: pcls.id})
 end)
 
-File.stream!(Path.expand('../../seed_data/component_value.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/component_value.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([fid, eufdname, value | _]) ->
@@ -94,7 +94,7 @@ File.stream!(Path.expand('../../seed_data/component_value.csv', __DIR__))
                                component_id: component.id})
 end)
 
-File.stream!(Path.expand('../../seed_data/eufdname_FI.csv', __DIR__))
+File.stream!(Path.expand("../../seed_data/eufdname_FI.csv", __DIR__))
 |> CSV.decode(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, name | _]) ->
