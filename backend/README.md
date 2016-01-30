@@ -7,7 +7,7 @@ Backend for Mealprep service, written in [Elixir] using the [Phoenix Framework].
 
 ## Developing ##
 
-To run in development mode, you need Docker Engine, Composer and Machine.
+To run in development mode, you need Docker Engine, Compose and Machine.
 
 ### Prerequisites ###
 
