@@ -31,7 +31,7 @@ $ sudo apt-get install postgresql-client
 If you are on OS X, install [Homebrew] and then run
 
 ```
-$ brew install docker docker-machine docker-composer
+$ brew install docker docker-machine docker-compose
 ```
 
 After this, you need a machine to run Docker containers in, because Docker Engine does not support OS X natively. I recommend a combination of [VirtualBox] and [Dinghy]. Install VirtualBox from the official image, and then run
