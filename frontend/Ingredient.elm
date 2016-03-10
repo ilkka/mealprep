@@ -1,12 +1,9 @@
-module Ingredient where
-
-import Html exposing (..)
-
+module Ingredient (..) where
 
 -- MODEL
 
-type alias Model = {
-    id : Int,
-    name : String
-}
 
+type alias Model =
+  { id : Int
+  , name : String
+  }
