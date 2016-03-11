@@ -1,11 +1,10 @@
 module Meal (..) where
 
-import Html exposing (..)
-import Signal exposing (Address)
+import Html exposing (Html)
 import Ingredient
 
 
--- MODEL
+-- Model
 
 
 type alias MealIngredient =
@@ -20,22 +19,30 @@ type alias Model =
   }
 
 
-init : Model
-init =
+initialModel : Model
+initialModel =
   { name = "Nutritious meal"
   , ingredients = []
   }
 
 
 type Action
-  = Nothing
+  = NoOp
+
+
+
+-- View
+
+
+view : Signal.Address action -> Model -> Html
+view a m =
+  Html.p [] [ Html.text "morjestaa" ]
+
+
+
+-- Update
 
 
 update : Action -> Model -> Model
 update a m =
   m
-
-
-view : Address action -> Model -> Html
-view a m =
-  p [] [ text "morjestaa" ]
