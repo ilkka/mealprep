@@ -2,6 +2,8 @@
   'use strict';
 
   require("basscss/css/basscss.css");
+  require("basscss-colors/css/colors.css");
+  require("basscss-background-colors/css/background-colors.css");
   require("font-awesome/css/font-awesome.css");
 
   require("./index.html");
