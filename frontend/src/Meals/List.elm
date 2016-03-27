@@ -1,6 +1,7 @@
 module Meals.List (..) where
 
 import Html exposing (..)
+import Html.Events exposing (onClick)
 import Html.Attributes exposing (class)
 import Meals.Actions exposing (..)
 import Meals.Models exposing (Meal)
@@ -38,6 +39,7 @@ list address model =
                 []
                 [ th [] [ text "Id" ]
                 , th [] [ text "Name" ]
+                , th [] [ text "" ]
                 ]
             ]
         , tbody [] (List.map (mealRow address model) model.meals)
@@ -51,4 +53,14 @@ mealRow address model meal =
     []
     [ td [] [ text (toString meal.id) ]
     , td [] [ text meal.name ]
+    , td [] [ btnEdit address meal ]
     ]
+
+
+btnEdit : Signal.Address Action -> Meal -> Html
+btnEdit address meal =
+  button
+    [ class "btn regular"
+    , onClick address (EditMeal meal.id)
+    ]
+    [ i [ class "fa fa-pencil mr1" ] [], text "Edit" ]
