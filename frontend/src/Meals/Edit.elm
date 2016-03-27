@@ -3,6 +3,7 @@ module Meals.Edit (..) where
 import Html exposing (..)
 import Html.Attributes exposing (class, value, href)
 import Meals.Models exposing (..)
+import Ingredients.Models exposing (..)
 import Meals.Actions exposing (..)
 
 
@@ -31,10 +32,11 @@ form : Signal.Address Action -> ViewModel -> Html
 form address model =
   div
     [ class "m3" ]
-    [ h1 [] [ text model.meal.name ]
-    , formName address model
-    , formIngredients address model
-    ]
+    ([ h1 [] [ text model.meal.name ]
+     , formName address model
+     ]
+      ++ formIngredients address model
+    )
 
 
 formName : Signal.Address Action -> ViewModel -> Html
@@ -58,16 +60,18 @@ inputName address model =
     []
 
 
-formIngredients : Signal.Address Action -> ViewModel -> Html
+formIngredients : Signal.Address Action -> ViewModel -> List Html
 formIngredients address model =
-  List.map (formIngredient address) model.meal.ingredients
+  List.map
+    (formIngredient address)
+    model.meal.ingredients
 
 
 formIngredient : Signal.Address Action -> MealIngredient -> Html
 formIngredient address ingredient =
   div
     [ class "clearfix py1" ]
-    [ div [ class "col col-5" ] [ text ingredient.name ]
+    [ div [ class "col col-5" ] [ text ingredient.ingredient.name ]
     , div
         [ class "col col-7" ]
         [ span [ class "h2 bold" ] [ text (toString ingredient.amount) ]
