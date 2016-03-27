@@ -3,7 +3,7 @@ module Routing (..) where
 import Task exposing (Task)
 import Effects exposing (Effects, Never)
 import Hop
-import Hop.Types exposing (Location, PathMatcher, Routing, newLocation)
+import Hop.Types exposing (Location, PathMatcher, Router, newLocation)
 import Hop.Navigate exposing (navigateTo)
 import Hop.Matchers exposing (match1, match2, match3, int)
 import Meals.Models exposing (MealId)
@@ -64,7 +64,7 @@ update action model =
     ApplyRoute ( route, location ) ->
       ( { model | route = route, location = location }, Effects.none )
 
-    HopAction ->
+    HopAction () ->
       ( model, Effects.none )
 
 
@@ -82,9 +82,9 @@ mealsMatcher =
   match1 MealsRoute "/meals"
 
 
-mealEditMatch : PathMatcher Route
-mealEditMatch =
-  match3 MealsEditRoute "/meals/" int "/edit"
+mealEditMatcher : PathMatcher Route
+mealEditMatcher =
+  match3 MealEditRoute "/meals/" int "/edit"
 
 
 matchers : List (PathMatcher Route)
@@ -122,4 +122,4 @@ run =
 
 signal : Signal Action
 signal =
-  Signal.map Applyroute router.signal
+  Signal.map ApplyRoute router.signal
