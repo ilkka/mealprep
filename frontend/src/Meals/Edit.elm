@@ -1,9 +1,9 @@
 module Meals.Edit (..) where
 
 import Html exposing (..)
+import Html.Events exposing (onClick)
 import Html.Attributes exposing (class, value, href)
 import Meals.Models exposing (..)
-import Ingredients.Models exposing (..)
 import Meals.Actions exposing (..)
 
 
@@ -25,7 +25,7 @@ nav : Signal.Address Action -> ViewModel -> Html
 nav address model =
   div
     [ class "clearfix mb2 white bg-black p1" ]
-    []
+    [ btnList address model ]
 
 
 form : Signal.Address Action -> ViewModel -> Html
@@ -93,3 +93,12 @@ btnAmountDecrease address ingredient =
   a
     [ class "btn ml1 h1" ]
     [ i [ class "fa fa-minus-circle" ] [] ]
+
+
+btnList : Signal.Address Action -> ViewModel -> Html
+btnList address model =
+  button
+    [ class "btn regular"
+    , onClick address ListMeals
+    ]
+    [ i [ class "fa fa-chevron-left mr1" ] [], text "List" ]

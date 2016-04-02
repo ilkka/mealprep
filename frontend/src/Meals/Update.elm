@@ -20,6 +20,13 @@ update action model =
       in
         ( model.meals, Effects.map HopAction (navigateTo path) )
 
+    ListMeals ->
+      let
+        path =
+          "/meals/"
+      in
+        ( model.meals, Effects.map HopAction (navigateTo path) )
+
     HopAction _ ->
       ( model.meals, Effects.none )
 
