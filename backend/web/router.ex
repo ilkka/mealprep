@@ -16,6 +16,7 @@ defmodule MealprepBackend.Router do
       resources "/units", UnitController, except: [:new, :edit]
       resources "/components", ComponentController, except: [:new, :edit]
       resources "/componentvalues", ComponentValueController, except: [:new, :edit]
+      resources "/meals", MealController
     end
   end
 end
