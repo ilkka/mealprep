@@ -28,6 +28,7 @@ defmodule MealprepBackend.V1.MealController do
 
   def show(conn, %{"id" => id}) do
     meal = Repo.get!(Meal, id)
+      |> Repo.preload([ingredients: [ingredient: [:process, :ingredientclass, components: [component: :unit]]]])
     render(conn, "show.json", meal: meal)
   end
 
