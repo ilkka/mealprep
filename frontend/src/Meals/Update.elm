@@ -27,8 +27,13 @@ update action model =
       in
         ( model.meals, Effects.map HopAction (navigateTo path) )
 
-    FetchAllDone _ ->
-      ( model.meals, Effects.none )
+    FetchAllDone result ->
+      case result of
+        Ok meals ->
+          ( meals, Effects.none )
+
+        Err errors ->
+          ( model.meals, Effects.none )
 
     HopAction _ ->
       ( model.meals, Effects.none )

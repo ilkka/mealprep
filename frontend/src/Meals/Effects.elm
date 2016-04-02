@@ -28,12 +28,21 @@ fetchAllUrl =
 
 collectionDecoder : Decode.Decoder (List Meal)
 collectionDecoder =
-  Decode.list mealDecoder
+  Decode.at [ "data" ] (Decode.list mealSummaryDecoder)
 
 
 ingredientCollectionDecoder : Decode.Decoder (List MealIngredient)
 ingredientCollectionDecoder =
   Decode.list ingredientMemberDecoder
+
+
+mealSummaryDecoder : Decode.Decoder Meal
+mealSummaryDecoder =
+  Decode.object3
+    Meal
+    ("id" := Decode.int)
+    ("name" := Decode.string)
+    (Decode.succeed [])
 
 
 mealDecoder : Decode.Decoder Meal
