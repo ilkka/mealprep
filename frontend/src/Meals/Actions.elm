@@ -1,6 +1,7 @@
 module Meals.Actions (..) where
 
-import Meals.Models exposing (MealId)
+import Meals.Models exposing (MealId, Meal)
+import Http
 
 
 type Action
@@ -8,3 +9,4 @@ type Action
   | HopAction ()
   | EditMeal MealId
   | ListMeals
+  | FetchAllDone (Result Http.Error (List Meal))

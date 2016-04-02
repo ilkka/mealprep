@@ -27,6 +27,9 @@ update action model =
       in
         ( model.meals, Effects.map HopAction (navigateTo path) )
 
+    FetchAllDone _ ->
+      ( model.meals, Effects.none )
+
     HopAction _ ->
       ( model.meals, Effects.none )
 
