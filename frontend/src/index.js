@@ -4,6 +4,8 @@
   require("basscss/css/basscss.css");
   require("basscss-colors/css/colors.css");
   require("basscss-background-colors/css/background-colors.css");
+  require("basscss-btn/css/btn.css");
+  require("basscss-btn-primary/css/btn-primary.css");
   require("font-awesome/css/font-awesome.css");
 
   require("./index.html");
@@ -13,4 +15,3 @@
 
   var app = Elm.embed(Elm.Main, mountNode);
 })();
-
