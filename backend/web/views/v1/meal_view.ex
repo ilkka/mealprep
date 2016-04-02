@@ -7,10 +7,15 @@ defmodule MealprepBackend.V1.MealView do
   end
 
   def render("show.json", %{meal: meal}) do
-    %{data: render_one(meal, MealprepBackend.V1.MealView, "meal.json")}
+    %{data: render_one(meal, MealprepBackend.V1.MealView, "meal_full.json")}
   end
 
   def render("meal.json", %{meal: meal}) do
+    %{id: meal.id,
+      name: meal.name}
+  end
+
+  def render("meal_full.json", %{meal: meal}) do
     %{id: meal.id,
       name: meal.name}
       |> Map.put(:ingredients, Enum.map(meal.ingredients,
