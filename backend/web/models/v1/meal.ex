@@ -4,6 +4,8 @@ defmodule MealprepBackend.V1.Meal do
   schema "meals" do
     field :name, :string
 
+    has_many :ingredients, MealprepBackend.V1.MealIngredient
+
     timestamps
   end
 
