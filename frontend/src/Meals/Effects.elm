@@ -59,4 +59,4 @@ ingredientMemberDecoder =
   Decode.object2
     MealIngredient
     ("ingredient" := Ingredients.Effects.ingredientDecoder)
-    ("amount" := Decode.int)
+    ("amount" := Decode.float)

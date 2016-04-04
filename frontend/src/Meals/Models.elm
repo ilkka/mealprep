@@ -9,7 +9,7 @@ type alias MealId =
 
 type alias MealIngredient =
   { ingredient : Ingredients.Models.Ingredient
-  , amount : Int
+  , amount : Float
   }
 
 
