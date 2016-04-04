@@ -3,6 +3,8 @@ module View (..) where
 import Models exposing (..)
 import Actions exposing (..)
 import Html exposing (..)
+import Html.Attributes exposing (..)
+import String
 import Routing
 import Meals.List
 import Meals.Edit
@@ -17,7 +19,19 @@ view address model =
   in
     div
       []
-      [ page address model ]
+      [ flash address model
+      , page address model
+      ]
+
+
+flash : Signal.Address Action -> AppModel -> Html
+flash address model =
+  if String.isEmpty model.errorMessage then
+    span [] []
+  else
+    div
+      [ class "bold center p2 mb2 white bg-red rounded" ]
+      [ p [] [ text model.errorMessage ] ]
 
 
 page : Signal.Address Action -> AppModel -> Html
