@@ -6,6 +6,7 @@ import Routing
 
 type alias AppModel =
   { meals : List Meal
+  , currentMeal : Maybe Meal
   , routing : Routing.Model
   }
 
@@ -13,5 +14,6 @@ type alias AppModel =
 initialModel : AppModel
 initialModel =
   { meals = []
+  , currentMeal = Nothing
   , routing = Routing.initialModel
   }

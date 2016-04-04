@@ -7,10 +7,12 @@ import Hop.Navigate exposing (navigateTo)
 
 
 type alias UpdateModel =
-  { meals : List Meal }
+  { meals : List Meal
+  , currentMeal : Maybe Meal
+  }
 
 
-update : Action -> UpdateModel -> ( List Meal, Effects Action )
+update : Action -> UpdateModel -> ( List Meal, Maybe Meal, Effects Action )
 update action model =
   case action of
     EditMeal mealId ->
@@ -18,25 +20,40 @@ update action model =
         path =
           "/meals/" ++ (toString mealId) ++ "/edit"
       in
-        ( model.meals, Effects.map HopAction (navigateTo path) )
+        ( model.meals, model.currentMeal, Effects.map HopAction (navigateTo path) )
 
     ListMeals ->
       let
         path =
           "/meals/"
       in
-        ( model.meals, Effects.map HopAction (navigateTo path) )
+        ( model.meals, model.currentMeal, Effects.map HopAction (navigateTo path) )
+
+    ShowMeal mealId ->
+      let
+        path =
+          "/meals/" ++ (toString mealId)
+      in
+        ( model.meals, model.currentMeal, Effects.map HopAction (navigateTo path) )
 
     FetchAllDone result ->
       case result of
         Ok meals ->
-          ( meals, Effects.none )
+          ( meals, model.currentMeal, Effects.none )
 
         Err errors ->
-          ( model.meals, Effects.none )
+          ( model.meals, model.currentMeal, Effects.none )
+
+    FetchOneDone result ->
+      case result of
+        Ok meal ->
+          ( model.meals, Just meal, Effects.none )
+
+        Err errors ->
+          ( model.meals, Nothing, Effects.none )
 
     HopAction _ ->
-      ( model.meals, Effects.none )
+      ( model.meals, model.currentMeal, Effects.none )
 
     NoOp ->
-      ( model.meals, Effects.none )
+      ( model.meals, model.currentMeal, Effects.none )

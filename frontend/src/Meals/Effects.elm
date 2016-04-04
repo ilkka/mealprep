@@ -17,9 +17,22 @@ fetchAll =
     |> Effects.task
 
 
+fetchOne : Int -> Effects Action
+fetchOne id =
+  Http.get mealDecoder (fetchOneUri id)
+    |> Task.toResult
+    |> Task.map FetchOneDone
+    |> Effects.task
+
+
 fetchAllUrl : String
 fetchAllUrl =
   "http://localhost:4000/api/v1/meals"
+
+
+fetchOneUri : Int -> String
+fetchOneUri id =
+  "http://localhost:4000/api/v1/meals/" ++ (toString id)
 
 
 

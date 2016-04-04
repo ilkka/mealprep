@@ -14,12 +14,14 @@ update action model =
     MealsAction subAction ->
       let
         updateModel =
-          { meals = model.meals }
+          { meals = model.meals
+          , currentMeal = model.currentMeal
+          }
 
-        ( updatedMeals, fx ) =
+        ( updatedMeals, updatedCurrentMeal, fx ) =
           Meals.Update.update subAction updateModel
       in
-        ( { model | meals = updatedMeals }, Effects.map MealsAction fx )
+        ( { model | meals = updatedMeals, currentMeal = updatedCurrentMeal }, Effects.map MealsAction fx )
 
     RoutingAction subAction ->
       let

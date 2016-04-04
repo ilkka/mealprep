@@ -14,6 +14,7 @@ import Meals.Models exposing (MealId)
 
 type Route
   = MealsRoute
+  | MealShowRoute MealId
   | MealEditRoute MealId
   | NotFoundRoute
 
@@ -82,6 +83,11 @@ mealsMatcher =
   match1 MealsRoute "/meals"
 
 
+mealShowMatcher : PathMatcher Route
+mealShowMatcher =
+  match2 MealShowRoute "/meals/" int
+
+
 mealEditMatcher : PathMatcher Route
 mealEditMatcher =
   match3 MealEditRoute "/meals/" int "/edit"
@@ -91,6 +97,7 @@ matchers : List (PathMatcher Route)
 matchers =
   [ indexMatcher
   , mealsMatcher
+  , mealShowMatcher
   , mealEditMatcher
   ]
 

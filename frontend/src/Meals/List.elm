@@ -2,7 +2,7 @@ module Meals.List (..) where
 
 import Html exposing (..)
 import Html.Events exposing (onClick)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, href)
 import Meals.Actions exposing (..)
 import Meals.Models exposing (Meal)
 
@@ -52,7 +52,7 @@ mealRow address model meal =
   tr
     []
     [ td [] [ text (toString meal.id) ]
-    , td [] [ text meal.name ]
+    , td [] [ a [ href "#", onClick address (ShowMeal meal.id) ] [ text meal.name ] ]
     , td [] [ btnEdit address meal ]
     ]
 
