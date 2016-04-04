@@ -20,8 +20,8 @@ defmodule MealprepBackend.V1.MealView do
       name: meal.name}
       |> Map.put(:ingredients, Enum.map(meal.ingredients,
           fn(i) ->
-            IngredientView.render("ingredient.json", i)
-            |> Map.put(:amount, i.amount)
+            %{ingredient: IngredientView.render("ingredient.json", i),
+              amount: i.amount}
           end))
   end
 end
