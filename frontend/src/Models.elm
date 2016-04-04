@@ -8,6 +8,7 @@ type alias AppModel =
   { meals : List Meal
   , currentMeal : Maybe Meal
   , routing : Routing.Model
+  , errorMessage : String
   }
 
 
@@ -16,4 +17,5 @@ initialModel =
   { meals = []
   , currentMeal = Nothing
   , routing = Routing.initialModel
+  , errorMessage = ""
   }
