@@ -11,7 +11,7 @@ import Ingredients.Effects
 
 fetchAll : Effects Action
 fetchAll =
-  Http.get collectionDecoder fetchAllUrl
+  Http.get (responseDecoder collectionDecoder) fetchAllUrl
     |> Task.toResult
     |> Task.map FetchAllDone
     |> Effects.task
@@ -19,7 +19,7 @@ fetchAll =
 
 fetchOne : Int -> Effects Action
 fetchOne id =
-  Http.get mealDecoder (fetchOneUri id)
+  Http.get (responseDecoder mealDecoder) (fetchOneUri id)
     |> Task.toResult
     |> Task.map FetchOneDone
     |> Effects.task
@@ -39,9 +39,14 @@ fetchOneUri id =
 -- decoders (TODO: replace this with the streaming stuff)
 
 
+responseDecoder : Decode.Decoder a -> Decode.Decoder a
+responseDecoder innerDecoder =
+  Decode.at [ "data" ] innerDecoder
+
+
 collectionDecoder : Decode.Decoder (List Meal)
 collectionDecoder =
-  Decode.at [ "data" ] (Decode.list mealSummaryDecoder)
+  Decode.list mealSummaryDecoder
 
 
 ingredientCollectionDecoder : Decode.Decoder (List MealIngredient)
