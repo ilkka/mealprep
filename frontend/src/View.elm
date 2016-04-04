@@ -61,16 +61,19 @@ mealsPage address model =
 
 mealEditPage : Signal.Address Action -> AppModel -> MealId -> Html
 mealEditPage address model mealId =
-  case model.currentMeal of
-    Just meal ->
-      let
-        viewModel =
-          { meal = meal }
-      in
-        Meals.Edit.view (Signal.forwardTo address MealsAction) viewModel
+  let
+    meal =
+      case model.currentMeal of
+        Just meal ->
+          meal
 
-    Nothing ->
-      notFoundView
+        Nothing ->
+          Meals.Models.new
+
+    viewModel =
+      { meal = meal }
+  in
+    Meals.Edit.view (Signal.forwardTo address MealsAction) viewModel
 
 
 notFoundView : Html

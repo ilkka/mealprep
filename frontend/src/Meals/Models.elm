@@ -23,6 +23,6 @@ type alias Meal =
 new : Meal
 new =
   { id = 0
-  , name = "Nutritious meal"
+  , name = ""
   , ingredients = []
   }

@@ -5,6 +5,7 @@ import Debug
 import Actions exposing (..)
 import Effects exposing (Effects)
 import Routing
+import Mailboxes exposing (..)
 import Meals.Update
 import Meals.Effects
 
@@ -17,6 +18,7 @@ update action model =
         updateModel =
           { meals = model.meals
           , currentMeal = model.currentMeal
+          , errorAddress = Signal.forwardTo actionsMailbox.address ShowError
           }
 
         ( updatedMeals, updatedCurrentMeal, fx ) =
@@ -41,6 +43,9 @@ update action model =
           Effects.batch [ dataFx, Effects.map RoutingAction fx ]
       in
         ( { model | routing = updatedRouting }, combinedFx )
+
+    ShowError message ->
+      ( { model | errorMessage = message }, Effects.none )
 
     NoOp ->
       ( model, Effects.none )

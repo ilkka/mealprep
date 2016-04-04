@@ -9,6 +9,7 @@ import Actions exposing (..)
 import Update exposing (..)
 import View exposing (..)
 import Routing
+import Mailboxes exposing (..)
 import Meals.Effects
 
 
@@ -33,7 +34,7 @@ app : StartApp.App Models.AppModel
 app =
   StartApp.start
     { init = init
-    , inputs = [ routerSignal ]
+    , inputs = [ routerSignal, actionsMailbox.signal ]
     , update = update
     , view = view
     }

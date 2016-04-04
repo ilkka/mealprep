@@ -12,3 +12,4 @@ type Action
   | ListMeals
   | FetchAllDone (Result Http.Error (List Meal))
   | FetchOneDone (Result Http.Error Meal)
+  | TaskDone ()

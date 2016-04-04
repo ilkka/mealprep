@@ -9,6 +9,7 @@ import Hop.Navigate exposing (navigateTo)
 type alias UpdateModel =
   { meals : List Meal
   , currentMeal : Maybe Meal
+  , errorAddress : Signal.Address String
   }
 
 
@@ -41,16 +42,37 @@ update action model =
         Ok meals ->
           ( meals, model.currentMeal, Effects.none )
 
-        Err errors ->
-          ( model.meals, model.currentMeal, Effects.none )
+        Err error ->
+          let
+            errorMsg =
+              toString error
+
+            fx =
+              Signal.send model.errorAddress errorMsg
+                |> Effects.task
+                |> Effects.map TaskDone
+          in
+            ( model.meals, model.currentMeal, fx )
 
     FetchOneDone result ->
       case result of
         Ok meal ->
           ( model.meals, Just meal, Effects.none )
 
-        Err errors ->
-          ( model.meals, Nothing, Effects.none )
+        Err error ->
+          let
+            errorMsg =
+              toString error
+
+            fx =
+              Signal.send model.errorAddress errorMsg
+                |> Effects.task
+                |> Effects.map TaskDone
+          in
+            ( model.meals, model.currentMeal, fx )
+
+    TaskDone () ->
+      ( model.meals, model.currentMeal, Effects.none )
 
     HopAction _ ->
       ( model.meals, model.currentMeal, Effects.none )

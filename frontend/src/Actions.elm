@@ -8,3 +8,4 @@ type Action
   = NoOp
   | RoutingAction Routing.Action
   | MealsAction Meals.Actions.Action
+  | ShowError String
