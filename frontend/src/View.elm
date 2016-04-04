@@ -44,7 +44,7 @@ page address model =
       mealEditPage address model mealId
 
     Routing.MealShowRoute mealId ->
-      mealShowPage address model mealId
+      mealEditPage address model mealId
 
     Routing.NotFoundRoute ->
       notFoundView
@@ -59,44 +59,18 @@ mealsPage address model =
     Meals.List.view (Signal.forwardTo address MealsAction) viewModel
 
 
-mealShowPage : Signal.Address Action -> AppModel -> MealId -> Html
-mealShowPage address model mealId =
-  let
-    maybeMeal =
-      model.meals
-        |> List.filter (\meal -> meal.id == mealId)
-        |> List.head
-  in
-    case maybeMeal of
-      Just meal ->
-        let
-          viewModel =
-            { meal = meal }
-        in
-          Meals.Edit.view (Signal.forwardTo address MealsAction) viewModel
-
-      Nothing ->
-        notFoundView
-
-
 mealEditPage : Signal.Address Action -> AppModel -> MealId -> Html
 mealEditPage address model mealId =
-  let
-    maybeMeal =
-      model.meals
-        |> List.filter (\meal -> meal.id == mealId)
-        |> List.head
-  in
-    case maybeMeal of
-      Just meal ->
-        let
-          viewModel =
-            { meal = meal }
-        in
-          Meals.Edit.view (Signal.forwardTo address MealsAction) viewModel
+  case model.currentMeal of
+    Just meal ->
+      let
+        viewModel =
+          { meal = meal }
+      in
+        Meals.Edit.view (Signal.forwardTo address MealsAction) viewModel
 
-      Nothing ->
-        notFoundView
+    Nothing ->
+      notFoundView
 
 
 notFoundView : Html
