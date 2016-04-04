@@ -15,7 +15,7 @@ view : Signal.Address Action -> AppModel -> Html
 view address model =
   let
     _ =
-      Debug.log "model" model
+      Debug.log "view" model
   in
     div
       []
