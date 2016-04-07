@@ -1,8 +1,10 @@
 module Meals.Update (..) where
 
 import Effects exposing (Effects)
+import Task
 import Meals.Models exposing (..)
 import Meals.Actions exposing (..)
+import Meals.Effects exposing (..)
 import Hop.Navigate exposing (navigateTo)
 
 
@@ -16,6 +18,9 @@ type alias UpdateModel =
 update : Action -> UpdateModel -> ( List Meal, Maybe Meal, Effects Action )
 update action model =
   case action of
+    CreateMeal ->
+      ( model.meals, model.currentMeal, create new )
+
     EditMeal mealId ->
       let
         path =
@@ -66,6 +71,31 @@ update action model =
 
             fx =
               Signal.send model.errorAddress errorMsg
+                |> Effects.task
+                |> Effects.map TaskDone
+          in
+            ( model.meals, model.currentMeal, fx )
+
+    CreateMealDone result ->
+      case result of
+        Ok meal ->
+          let
+            updatedMeals =
+              meal :: model.meals
+
+            fx =
+              Task.succeed (EditMeal meal.id)
+                |> Effects.task
+          in
+            ( updatedMeals, model.currentMeal, fx )
+
+        Err error ->
+          let
+            message =
+              toString error
+
+            fx =
+              Signal.send model.errorAddress message
                 |> Effects.task
                 |> Effects.map TaskDone
           in

@@ -9,6 +9,8 @@ type Action
   | HopAction ()
   | ShowMeal MealId
   | EditMeal MealId
+  | CreateMeal
+  | CreateMealDone (Result Http.Error Meal)
   | ListMeals
   | FetchAllDone (Result Http.Error (List Meal))
   | FetchOneDone (Result Http.Error Meal)
