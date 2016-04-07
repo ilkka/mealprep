@@ -1,6 +1,7 @@
 module Ingredients.Effects (..) where
 
 import Json.Decode as Decode exposing ((:=))
+import Json.Encode as Encode
 import Ingredients.Models exposing (IngredientId, Ingredient)
 
 
@@ -19,3 +20,15 @@ ingredientDecoder =
     Ingredient
     ("id" := Decode.int)
     ("name" := Decode.string)
+
+
+ingredientEncoder : Ingredient -> Encode.Value
+ingredientEncoder ingredient =
+  let
+    props =
+      [ ( "id", Encode.int ingredient.id )
+      , ( "name", Encode.string ingredient.name )
+      ]
+  in
+    props
+      |> Encode.object
