@@ -24,7 +24,9 @@ nav : Signal.Address Action -> ViewModel -> Html
 nav address model =
   div
     [ class "clearfix mb2 white bg-black" ]
-    [ div [ class "left p2" ] [ text "Meals" ] ]
+    [ div [ class "left p2" ] [ text "Meals" ]
+    , div [ class "right p1" ] [ btnAdd address model ]
+    ]
 
 
 list : Signal.Address Action -> ViewModel -> Html
@@ -54,6 +56,17 @@ mealRow address model meal =
     [ td [] [ text (toString meal.id) ]
     , td [] [ a [ href "#", onClick address (ShowMeal meal.id) ] [ text meal.name ] ]
     , td [] [ btnEdit address meal ]
+    ]
+
+
+btnAdd : Signal.Address Action -> ViewModel -> Html
+btnAdd address model =
+  button
+    [ class "btn"
+    , onClick address CreateMeal
+    ]
+    [ i [ class "fa fa-user-plus mr1" ] []
+    , text "New meal"
     ]
 
 

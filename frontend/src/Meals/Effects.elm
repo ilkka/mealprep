@@ -30,7 +30,7 @@ create : Meal -> Effects Action
 create meal =
   let
     body =
-      mealEncoder meal
+      responseEncoder "meal" (mealEncoder meal)
         |> Encode.encode 0
         |> Http.string
 
@@ -42,7 +42,7 @@ create meal =
       }
   in
     Http.send Http.defaultSettings config
-      |> Http.fromJson mealDecoder
+      |> Http.fromJson (responseDecoder mealDecoder)
       |> Task.toResult
       |> Task.map CreateMealDone
       |> Effects.task
@@ -70,6 +70,11 @@ createUrl =
 responseDecoder : Decode.Decoder a -> Decode.Decoder a
 responseDecoder innerDecoder =
   Decode.at [ "data" ] innerDecoder
+
+
+responseEncoder : String -> Encode.Value -> Encode.Value
+responseEncoder key innerEncoder =
+  [ ( key, innerEncoder ) ] |> Encode.object
 
 
 collectionDecoder : Decode.Decoder (List Meal)
