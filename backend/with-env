@@ -5,6 +5,7 @@ SCRIPTDIR=$(cd -P $(dirname $0); pwd)
 HELP=0
 INVALID_ENV=""
 ENV=""
+USE_MACHINE=0
 while (( $# )); do
     arg=$1
     shift
@@ -12,6 +13,9 @@ while (( $# )); do
         -h|--help)
             HELP=1
             break
+            ;;
+        -m|--machine)
+            USE_MACHINE=1
             ;;
         dev|test)
             ENV=$arg
@@ -25,10 +29,13 @@ while (( $# )); do
 done
 
 if [[ $HELP -eq 1 ]]; then
-    echo "Usage: $0 ENV CMD [ARGS ... ]"
+    echo "Usage: $0 ENV [ OPTIONS ] CMD [ARGS ... ]"
     echo ""
     echo "Where ENV is the environment (dev, test etc) and the rest"
     echo "is the command to run and arguments."
+    echo "Options:"
+    echo "  -h | --help     Output this help."
+    echo "  -m | --machine  Use docker machine."
     exit 0
 fi
 
@@ -47,13 +54,15 @@ fi
 DBSERVICE=${ENV}-db
 DBPORT=$(docker-compose -f $DOCKERFILE port $DBSERVICE 5432 | sed 's/.*://')
 
-if which docker-machine &>/dev/null && docker-machine active &>/dev/null; then
+source $SCRIPTDIR/$ENV.env
+
+# Override dbhost from env if using machine
+if [[ $USE_MACHINE != 0 ]]; then
+  if which docker-machine &>/dev/null && docker-machine active &>/dev/null; then
     DBHOST=$(docker-machine ip $(docker-machine active))
-else
-    DBHOST=127.0.0.1
+  fi
 fi
 
-source $SCRIPTDIR/$ENV.env
 export DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DBHOST}:${DBPORT}/${POSTGRES_USER}
 
 # if we're gonna run postgres commands, splice in the db conninfo argument:

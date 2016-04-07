@@ -28,23 +28,7 @@ $ sudo apt-get install postgresql-client
 
 ### OS X prerequisites ###
 
-If you are on OS X, install [Homebrew] and then run
-
-```
-$ brew install docker docker-machine docker-compose
-```
-
-After this, you need a machine to run Docker containers in, because Docker Engine does not support OS X natively. I recommend a combination of [VirtualBox] and [Dinghy]. Install VirtualBox from the official image, and then run
-
-```
-$ brew install https://github.com/codekitchen/dinghy/raw/latest/dinghy.rb
-```
-
-Note that since Dinghy's formula is not in Homebrew itself, to upgrade you unfortunately have to uninstall, then reinstall.
-
-.. [Homebrew]: http://brew.sh/
-.. [VirtualBox]: https://virtualbox.org/
-.. [Dinghy]: https://github.com/codekitchen/dinghy
+If you are on OS X, install [the Docker Toolbox](https://www.docker.com/products/docker-toolbox). Make sure you have an active Docker machine set when running commands.
 
 ### Running the backend ###
 
