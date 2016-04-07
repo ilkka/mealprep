@@ -18,7 +18,7 @@ defmodule MealprepBackend.V1.MealController do
         conn
         |> put_status(:created)
         |> put_resp_header("location", v1_meal_path(conn, :show, meal))
-        |> render("show.json", meal: meal)
+        |> render("show.json", meal: Repo.preload(meal, [ingredients: [ingredient: [:process, :ingredientclass, components: [component: :unit]]]]))
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
