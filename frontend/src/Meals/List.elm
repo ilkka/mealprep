@@ -55,7 +55,11 @@ mealRow address model meal =
     []
     [ td [] [ text (toString meal.id) ]
     , td [] [ a [ href "#", onClick address (ShowMeal meal.id) ] [ text meal.name ] ]
-    , td [] [ btnEdit address meal ]
+    , td
+        []
+        [ btnEdit address meal
+        , btnDelete address meal
+        ]
     ]
 
 
@@ -77,3 +81,12 @@ btnEdit address meal =
     , onClick address (EditMeal meal.id)
     ]
     [ i [ class "fa fa-pencil mr1" ] [], text "Edit" ]
+
+
+btnDelete : Signal.Address Action -> Meal -> Html
+btnDelete address meal =
+  button
+    [ class "btn regular mr1"
+    , onClick address (DeleteMealIntent meal)
+    ]
+    [ i [ class "fa fa-trash mr1" ] [], text "Delete" ]

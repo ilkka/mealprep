@@ -19,6 +19,7 @@ update action model =
           { meals = model.meals
           , currentMeal = model.currentMeal
           , errorAddress = Signal.forwardTo actionsMailbox.address ShowError
+          , deleteConfirmationAddress = deleteConfirmationMailbox.address
           }
 
         ( updatedMeals, updatedCurrentMeal, fx ) =

@@ -53,3 +53,8 @@ port runner =
 port routeRunTask : Task () ()
 port routeRunTask =
   Routing.run
+
+
+port askDeleteConfirmation : Signal ( Int, String )
+port askDeleteConfirmation =
+  deleteConfirmationMailbox.signal

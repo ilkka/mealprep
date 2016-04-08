@@ -12,6 +12,7 @@ type alias UpdateModel =
   { meals : List Meal
   , currentMeal : Maybe Meal
   , errorAddress : Signal.Address String
+  , deleteConfirmationAddress : Signal.Address ( MealId, String )
   }
 
 
@@ -100,6 +101,24 @@ update action model =
                 |> Effects.map TaskDone
           in
             ( model.meals, model.currentMeal, fx )
+
+    DeleteMealIntent meal ->
+      let
+        msg =
+          "Are you sure you want to delete " ++ meal.name ++ "?"
+
+        fx =
+          Signal.send model.deleteConfirmationAddress ( meal.id, msg )
+            |> Effects.task
+            |> Effects.map TaskDone
+      in
+        ( model.meals, model.currentMeal, fx )
+
+    DeleteMeal mealId ->
+      ( model.meals, model.currentMeal, Effects.none )
+
+    DeleteMealDone mealId result ->
+      ( model.meals, model.currentMeal, Effects.none )
 
     TaskDone () ->
       ( model.meals, model.currentMeal, Effects.none )

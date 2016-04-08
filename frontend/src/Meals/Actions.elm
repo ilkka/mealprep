@@ -14,4 +14,7 @@ type Action
   | ListMeals
   | FetchAllDone (Result Http.Error (List Meal))
   | FetchOneDone (Result Http.Error Meal)
+  | DeleteMealIntent Meal
+  | DeleteMeal MealId
+  | DeleteMealDone MealId (Result Http.Error ())
   | TaskDone ()

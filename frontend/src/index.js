@@ -14,4 +14,11 @@
   var mountNode = document.getElementById("app");
 
   var app = Elm.embed(Elm.Main, mountNode);
+
+  app.ports.askDeleteConfirmation.subscribe(function (args) {
+    console.log('askDeleteConfirmation', args);
+    var id = args[0];
+    var message = args[1];
+    var response = window.confirm(message);
+  });
 })();
