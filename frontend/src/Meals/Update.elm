@@ -115,10 +115,31 @@ update action model =
         ( model.meals, model.currentMeal, fx )
 
     DeleteMeal mealId ->
-      ( model.meals, model.currentMeal, Effects.none )
+      ( model.meals, model.currentMeal, delete mealId )
 
     DeleteMealDone mealId result ->
-      ( model.meals, model.currentMeal, Effects.none )
+      case result of
+        Ok _ ->
+          let
+            notDeleted meal =
+              meal.id /= mealId
+
+            updatedMeals =
+              List.filter notDeleted model.meals
+          in
+            ( updatedMeals, model.currentMeal, Effects.none )
+
+        Err error ->
+          let
+            message =
+              toString error
+
+            fx =
+              Signal.send model.errorAddress message
+                |> Effects.task
+                |> Effects.map TaskDone
+          in
+            ( model.meals, model.currentMeal, fx )
 
     TaskDone () ->
       ( model.meals, model.currentMeal, Effects.none )

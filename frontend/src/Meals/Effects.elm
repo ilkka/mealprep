@@ -4,7 +4,7 @@ import Effects exposing (Effects)
 import Http
 import Json.Decode as Decode exposing ((:=))
 import Json.Encode as Encode
-import Task exposing (Task)
+import Task exposing (Task, andThen)
 import Meals.Models exposing (MealId, Meal, MealIngredient)
 import Meals.Actions exposing (..)
 import Ingredients.Effects
@@ -20,7 +20,7 @@ fetchAll =
 
 fetchOne : Int -> Effects Action
 fetchOne id =
-  Http.get (responseDecoder mealDecoder) (fetchOneUri id)
+  Http.get (responseDecoder mealDecoder) (fetchOneUrl id)
     |> Task.toResult
     |> Task.map FetchOneDone
     |> Effects.task
@@ -34,18 +34,42 @@ create meal =
         |> Encode.encode 0
         |> Http.string
 
-    config =
-      { verb = "POST"
-      , headers = [ ( "Content-Type", "application/json" ) ]
-      , url = createUrl
-      , body = body
-      }
+    request =
+      jsonRequest "POST" createUrl body
   in
-    Http.send Http.defaultSettings config
+    Http.send Http.defaultSettings request
       |> Http.fromJson (responseDecoder mealDecoder)
       |> Task.toResult
       |> Task.map CreateMealDone
       |> Effects.task
+
+
+delete : MealId -> Effects Action
+delete mealId =
+  deleteTask mealId
+    |> Task.toResult
+    |> Task.map (DeleteMealDone mealId)
+    |> Effects.task
+
+
+deleteTask : MealId -> Task Http.Error ()
+deleteTask mealId =
+  let
+    request =
+      jsonRequest "DELETE" (deleteUrl mealId) Http.empty
+  in
+    Http.send Http.defaultSettings request
+      `andThen` (\_ -> Task.succeed ())
+      |> Task.mapError (\_ -> Http.NetworkError)
+
+
+jsonRequest : String -> String -> Http.Body -> Http.Request
+jsonRequest verb url body =
+  { verb = verb
+  , headers = [ ( "Content-Type", "application/json" ) ]
+  , url = url
+  , body = body
+  }
 
 
 fetchAllUrl : String
@@ -53,14 +77,19 @@ fetchAllUrl =
   "http://localhost:4000/api/v1/meals"
 
 
-fetchOneUri : Int -> String
-fetchOneUri id =
+fetchOneUrl : Int -> String
+fetchOneUrl id =
   "http://localhost:4000/api/v1/meals/" ++ (toString id)
 
 
 createUrl : String
 createUrl =
   "http://localhost:4000/api/v1/meals"
+
+
+deleteUrl : MealId -> String
+deleteUrl id =
+  "http://localhost:4000/api/v1/meals/" ++ (toString id)
 
 
 

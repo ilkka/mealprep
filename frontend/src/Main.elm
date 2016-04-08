@@ -11,6 +11,7 @@ import View exposing (..)
 import Routing
 import Mailboxes exposing (..)
 import Meals.Effects
+import Meals.Actions
 
 
 routerSignal : Signal Action
@@ -34,7 +35,7 @@ app : StartApp.App Models.AppModel
 app =
   StartApp.start
     { init = init
-    , inputs = [ routerSignal, actionsMailbox.signal ]
+    , inputs = [ routerSignal, actionsMailbox.signal, getDeleteConfirmationSignal ]
     , update = update
     , view = view
     }
@@ -58,3 +59,19 @@ port routeRunTask =
 port askDeleteConfirmation : Signal ( Int, String )
 port askDeleteConfirmation =
   deleteConfirmationMailbox.signal
+
+
+
+-- Inbound port, initial value given on js side
+
+
+port getDeleteConfirmation : Signal Int
+getDeleteConfirmationSignal : Signal Action
+getDeleteConfirmationSignal =
+  let
+    toAction id =
+      id
+        |> Meals.Actions.DeleteMeal
+        |> MealsAction
+  in
+    Signal.map toAction getDeleteConfirmation
