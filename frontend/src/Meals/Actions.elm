@@ -1,6 +1,7 @@
 module Meals.Actions (..) where
 
 import Meals.Models exposing (MealId, Meal)
+import Ingredients.Models exposing (IngredientId)
 import Http
 
 
@@ -17,4 +18,6 @@ type Action
   | DeleteMealIntent Meal
   | DeleteMeal MealId
   | DeleteMealDone MealId (Result Http.Error ())
+  | ChangeIngredientAmount MealId IngredientId Float
+  | SaveDone (Result Http.Error Meal)
   | TaskDone ()

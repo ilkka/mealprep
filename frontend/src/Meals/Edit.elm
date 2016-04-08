@@ -63,36 +63,46 @@ inputName address model =
 formIngredients : Signal.Address Action -> ViewModel -> List Html
 formIngredients address model =
   List.map
-    (formIngredient address)
+    (formIngredient address model)
     model.meal.ingredients
 
 
-formIngredient : Signal.Address Action -> MealIngredient -> Html
-formIngredient address ingredient =
+formIngredient : Signal.Address Action -> ViewModel -> MealIngredient -> Html
+formIngredient address model ingredient =
   div
     [ class "clearfix py1" ]
     [ div [ class "col col-5" ] [ text ingredient.ingredient.name ]
     , div
         [ class "col col-7" ]
         [ span [ class "h2 bold" ] [ text (toString ingredient.amount) ]
-        , btnAmountDecrease address ingredient
-        , btnAmountIncrease address ingredient
+        , btnAmountDecrease address model ingredient
+        , btnAmountIncrease address model ingredient
         ]
     ]
 
 
-btnAmountIncrease : Signal.Address Action -> MealIngredient -> Html
-btnAmountIncrease address ingredient =
+btnAmountIncrease : Signal.Address Action -> ViewModel -> MealIngredient -> Html
+btnAmountIncrease address model ingredient =
   a
     [ class "btn ml1 h1" ]
-    [ i [ class "fa fa-plus-circle" ] [] ]
+    [ i
+        [ class "fa fa-plus-circle"
+        , onClick address (ChangeIngredientAmount model.meal.id ingredient.ingredient.id 1.0)
+        ]
+        []
+    ]
 
 
-btnAmountDecrease : Signal.Address Action -> MealIngredient -> Html
-btnAmountDecrease address ingredient =
+btnAmountDecrease : Signal.Address Action -> ViewModel -> MealIngredient -> Html
+btnAmountDecrease address model ingredient =
   a
     [ class "btn ml1 h1" ]
-    [ i [ class "fa fa-minus-circle" ] [] ]
+    [ i
+        [ class "fa fa-minus-circle"
+        , onClick address (ChangeIngredientAmount model.meal.id ingredient.ingredient.id -1.0)
+        ]
+        []
+    ]
 
 
 btnList : Signal.Address Action -> ViewModel -> Html

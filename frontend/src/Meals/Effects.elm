@@ -63,6 +63,29 @@ deleteTask mealId =
       |> Task.mapError (\_ -> Http.NetworkError)
 
 
+save : Meal -> Effects Action
+save meal =
+  saveTask meal
+    |> Task.toResult
+    |> Task.map SaveDone
+    |> Effects.task
+
+
+saveTask : Meal -> Task Http.Error Meal
+saveTask meal =
+  let
+    body =
+      responseEncoder "meal" (mealEncoder meal)
+        |> Encode.encode 0
+        |> Http.string
+
+    request =
+      jsonRequest "PATCH" (saveUrl meal.id) body
+  in
+    Http.send Http.defaultSettings request
+      |> Http.fromJson (responseDecoder mealDecoder)
+
+
 jsonRequest : String -> String -> Http.Body -> Http.Request
 jsonRequest verb url body =
   { verb = verb
@@ -89,6 +112,11 @@ createUrl =
 
 deleteUrl : MealId -> String
 deleteUrl id =
+  "http://localhost:4000/api/v1/meals/" ++ (toString id)
+
+
+saveUrl : MealId -> String
+saveUrl id =
   "http://localhost:4000/api/v1/meals/" ++ (toString id)
 
 
