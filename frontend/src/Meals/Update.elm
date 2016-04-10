@@ -141,6 +141,64 @@ update action model =
           in
             ( model.meals, model.currentMeal, fx )
 
+    ChangeIngredientAmount mealId ingredientId change ->
+      let
+        updateIngredientFx meal =
+          let
+            updateIngredient ingredientId change ingredient =
+              if ingredient.ingredient.id == ingredientId then
+                { ingredient | amount = ingredient.amount + change }
+              else
+                ingredient
+
+            updatedIngredients =
+              List.map (updateIngredient ingredientId change) meal.ingredients
+
+            updatedMeal =
+              { meal | ingredients = updatedIngredients }
+          in
+            save updatedMeal
+
+        fx meal =
+          case meal of
+            Just meal ->
+              if meal.id /= mealId then
+                Effects.none
+              else
+                updateIngredientFx meal
+
+            Nothing ->
+              Effects.none
+      in
+        ( model.meals, model.currentMeal, fx model.currentMeal )
+
+    SaveDone result ->
+      case result of
+        Ok savedMeal ->
+          let
+            updateMeal meal =
+              if meal.id == savedMeal.id then
+                savedMeal
+              else
+                meal
+
+            updatedMeals =
+              List.map updateMeal model.meals
+          in
+            ( updatedMeals, Just savedMeal, Effects.none )
+
+        Err error ->
+          let
+            msg =
+              toString error
+
+            fx =
+              Signal.send model.errorAddress msg
+                |> Effects.task
+                |> Effects.map TaskDone
+          in
+            ( model.meals, model.currentMeal, fx )
+
     TaskDone () ->
       ( model.meals, model.currentMeal, Effects.none )
 
