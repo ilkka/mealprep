@@ -32,7 +32,7 @@ defmodule MealprepBackend.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.0.3"},
      {:phoenix_ecto, "~> 1.1"},
-     {:postgrex, ">= 0.0.0"},
+     {:postgrex, "~> 0.11.0"},
      {:cowboy, "~> 1.0"},
      {:csv, "~> 1.2"},
      {:cors_plug, "~> 0.1.4"}]
