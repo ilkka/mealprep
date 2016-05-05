@@ -5,6 +5,18 @@ defmodule MealprepBackend.V1.MealController do
 
   plug :scrub_params, "meal" when action in [:create, :update]
 
+  @preloads [
+    ingredients: [
+      ingredient: [
+        :process,
+        :ingredientclass,
+        components: [
+          component: :unit
+        ]
+      ]
+    ]
+  ]
+
   def index(conn, _params) do
     meals = Repo.all(Meal)
     render(conn, "index.json", meals: meals)
@@ -18,7 +30,7 @@ defmodule MealprepBackend.V1.MealController do
         conn
         |> put_status(:created)
         |> put_resp_header("location", v1_meal_path(conn, :show, meal))
-        |> render("show.json", meal: Repo.preload(meal, [ingredients: [ingredient: [:process, :ingredientclass, components: [component: :unit]]]]))
+        |> render("show.json", meal: Repo.preload(meal, @preloads))
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -28,12 +40,14 @@ defmodule MealprepBackend.V1.MealController do
 
   def show(conn, %{"id" => id}) do
     meal = Repo.get!(Meal, id)
-      |> Repo.preload([ingredients: [ingredient: [:process, :ingredientclass, components: [component: :unit]]]])
+      |> Repo.preload(@preloads)
     render(conn, "show.json", meal: meal)
   end
 
   def update(conn, %{"id" => id, "meal" => meal_params}) do
     meal = Repo.get!(Meal, id)
+      |> Repo.preload(@preloads)
+      
     changeset = Meal.changeset(meal, meal_params)
 
     case Repo.update(changeset) do
