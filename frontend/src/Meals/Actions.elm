@@ -19,5 +19,6 @@ type Action
   | DeleteMeal MealId
   | DeleteMealDone MealId (Result Http.Error ())
   | ChangeIngredientAmount MealId IngredientId Float
+  | ChangeName MealId String
   | SaveDone (Result Http.Error Meal)
   | TaskDone ()

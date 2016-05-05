@@ -1,7 +1,7 @@
 module Meals.Edit (..) where
 
 import Html exposing (..)
-import Html.Events exposing (onClick)
+import Html.Events exposing (on, onClick, targetValue)
 import Html.Attributes exposing (class, value, href)
 import Meals.Models exposing (..)
 import Meals.Actions exposing (..)
@@ -56,6 +56,7 @@ inputName address model =
   input
     [ class "field-light"
     , value model.meal.name
+    , on "change" targetValue (\str -> Signal.message address (ChangeName model.meal.id str))
     ]
     []
 

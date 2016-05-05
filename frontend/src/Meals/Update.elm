@@ -172,6 +172,24 @@ update action model =
       in
         ( model.meals, model.currentMeal, fx model.currentMeal )
 
+    ChangeName mealId newName ->
+      let
+        updateNameFx meal =
+          save { meal | name = newName }
+
+        fx =
+          case model.currentMeal of
+            Just meal ->
+              if meal.id /= mealId then
+                Effects.none
+              else
+                updateNameFx meal
+
+            Nothing ->
+              Effects.none
+      in
+        ( model.meals, model.currentMeal, fx )
+
     SaveDone result ->
       case result of
         Ok savedMeal ->
