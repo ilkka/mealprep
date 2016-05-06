@@ -1,29 +1,58 @@
 module Meals.Effects (..) where
 
 import Effects exposing (Effects)
-import Http
+import Http.Extra as HttpExtra exposing (..)
 import Json.Decode as Decode exposing ((:=))
 import Json.Encode as Encode
 import Task exposing (Task, andThen)
+import Time
 import Meals.Models exposing (MealId, Meal, MealIngredient)
 import Meals.Actions exposing (..)
 import Ingredients.Effects
 
 
+withOptions : RequestBuilder -> RequestBuilder
+withOptions =
+  (withHeader "Content-Type" "application/json") << (withTimeout (10 * Time.second))
+
+
+toEffects : (Result a b -> Action) -> Task a b -> Effects Action
+toEffects action =
+  Task.toResult >> Task.map action >> Effects.task
+
+
+sendRequest : Decode.Decoder a -> RequestBuilder -> Task (Error String) (Response a)
+sendRequest decoder =
+  send (jsonReader (responseDecoder decoder)) stringReader
+
+
+get : String -> Decode.Decoder a -> (Result (Error String) a -> Action) -> Effects Action
+get url decoder action =
+  HttpExtra.get url
+    |> withOptions
+    |> sendRequest decoder
+    |> Task.map (\response -> response.data)
+    |> toEffects action
+
+
+post : String -> Encode.Value -> Decode.Decoder a -> (Result (Error String) a -> Action) -> Effects Action
+post url body decoder action =
+  HttpExtra.post url
+    |> withOptions
+    |> withJsonBody body
+    |> sendRequest decoder
+    |> Task.map (\response -> response.data)
+    |> toEffects action
+
+
 fetchAll : Effects Action
 fetchAll =
-  Http.get (responseDecoder collectionDecoder) fetchAllUrl
-    |> Task.toResult
-    |> Task.map FetchAllDone
-    |> Effects.task
+  get fetchAllUrl collectionDecoder FetchAllDone
 
 
 fetchOne : Int -> Effects Action
 fetchOne id =
-  Http.get (responseDecoder mealDecoder) (fetchOneUrl id)
-    |> Task.toResult
-    |> Task.map FetchOneDone
-    |> Effects.task
+  get (fetchOneUrl id) mealDecoder FetchOneDone
 
 
 create : Meal -> Effects Action
@@ -31,68 +60,51 @@ create meal =
   let
     body =
       responseEncoder "meal" (mealEncoder meal)
-        |> Encode.encode 0
-        |> Http.string
-
-    request =
-      jsonRequest "POST" createUrl body
   in
-    Http.send Http.defaultSettings request
-      |> Http.fromJson (responseDecoder mealDecoder)
-      |> Task.toResult
-      |> Task.map CreateMealDone
-      |> Effects.task
+    post createUrl body mealDecoder CreateMealDone
 
 
 delete : MealId -> Effects Action
 delete mealId =
-  deleteTask mealId
-    |> Task.toResult
-    |> Task.map (DeleteMealDone mealId)
-    |> Effects.task
+  HttpExtra.delete (deleteUrl mealId)
+    |> withOptions
+    |> send stringReader stringReader
+    |> Task.map (\response -> ())
+    |> toEffects (DeleteMealDone mealId)
 
 
-deleteTask : MealId -> Task Http.Error ()
-deleteTask mealId =
-  let
-    request =
-      jsonRequest "DELETE" (deleteUrl mealId) Http.empty
-  in
-    Http.send Http.defaultSettings request
-      `andThen` (\_ -> Task.succeed ())
-      |> Task.mapError (\_ -> Http.NetworkError)
+
+--   let
+--     request =
+--       jsonRequest "DELETE" (deleteUrl mealId) Http.empty
+--   in
+--     Http.send Http.defaultSettings request
+--       `andThen` (\_ -> Task.succeed ())
+--       |> Task.mapError (\_ -> Http.NetworkError)
 
 
 save : Meal -> Effects Action
 save meal =
-  saveTask meal
-    |> Task.toResult
-    |> Task.map SaveDone
-    |> Effects.task
+  HttpExtra.patch (saveUrl meal.id)
+    |> withOptions
+    |> withJsonBody (responseEncoder "meal" (mealEncoder meal))
+    |> sendRequest mealDecoder
+    |> Task.map (\response -> response.data)
+    |> toEffects SaveDone
 
 
-saveTask : Meal -> Task Http.Error Meal
-saveTask meal =
-  let
-    body =
-      responseEncoder "meal" (mealEncoder meal)
-        |> Encode.encode 0
-        |> Http.string
 
-    request =
-      jsonRequest "PATCH" (saveUrl meal.id) body
-  in
-    Http.send Http.defaultSettings request
-      |> Http.fromJson (responseDecoder mealDecoder)
-
-
-jsonRequest : String -> String -> Http.Body -> Http.Request
-jsonRequest verb url body =
-  { verb = verb
-  , headers = [ ( "Content-Type", "application/json" ) ]
-  , url = url
-  , body = body
-  }
+--  let
+--    body =
+--      responseEncoder "meal" (mealEncoder meal)
+--        |> Encode.encode 0
+--        |> Http.string
+--
+--    request =
+--      jsonRequest "PATCH" (saveUrl meal.id) body
+--  in
+--    Http.send Http.defaultSettings request
+--      |> Http.fromJson (responseDecoder mealDecoder)
 
 
 fetchAllUrl : String

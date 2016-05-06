@@ -2,7 +2,7 @@ module Meals.Actions (..) where
 
 import Meals.Models exposing (MealId, Meal)
 import Ingredients.Models exposing (IngredientId)
-import Http
+import Http.Extra as HttpExtra exposing (Error, Response)
 
 
 type Action
@@ -11,14 +11,14 @@ type Action
   | ShowMeal MealId
   | EditMeal MealId
   | CreateMeal
-  | CreateMealDone (Result Http.Error Meal)
+  | CreateMealDone (Result (Error String) Meal)
   | ListMeals
-  | FetchAllDone (Result Http.Error (List Meal))
-  | FetchOneDone (Result Http.Error Meal)
+  | FetchAllDone (Result (Error String) (List Meal))
+  | FetchOneDone (Result (Error String) Meal)
   | DeleteMealIntent Meal
   | DeleteMeal MealId
-  | DeleteMealDone MealId (Result Http.Error ())
+  | DeleteMealDone MealId (Result (Error String) ())
   | ChangeIngredientAmount MealId IngredientId Float
   | ChangeName MealId String
-  | SaveDone (Result Http.Error Meal)
+  | SaveDone (Result (Error String) Meal)
   | TaskDone ()
