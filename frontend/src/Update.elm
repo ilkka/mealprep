@@ -37,6 +37,9 @@ update action model =
             Routing.MealShowRoute mealId ->
               Effects.map MealsAction (Meals.Effects.fetchOne mealId)
 
+            Routing.MealEditRoute mealId ->
+              Effects.map MealsAction (Meals.Effects.fetchOne mealId)
+
             _ ->
               Effects.none
 
