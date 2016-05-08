@@ -3,6 +3,7 @@ module Meals.Update (..) where
 import Effects exposing (Effects)
 import Task
 import Meals.Models exposing (..)
+import Ingredients.Models exposing (Ingredient)
 import Meals.Actions exposing (..)
 import Meals.Effects exposing (..)
 import Hop.Navigate exposing (navigateTo)
@@ -11,42 +12,44 @@ import Hop.Navigate exposing (navigateTo)
 type alias UpdateModel =
   { meals : List Meal
   , currentMeal : Maybe Meal
+  , ingredients : List Ingredient
+  , ingredientSearchTerm : Maybe String
   , errorAddress : Signal.Address String
   , deleteConfirmationAddress : Signal.Address ( MealId, String )
   }
 
 
-update : Action -> UpdateModel -> ( List Meal, Maybe Meal, Effects Action )
+update : Action -> UpdateModel -> ( UpdateModel, Effects Action )
 update action model =
   case action of
     CreateMeal ->
-      ( model.meals, model.currentMeal, create new )
+      ( model, create new )
 
     EditMeal mealId ->
       let
         path =
           "/meals/" ++ (toString mealId) ++ "/edit"
       in
-        ( model.meals, model.currentMeal, Effects.map HopAction (navigateTo path) )
+        ( model, Effects.map HopAction (navigateTo path) )
 
     ListMeals ->
       let
         path =
           "/meals/"
       in
-        ( model.meals, model.currentMeal, Effects.map HopAction (navigateTo path) )
+        ( model, Effects.map HopAction (navigateTo path) )
 
     ShowMeal mealId ->
       let
         path =
           "/meals/" ++ (toString mealId)
       in
-        ( model.meals, model.currentMeal, Effects.map HopAction (navigateTo path) )
+        ( model, Effects.map HopAction (navigateTo path) )
 
     FetchAllDone result ->
       case result of
         Ok meals ->
-          ( meals, model.currentMeal, Effects.none )
+          ( { model | meals = meals }, Effects.none )
 
         Err error ->
           let
@@ -58,12 +61,12 @@ update action model =
                 |> Effects.task
                 |> Effects.map TaskDone
           in
-            ( model.meals, model.currentMeal, fx )
+            ( model, fx )
 
     FetchOneDone result ->
       case result of
         Ok meal ->
-          ( model.meals, Just meal, Effects.none )
+          ( { model | currentMeal = Just meal }, Effects.none )
 
         Err error ->
           let
@@ -75,7 +78,7 @@ update action model =
                 |> Effects.task
                 |> Effects.map TaskDone
           in
-            ( model.meals, model.currentMeal, fx )
+            ( model, fx )
 
     CreateMealDone result ->
       case result of
@@ -88,7 +91,7 @@ update action model =
               Task.succeed (EditMeal meal.id)
                 |> Effects.task
           in
-            ( updatedMeals, model.currentMeal, fx )
+            ( { model | meals = updatedMeals }, fx )
 
         Err error ->
           let
@@ -100,7 +103,7 @@ update action model =
                 |> Effects.task
                 |> Effects.map TaskDone
           in
-            ( model.meals, model.currentMeal, fx )
+            ( model, fx )
 
     DeleteMealIntent meal ->
       let
@@ -112,10 +115,10 @@ update action model =
             |> Effects.task
             |> Effects.map TaskDone
       in
-        ( model.meals, model.currentMeal, fx )
+        ( model, fx )
 
     DeleteMeal mealId ->
-      ( model.meals, model.currentMeal, delete mealId )
+      ( model, delete mealId )
 
     DeleteMealDone mealId result ->
       case result of
@@ -127,7 +130,7 @@ update action model =
             updatedMeals =
               List.filter notDeleted model.meals
           in
-            ( updatedMeals, model.currentMeal, Effects.none )
+            ( { model | meals = updatedMeals }, Effects.none )
 
         Err error ->
           let
@@ -139,7 +142,7 @@ update action model =
                 |> Effects.task
                 |> Effects.map TaskDone
           in
-            ( model.meals, model.currentMeal, fx )
+            ( model, fx )
 
     ChangeIngredientAmount mealId ingredientId change ->
       let
@@ -170,7 +173,7 @@ update action model =
             Nothing ->
               Effects.none
       in
-        ( model.meals, model.currentMeal, fx model.currentMeal )
+        ( model, fx model.currentMeal )
 
     ChangeName mealId newName ->
       let
@@ -188,7 +191,7 @@ update action model =
             Nothing ->
               Effects.none
       in
-        ( model.meals, model.currentMeal, fx )
+        ( model, fx )
 
     SaveDone result ->
       case result of
@@ -203,7 +206,7 @@ update action model =
             updatedMeals =
               List.map updateMeal model.meals
           in
-            ( updatedMeals, Just savedMeal, Effects.none )
+            ( { model | meals = updatedMeals, currentMeal = Just savedMeal }, Effects.none )
 
         Err error ->
           let
@@ -215,13 +218,16 @@ update action model =
                 |> Effects.task
                 |> Effects.map TaskDone
           in
-            ( model.meals, model.currentMeal, fx )
+            ( model, fx )
+
+    SearchIngredient term ->
+      ( { model | ingredientSearchTerm = Just term }, Effects.none )
 
     TaskDone () ->
-      ( model.meals, model.currentMeal, Effects.none )
+      ( model, Effects.none )
 
     HopAction _ ->
-      ( model.meals, model.currentMeal, Effects.none )
+      ( model, Effects.none )
 
     NoOp ->
-      ( model.meals, model.currentMeal, Effects.none )
+      ( model, Effects.none )

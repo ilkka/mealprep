@@ -9,6 +9,7 @@ import Meals.Actions exposing (..)
 
 type alias ViewModel =
   { meal : Meal
+  , ingredientSearchTerm : String
   }
 
 
@@ -34,6 +35,7 @@ form address model =
     [ class "m3" ]
     ([ h1 [] [ text model.meal.name ]
      , formName address model
+     , formAddIngredient address model
      ]
       ++ formIngredients address model
     )
@@ -51,12 +53,31 @@ formName address model =
     ]
 
 
+formAddIngredient : Signal.Address Action -> ViewModel -> Html
+formAddIngredient address model =
+  div
+    [ class "clearfix py1" ]
+    [ div [ class "col col-5" ] [ text "Add ingredient" ]
+    , div [ class "col col-7" ] [ inputIngredient address model ]
+    ]
+
+
 inputName : Signal.Address Action -> ViewModel -> Html.Html
 inputName address model =
   input
     [ class "field-light"
     , value model.meal.name
     , on "change" targetValue (\str -> Signal.message address (ChangeName model.meal.id str))
+    ]
+    []
+
+
+inputIngredient : Signal.Address Action -> ViewModel -> Html.Html
+inputIngredient address model =
+  input
+    [ class "field-light"
+    , value model.ingredientSearchTerm
+    , on "input" targetValue (\str -> Signal.message address (SearchIngredient str))
     ]
     []
 

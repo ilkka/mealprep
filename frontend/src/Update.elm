@@ -18,14 +18,16 @@ update action model =
         updateModel =
           { meals = model.meals
           , currentMeal = model.currentMeal
+          , ingredients = model.ingredients
+          , ingredientSearchTerm = model.ingredientSearchTerm
           , errorAddress = Signal.forwardTo actionsMailbox.address ShowError
           , deleteConfirmationAddress = deleteConfirmationMailbox.address
           }
 
-        ( updatedMeals, updatedCurrentMeal, fx ) =
+        ( updatedModel, fx ) =
           Meals.Update.update subAction updateModel
       in
-        ( { model | meals = updatedMeals, currentMeal = updatedCurrentMeal }, Effects.map MealsAction fx )
+        ( { model | meals = updatedModel.meals, currentMeal = updatedModel.currentMeal }, Effects.map MealsAction fx )
 
     RoutingAction subAction ->
       let

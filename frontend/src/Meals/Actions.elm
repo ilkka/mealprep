@@ -20,5 +20,6 @@ type Action
   | DeleteMealDone MealId (Result (Error String) ())
   | ChangeIngredientAmount MealId IngredientId Float
   | ChangeName MealId String
+  | SearchIngredient String
   | SaveDone (Result (Error String) Meal)
   | TaskDone ()

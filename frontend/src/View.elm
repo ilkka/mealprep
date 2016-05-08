@@ -70,8 +70,16 @@ mealEditPage address model mealId =
         Nothing ->
           Meals.Models.new
 
+    searchTerm =
+      case model.ingredientSearchTerm of
+        Just term ->
+          term
+
+        Nothing ->
+          ""
+
     viewModel =
-      { meal = meal }
+      { meal = meal, ingredientSearchTerm = searchTerm }
   in
     Meals.Edit.view (Signal.forwardTo address MealsAction) viewModel
 
