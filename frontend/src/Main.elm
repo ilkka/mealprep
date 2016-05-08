@@ -19,7 +19,7 @@ routerSignal =
   Signal.map RoutingAction Routing.signal
 
 
-init : ( Models.AppModel, Effects Action )
+init : ( Models.AppState, Effects Action )
 init =
   let
     fxs =
@@ -31,7 +31,7 @@ init =
     ( Models.initialModel, fx )
 
 
-app : StartApp.App Models.AppModel
+app : StartApp.App Models.AppState
 app =
   StartApp.start
     { init = init

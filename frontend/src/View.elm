@@ -11,7 +11,7 @@ import Meals.Edit
 import Meals.Models exposing (MealId)
 
 
-view : Signal.Address Action -> AppModel -> Html
+view : Signal.Address Action -> AppState -> Html
 view address model =
   let
     _ =
@@ -24,7 +24,7 @@ view address model =
       ]
 
 
-flash : Signal.Address Action -> AppModel -> Html
+flash : Signal.Address Action -> AppState -> Html
 flash address model =
   if String.isEmpty model.errorMessage then
     span [] []
@@ -34,7 +34,7 @@ flash address model =
       [ p [] [ text model.errorMessage ] ]
 
 
-page : Signal.Address Action -> AppModel -> Html
+page : Signal.Address Action -> AppState -> Html
 page address model =
   case model.routing.route of
     Routing.MealsRoute ->
@@ -50,7 +50,7 @@ page address model =
       notFoundView
 
 
-mealsPage : Signal.Address Action -> AppModel -> Html
+mealsPage : Signal.Address Action -> AppState -> Html
 mealsPage address model =
   let
     viewModel =
@@ -59,7 +59,7 @@ mealsPage address model =
     Meals.List.view (Signal.forwardTo address MealsAction) viewModel
 
 
-mealEditPage : Signal.Address Action -> AppModel -> MealId -> Html
+mealEditPage : Signal.Address Action -> AppState -> MealId -> Html
 mealEditPage address model mealId =
   let
     meal =

@@ -10,7 +10,7 @@ import Meals.Update
 import Meals.Effects
 
 
-update : Action -> AppModel -> ( AppModel, Effects Action )
+update : Action -> AppState -> ( AppState, Effects Action )
 update action model =
   case (Debug.log "update" action) of
     MealsAction subAction ->

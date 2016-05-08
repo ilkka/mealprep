@@ -5,7 +5,7 @@ import Ingredients.Models exposing (Ingredient)
 import Routing
 
 
-type alias AppModel =
+type alias AppState =
   { meals : List Meal
   , currentMeal : Maybe Meal
   , ingredients : List Ingredient
@@ -15,7 +15,7 @@ type alias AppModel =
   }
 
 
-initialModel : AppModel
+initialModel : AppState
 initialModel =
   { meals = []
   , currentMeal = Nothing
