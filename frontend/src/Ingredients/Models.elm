@@ -11,8 +11,21 @@ type alias Ingredient =
   }
 
 
+type alias State =
+  { ingredients : List Ingredient
+  , searchTerm : Maybe String
+  }
+
+
 new : Ingredient
 new =
   { id = 0
   , name = "Ingredient"
+  }
+
+
+initialState : State
+initialState =
+  { ingredients = []
+  , searchTerm = Nothing
   }

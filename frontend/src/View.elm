@@ -54,7 +54,7 @@ mealsPage : Signal.Address Action -> AppState -> Html
 mealsPage address model =
   let
     viewModel =
-      { meals = model.meals }
+      { meals = model.meals.meals }
   in
     Meals.List.view (Signal.forwardTo address MealsAction) viewModel
 
@@ -63,15 +63,15 @@ mealEditPage : Signal.Address Action -> AppState -> MealId -> Html
 mealEditPage address model mealId =
   let
     meal =
-      case model.currentMeal of
+      case model.meals.currentMeal of
         Just meal ->
           meal
 
         Nothing ->
-          Meals.Models.new
+          Meals.Models.newMeal
 
     searchTerm =
-      case model.ingredientSearchTerm of
+      case model.ingredients.searchTerm of
         Just term ->
           term
 

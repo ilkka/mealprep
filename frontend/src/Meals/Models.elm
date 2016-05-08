@@ -20,9 +20,22 @@ type alias Meal =
   }
 
 
-new : Meal
-new =
+type alias State =
+  { meals : List Meal
+  , currentMeal : Maybe Meal
+  }
+
+
+newMeal : Meal
+newMeal =
   { id = 0
   , name = "New meal"
   , ingredients = []
+  }
+
+
+initialState : State
+initialState =
+  { meals = []
+  , currentMeal = Nothing
   }

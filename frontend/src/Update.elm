@@ -16,18 +16,24 @@ update action model =
     MealsAction subAction ->
       let
         updateModel =
-          { meals = model.meals
-          , currentMeal = model.currentMeal
-          , ingredients = model.ingredients
-          , ingredientSearchTerm = model.ingredientSearchTerm
+          { meals = model.meals.meals
+          , currentMeal = model.meals.currentMeal
+          , ingredients = model.ingredients.ingredients
+          , ingredientSearchTerm = model.ingredients.searchTerm
           , errorAddress = Signal.forwardTo actionsMailbox.address ShowError
           , deleteConfirmationAddress = deleteConfirmationMailbox.address
           }
 
         ( updatedModel, fx ) =
           Meals.Update.update subAction updateModel
+
+        oldMeals =
+          model.meals
+
+        updatedMeals =
+          { oldMeals | meals = updatedModel.meals, currentMeal = updatedModel.currentMeal }
       in
-        ( { model | meals = updatedModel.meals, currentMeal = updatedModel.currentMeal }, Effects.map MealsAction fx )
+        ( { model | meals = updatedMeals }, Effects.map MealsAction fx )
 
     RoutingAction subAction ->
       let

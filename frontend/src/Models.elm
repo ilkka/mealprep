@@ -1,15 +1,13 @@
 module Models (..) where
 
-import Meals.Models exposing (Meal)
-import Ingredients.Models exposing (Ingredient)
+import Meals.Models
+import Ingredients.Models
 import Routing
 
 
 type alias AppState =
-  { meals : List Meal
-  , currentMeal : Maybe Meal
-  , ingredients : List Ingredient
-  , ingredientSearchTerm : Maybe String
+  { meals : Meals.Models.State
+  , ingredients : Ingredients.Models.State
   , routing : Routing.Model
   , errorMessage : String
   }
@@ -17,10 +15,8 @@ type alias AppState =
 
 initialModel : AppState
 initialModel =
-  { meals = []
-  , currentMeal = Nothing
-  , ingredients = []
-  , ingredientSearchTerm = Nothing
+  { meals = Meals.Models.initialState
+  , ingredients = Ingredients.Models.initialState
   , routing = Routing.initialModel
   , errorMessage = ""
   }
