@@ -2,57 +2,23 @@ module Meals.Effects (..) where
 
 import Effects exposing (Effects)
 import Http.Extra as HttpExtra exposing (..)
+import Request exposing (..)
 import Json.Decode as Decode exposing ((:=))
 import Json.Encode as Encode
 import Task exposing (Task, andThen)
-import Time
 import Meals.Models exposing (MealId, Meal, MealIngredient)
 import Meals.Actions exposing (..)
 import Ingredients.Effects
 
 
-withOptions : RequestBuilder -> RequestBuilder
-withOptions =
-  (withHeader "Content-Type" "application/json") << (withTimeout (10 * Time.second))
-
-
-toEffects : (Result a b -> Action) -> Task a b -> Effects Action
-toEffects action =
-  Task.toResult >> Task.map action >> Effects.task
-
-
-sendRequest : Decode.Decoder a -> RequestBuilder -> Task (Error String) (Response a)
-sendRequest decoder =
-  send (jsonReader (responseDecoder decoder)) stringReader
-
-
-get : String -> Decode.Decoder a -> (Result (Error String) a -> Action) -> Effects Action
-get url decoder action =
-  HttpExtra.get url
-    |> withOptions
-    |> sendRequest decoder
-    |> Task.map (\response -> response.data)
-    |> toEffects action
-
-
-post : String -> Encode.Value -> Decode.Decoder a -> (Result (Error String) a -> Action) -> Effects Action
-post url body decoder action =
-  HttpExtra.post url
-    |> withOptions
-    |> withJsonBody body
-    |> sendRequest decoder
-    |> Task.map (\response -> response.data)
-    |> toEffects action
-
-
 fetchAll : Effects Action
 fetchAll =
-  get fetchAllUrl collectionDecoder FetchAllDone
+  Request.get fetchAllUrl collectionDecoder FetchAllDone
 
 
 fetchOne : Int -> Effects Action
 fetchOne id =
-  get (fetchOneUrl id) mealDecoder FetchOneDone
+  Request.get (fetchOneUrl id) mealDecoder FetchOneDone
 
 
 create : Meal -> Effects Action
@@ -61,7 +27,7 @@ create meal =
     body =
       responseEncoder "meal" (mealEncoder meal)
   in
-    post createUrl body mealDecoder CreateMealDone
+    Request.post createUrl body mealDecoder CreateMealDone
 
 
 delete : MealId -> Effects Action
@@ -134,16 +100,6 @@ saveUrl id =
 
 
 -- decoders (TODO: replace this with the streaming stuff)
-
-
-responseDecoder : Decode.Decoder a -> Decode.Decoder a
-responseDecoder innerDecoder =
-  Decode.at [ "data" ] innerDecoder
-
-
-responseEncoder : String -> Encode.Value -> Encode.Value
-responseEncoder key innerEncoder =
-  [ ( key, innerEncoder ) ] |> Encode.object
 
 
 collectionDecoder : Decode.Decoder (List Meal)
