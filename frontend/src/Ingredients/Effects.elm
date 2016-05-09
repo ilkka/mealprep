@@ -2,11 +2,31 @@ module Ingredients.Effects (..) where
 
 import Json.Decode as Decode exposing ((:=))
 import Json.Encode as Encode
+import Effects exposing (Effects)
 import Ingredients.Models exposing (IngredientId, Ingredient)
+import Request exposing (..)
+import Ingredients.Actions exposing (..)
 
 
--- TODO: fetch
 -- decoders (TODO: replace with streaming version)
+
+
+fetchAll : Effects Action
+fetchAll =
+  Request.get fetchAllUrl collectionDecoder FetchAllDone
+
+
+
+-- endpoints
+
+
+fetchAllUrl : String
+fetchAllUrl =
+  "http://localhost:4000/api/v1/ingredients"
+
+
+
+-- decoders & encoders
 
 
 collectionDecoder : Decode.Decoder (List Ingredient)

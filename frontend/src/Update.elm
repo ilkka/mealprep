@@ -7,6 +7,7 @@ import Effects exposing (Effects)
 import Routing
 import Mailboxes exposing (..)
 import Meals.Update
+import Ingredients.Update
 import Meals.Effects
 
 
@@ -34,6 +35,24 @@ update action model =
           { oldMeals | meals = updatedModel.meals, currentMeal = updatedModel.currentMeal }
       in
         ( { model | meals = updatedMeals }, Effects.map MealsAction fx )
+
+    IngredientsAction subAction ->
+      let
+        updateModel =
+          { ingredients = model.ingredients.ingredients
+          , errorAddress = Signal.forwardTo actionsMailbox.address ShowError
+          }
+
+        ( updatedModel, fx ) =
+          Ingredients.Update.update subAction updateModel
+
+        oldIngredients =
+          model.ingredients
+
+        updatedIngredients =
+          { oldIngredients | ingredients = updatedModel.ingredients }
+      in
+        ( { model | ingredients = updatedIngredients }, Effects.map IngredientsAction fx )
 
     RoutingAction subAction ->
       let

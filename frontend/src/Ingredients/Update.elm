@@ -6,11 +6,30 @@ import Ingredients.Actions exposing (..)
 
 
 type alias UpdateModel =
-  { ingredients : List Ingredient }
+  { ingredients : List Ingredient
+  , errorAddress : Signal.Address String
+  }
 
 
-update : Action -> UpdateModel -> ( List Ingredient, Effects Action )
+update : Action -> UpdateModel -> ( UpdateModel, Effects Action )
 update action model =
   case action of
+    FetchAllDone result ->
+      case result of
+        Ok ingredients ->
+          ( { model | ingredients = ingredients }, Effects.none )
+
+        Err error ->
+          let
+            effects =
+              Signal.send model.errorAddress (toString error)
+                |> Effects.task
+                |> Effects.map TaskDone
+          in
+            ( model, effects )
+
     NoOp ->
-      ( model.ingredients, Effects.none )
+      ( model, Effects.none )
+
+    TaskDone () ->
+      ( model, Effects.none )

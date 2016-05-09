@@ -1,9 +1,10 @@
 module Ingredients.Actions (..) where
 
 import Ingredients.Models exposing (Ingredient)
-import Http
+import Http.Extra as HttpExtra exposing (Error, Response)
 
 
 type Action
   = NoOp
-  | FetchDone (Result Http.Error (Ingredient))
+  | FetchAllDone (Result (Error String) (List Ingredient))
+  | TaskDone ()

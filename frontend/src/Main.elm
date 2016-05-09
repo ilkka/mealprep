@@ -12,6 +12,7 @@ import Routing
 import Mailboxes exposing (..)
 import Meals.Effects
 import Meals.Actions
+import Ingredients.Effects
 
 
 routerSignal : Signal Action
@@ -23,7 +24,9 @@ init : ( Models.AppState, Effects Action )
 init =
   let
     fxs =
-      [ Effects.map MealsAction Meals.Effects.fetchAll ]
+      [ Effects.map MealsAction Meals.Effects.fetchAll
+      , Effects.map IngredientsAction Ingredients.Effects.fetchAll
+      ]
 
     fx =
       Effects.batch fxs
