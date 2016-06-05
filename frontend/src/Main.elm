@@ -188,12 +188,21 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "flex" ]
-        [ div [ class "flex-auto" ]
-            [ mealsView model.meals ]
-        , div [ class "col-4" ]
-            [ p [] [ text "This will be the sidebar" ] ]
-        ]
+    let
+        content =
+            case model.page of
+                Home ->
+                    [ mealsView model.meals ]
+
+                MealPage id ->
+                    [ mealDetailView model.meal ]
+    in
+        div [ class "flex" ]
+            [ div [ class "flex-auto" ]
+                content
+            , div [ class "col-4" ]
+                [ p [] [ text "This will be the sidebar" ] ]
+            ]
 
 
 mealsView : List Meal -> Html Msg
@@ -208,3 +217,14 @@ mealView : Meal -> Html Msg
 mealView meal =
     div []
         [ p [] [ text meal.name ] ]
+
+
+mealDetailView : Maybe Meal -> Html Msg
+mealDetailView meal =
+    case meal of
+        Just meal ->
+            div []
+                [ p [] [ text ("Details for " ++ meal.name) ] ]
+
+        Nothing ->
+            div [] [ p [] [ text "No meal selected" ] ]
