@@ -1,80 +1,120 @@
-module Main (..) where
+module Main exposing (..)
 
 import Html exposing (..)
-import Effects exposing (Effects, Never)
-import Task exposing (Task)
-import StartApp
-import Models
-import Actions exposing (..)
-import Update exposing (..)
-import View exposing (..)
-import Routing
-import Mailboxes exposing (..)
-import Meals.Effects
-import Meals.Actions
-import Ingredients.Effects
+import Html.Attributes exposing (..)
+import Html.App as Html
+import Html.Events exposing (onClick)
 
 
-routerSignal : Signal Action
-routerSignal =
-  Signal.map RoutingAction Routing.signal
+-- APP
 
 
-init : ( Models.AppState, Effects Action )
-init =
-  let
-    fxs =
-      [ Effects.map MealsAction Meals.Effects.fetchAll
-      , Effects.map IngredientsAction Ingredients.Effects.fetchAll
-      ]
-
-    fx =
-      Effects.batch fxs
-  in
-    ( Models.initialModel, fx )
+main : Program Never
+main =
+    Html.beginnerProgram { model = model, view = view, update = update }
 
 
-app : StartApp.App Models.AppState
-app =
-  StartApp.start
-    { init = init
-    , inputs = [ routerSignal, actionsMailbox.signal, getDeleteConfirmationSignal ]
-    , update = update
-    , view = view
+
+-- MODEL
+
+
+type alias Model =
+    { meals : List Meal }
+
+
+type alias Meal =
+    { id : Int
+    , name : String
+    , ingredients : List MealIngredient
     }
 
 
-main : Signal Html
-main =
-  app.html
+type alias MealIngredient =
+    { amount : Float
+    , ingredient : Ingredient
+    }
 
 
-port runner : Signal (Task Never ())
-port runner =
-  app.tasks
+type alias Ingredient =
+    { id : Int
+    , name : String
+    , components : List IngredientComponent
+    }
 
 
-port routeRunTask : Task () ()
-port routeRunTask =
-  Routing.run
+type alias IngredientComponent =
+    { value : Float
+    , component : Component
+    }
 
 
-port askDeleteConfirmation : Signal ( Int, String )
-port askDeleteConfirmation =
-  deleteConfirmationMailbox.signal
+type alias Component =
+    { id : Int
+    , name : String
+    }
+
+
+model : Model
+model =
+    { meals =
+        [ { id = 1
+          , name = "Sufuruoka"
+          , ingredients =
+                [ { amount = 1.0
+                  , ingredient =
+                        { id = 1
+                        , name = "Litteä kana"
+                        , components =
+                            [ { value = 1.0
+                              , component = { id = 1, name = "Mako" }
+                              }
+                            ]
+                        }
+                  }
+                ]
+          }
+        ]
+    }
 
 
 
--- Inbound port, initial value given on js side
+-- UPDATE
 
 
-port getDeleteConfirmation : Signal Int
-getDeleteConfirmationSignal : Signal Action
-getDeleteConfirmationSignal =
-  let
-    toAction id =
-      id
-        |> Meals.Actions.DeleteMeal
-        |> MealsAction
-  in
-    Signal.map toAction getDeleteConfirmation
+type Msg
+    = NoOp
+
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        NoOp ->
+            model
+
+
+
+-- VIEW
+
+
+view : Model -> Html Msg
+view model =
+    div [ class "flex" ]
+        [ div [ class "flex-auto" ]
+            [ mealsView model.meals ]
+        , div [ class "col-4" ]
+            [ p [] [ text "This will be the sidebar" ] ]
+        ]
+
+
+mealsView : List Meal -> Html Msg
+mealsView meals =
+    div []
+        ([ h2 [] [ text "Meals" ] ]
+            ++ List.map mealView meals
+        )
+
+
+mealView : Meal -> Html Msg
+mealView meal =
+    div []
+        [ p [] [ text meal.name ] ]
