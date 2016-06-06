@@ -216,7 +216,9 @@ mealsView meals =
 mealView : Meal -> Html Msg
 mealView meal =
     div []
-        [ p [] [ text meal.name ] ]
+        [ p []
+            [ a [ href (toHash (MealPage meal.id)) ] [ text meal.name ] ]
+        ]
 
 
 mealDetailView : Maybe Meal -> Html Msg
