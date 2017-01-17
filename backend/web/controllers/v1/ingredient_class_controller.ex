@@ -4,11 +4,10 @@ defmodule MealprepBackend.V1.IngredientClassController do
   alias MealprepBackend.V1.IngredientClass
 
   def index(conn, params) do
-    query = if Dict.has_key?(params, "parent") do
-      pid = Dict.get(params, "parent")
-      from c in "ingredientclasses",
-        where: c.parent_id == type(^pid, :integer),
-        select: %{id: c.id, name: c.name, parent_id: c.parent_id}
+    query = if Map.has_key?(params, "parent") do
+      pid = Map.get(params, "parent")
+      from c in IngredientClass,
+        where: c.parent_id == type(^pid, :integer)
     else
       IngredientClass
     end
