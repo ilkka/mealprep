@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Navigation
 import UrlParser exposing (Parser, (</>), oneOf, format, int)
 import String
+import Meal
 
 
 -- APP
@@ -135,6 +136,7 @@ init result =
 type Msg
     = NoOp
     | ShowMeal Int
+    | MealMsg Meal.Msg
 
 
 {-| Update based on messages. Cause URLs to change maybe.
@@ -151,6 +153,9 @@ update msg model =
                     MealPage id
             in
                 ( { model | page = mealPage }, (Navigation.newUrl (toHash mealPage)) )
+
+        MealMsg inner ->
+            Meal.update inner
 
 
 {-| When URL updates, change model.
@@ -225,8 +230,7 @@ mealDetailView : Maybe Meal -> Html Msg
 mealDetailView meal =
     case meal of
         Just meal ->
-            div []
-                [ p [] [ text ("Details for " ++ meal.name) ] ]
+            Meal.view meal
 
         Nothing ->
             div [] [ p [] [ text "No meal selected" ] ]
