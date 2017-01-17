@@ -3,8 +3,16 @@ defmodule MealprepBackend.V1.IngredientController do
 
   alias MealprepBackend.V1.Ingredient
 
-  def index(conn, _params) do
-    ingredients = Repo.all(Ingredient)
+  def index(conn, params) do
+    query = if Map.has_key?(params, "ingredientClass") do
+      cid = Map.get(params, "ingredientClass")
+      from i in Ingredient,
+        where: i.ingredientclass_id == type(^cid, :integer)
+    else
+      Ingredient
+    end
+    ingredients = Repo.all(query)
+      |> Repo.preload([:process, :ingredientclass, [components: [component: :unit]]])
     render(conn, "index.json", ingredients: ingredients)
   end
 
