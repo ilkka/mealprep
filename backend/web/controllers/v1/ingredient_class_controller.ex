@@ -3,8 +3,16 @@ defmodule MealprepBackend.V1.IngredientClassController do
 
   alias MealprepBackend.V1.IngredientClass
 
-  def index(conn, _params) do
-    ingredientclasses = Repo.all(IngredientClass)
+  def index(conn, params) do
+    query = if Dict.has_key?(params, "parent") do
+      pid = Dict.get(params, "parent")
+      from c in "ingredientclasses",
+        where: c.parent_id == type(^pid, :integer),
+        select: %{id: c.id, name: c.name, parent_id: c.parent_id}
+    else
+      IngredientClass
+    end
+    ingredientclasses = Repo.all(query)
     render(conn, "index.json", ingredientclasses: ingredientclasses)
   end
 
