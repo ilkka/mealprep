@@ -7,11 +7,11 @@ defmodule MealprepBackend.V1.IngredientView do
   @attributes ~w(id name edible_portion inserted_at updated_at)a
 
   def render("index.json", %{ingredients: ingredients}) do
-    %{data: render_many(ingredients, MealprepBackend.V1.IngredientView, "ingredient.json")}
+    render_many(ingredients, MealprepBackend.V1.IngredientView, "ingredient.json")
   end
 
   def render("show.json", %{ingredient: ingredient}) do
-    %{data: render_one(ingredient, MealprepBackend.V1.IngredientView, "ingredient.json")}
+    render_one(ingredient, MealprepBackend.V1.IngredientView, "ingredient.json")
   end
 
   def render("ingredient.json", %{ingredient: ingredient}) do

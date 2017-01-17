@@ -3,11 +3,11 @@ defmodule MealprepBackend.V1.MealView do
   alias MealprepBackend.V1.IngredientView
 
   def render("index.json", %{meals: meals}) do
-    %{data: render_many(meals, MealprepBackend.V1.MealView, "meal.json")}
+   render_many(meals, MealprepBackend.V1.MealView, "meal.json")
   end
 
   def render("show.json", %{meal: meal}) do
-    %{data: render_one(meal, MealprepBackend.V1.MealView, "meal_full.json")}
+   render_one(meal, MealprepBackend.V1.MealView, "meal_full.json")
   end
 
   def render("meal.json", %{meal: meal}) do
