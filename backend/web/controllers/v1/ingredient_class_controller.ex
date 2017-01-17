@@ -52,4 +52,13 @@ defmodule MealprepBackend.V1.IngredientClassController do
 
     send_resp(conn, :no_content, "")
   end
+
+  def subclasses(conn, %{"id" => id}) do
+    ingredientclasses = Repo.all(
+      from c in "ingredientclasses",
+       where: c.parent_id == type(^id, :integer),
+       select: %{id: c.id, name: c.name, parent_id: c.parent_id}
+    )
+    render(conn, "index.json", ingredientclasses: ingredientclasses)
+  end
 end

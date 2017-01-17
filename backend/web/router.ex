@@ -11,6 +11,7 @@ defmodule MealprepBackend.Router do
     scope "/v1", V1, as: :v1 do
       resources "/ingredients", IngredientController, except: [:new, :edit]
       resources "/ingredientclasses", IngredientClassController, except: [:new, :edit]
+      get "/ingredientclasses/:id/subclasses", IngredientClassController, :subclasses
       resources "/processes", ProcessController, except: [:new, :edit]
       resources "/componentclasses", ComponentClassController, except: [:new, :edit]
       resources "/units", UnitController, except: [:new, :edit]
