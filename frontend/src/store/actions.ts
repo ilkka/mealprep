@@ -1,0 +1,11 @@
+/**
+ * Lists all actions.
+ */
+
+// Ingredient browser
+export const IB_POPULATE_BROWSER = "IB_POPULATE_BROWSER"
+
+export const GET_INGREDIENT_CLASSES = "GET_INGREDIENT_CLASSES"
+export const GET_INGREDIENTS_FOR_CLASS = "GET_INGREDIENTS_FOR_CLASS"
+export const SET_CURRENT_CLASS = "SET_CURRENT_CLASS"
+export const UNSET_CURRENT_CLASS = "UNSET_CURRENT_CLASS"

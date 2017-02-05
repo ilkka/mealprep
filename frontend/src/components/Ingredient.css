@@ -1,0 +1,14 @@
+.container {
+  flex: 1 0 150px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.container:hover {
+  outline: 1px solid gold;
+}
+.name {
+  background-color: rgba(0, 0, 0, 0.1);
+}
