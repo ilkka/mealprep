@@ -12,6 +12,6 @@ defmodule MealprepBackend.V1.IngredientClassView do
   def render("ingredient_class.json", %{ingredient_class: ingredient_class}) do
     %{id: ingredient_class.id,
       name: ingredient_class.name,
-      parent: ingredient_class.parent_id}
+      parent_id: ingredient_class.parent_id}
   end
 end
