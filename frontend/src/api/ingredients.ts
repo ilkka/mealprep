@@ -1,5 +1,6 @@
 import * as fetch from "isomorphic-fetch"
 import IngredientClass from "../models/IngredientClass"
+import Ingredient from "../models/Ingredient"
 
 async function getClasses (): Promise<IngredientClass[]> {
   const response = await fetch("/api/v1/ingredientclasses")
@@ -14,7 +15,7 @@ async function getClasses (): Promise<IngredientClass[]> {
   return classes
 }
 
-async function getIngredientsForClass (clsid: number) {
+async function getIngredientsForClass (clsid: number): Promise<Ingredient[]> {
   const response = await fetch(`/api/v1/ingredients?ingredientClass=${clsid}`)
   if (response.status >= 400) {
     throw new Error("Error fetching ingredients")

@@ -1,7 +1,7 @@
 import Vue = require("vue")
 import Component from "vue-class-component"
 
-import { IB_POPULATE_BROWSER } from "../store/actions"
+import { IB_POPULATE_BROWSER, IB_UPDATE_SELECTIONS } from "../store/actions"
 import IngredientClassComponent from "./IngredientClassComponent"
 import IngredientComponent from "./IngredientComponent"
 import Ingredient from "../models/Ingredient"
@@ -21,6 +21,10 @@ import * as styles from "./IngredientBrowser.css"
         <Ingredient v-for="ingredient in ingredients" :ingredient="ingredient" @select="selectIngredient" />
       </div>
       <div class="${styles.details}">
+        <template v-if="selectedIngredient">
+          <h2>{{ selectedIngredient.name }}</h2>
+          <h3>{{ selectedIngredient.process.name }}</h3>
+        </template>
       </div>
     </div>
   `,
@@ -41,22 +45,35 @@ export default class IngredientBrowserComponent extends Vue {
     return this.$store.getters.currentClassIngredients
   }
 
-  get selectedIngredientClass(): IngredientClass {
+  get selectedIngredientClass (): IngredientClass {
     return this.$store.getters.selectedIngredientClass
+  }
+
+  get selectedIngredient (): Ingredient {
+    return this.$store.getters.selectedIngredient
   }
 
   created () {
     this.fetchData()
   }
 
-  fetchData () {
-    const clsid = this.$route.params["clsid"] ?
+  private getClassAndIngredientIds () {
+    return {
+      clsid: this.$route.params["clsid"] ?
       parseInt(this.$route.params["clsid"], 10) :
-      null
-    const id = this.$route.params["id"] ?
+      null,
+      id: this.$route.params["id"] ?
       parseInt(this.$route.params["id"], 10) :
       null
-    this.$store.dispatch(IB_POPULATE_BROWSER, { clsid, id })
+    }
+  }
+
+  fetchData () {
+    this.$store.dispatch(IB_POPULATE_BROWSER, this.getClassAndIngredientIds())
+  }
+
+  updateSelections () {
+    this.$store.dispatch(IB_UPDATE_SELECTIONS, this.getClassAndIngredientIds())
   }
 
   selectClass ({ clsid }: { clsid: number }) {

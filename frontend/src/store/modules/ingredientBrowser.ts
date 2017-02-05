@@ -61,13 +61,13 @@ export default {
     [actions.IB_POPULATE_BROWSER]: async function ({ commit, state }: Vuex.ActionContext<State, any>, payload: { clsid: number, id: number }) {
       const classes = await ingredientsApi.getClasses()
       commit(mutations.SET_INGREDIENT_CLASSES, { classes })
-      let ingredients = []
       if (payload.clsid) {
         commit(
           mutations.SET_CURRENT_CLASS,
           { cls: state.classes.find((c) => c.id === payload.clsid) }
         )
-        ingredients = await ingredientsApi.getIngredientsForClass(payload.clsid)
+        const ingredients = await ingredientsApi.getIngredientsForClass(payload.clsid)
+        commit(mutations.SET_INGREDIENTS, { ingredients })
         if (payload.id) {
           commit(
             mutations.SET_CURRENT_INGREDIENT,
@@ -77,7 +77,27 @@ export default {
       } else {
         commit(mutations.UNSET_CURRENT_CLASS)
       }
-      commit(mutations.SET_INGREDIENTS, { ingredients })
+    },
+    [actions.IB_UPDATE_SELECTIONS]: async function ({ commit, state }: Vuex.ActionContext<State, any>, payload: { clsid: number, id: number }) {
+      if (payload.clsid) {
+        if (!state.currentClass || payload.clsid !== state.currentClass.id) {
+          const ingredients = await ingredientsApi.getIngredientsForClass(payload.clsid)
+          commit(mutations.SET_INGREDIENTS, { ingredients })
+        }
+        commit(
+          mutations.SET_CURRENT_CLASS,
+          { cls: state.classes.find((c) => c.id === payload.clsid) }
+        )
+        if (payload.id) {
+          commit(
+            mutations.SET_CURRENT_INGREDIENT,
+            { ingredient: state.ingredients.find((i) => i.id === payload.id) }
+          )
+        }
+      } else {
+        commit(mutations.UNSET_CURRENT_CLASS)
+        commit(mutations.SET_INGREDIENTS, { ingredients: [] })
+      }
     }
   },
   mutations: {
