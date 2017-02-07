@@ -24,6 +24,13 @@ import * as styles from "./IngredientBrowser.css"
         <template v-if="selectedIngredient">
           <h2>{{ selectedIngredient.name }}</h2>
           <h3>{{ selectedIngredient.process.name }}</h3>
+          <h3>Ravintosisältö per {{ selectedIngredient.edible_portion }} g</h3>
+          <dl>
+            <template v-for="component in selectedIngredient.components">
+              <dt>{{ component.name }}</dt>
+              <dd>{{ component.value }} {{ component.unit }}</dd>
+            </template>
+          </dl>
         </template>
       </div>
     </div>
