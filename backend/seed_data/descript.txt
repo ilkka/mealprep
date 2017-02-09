@@ -1,6 +1,6 @@
 Ravintoarvopaketti. Näringsdata paket. Nutrient data package.
 Fineli. Elintarvikkeiden koostumustietokanta. Livsmedelsdatabas. Finnish food composition database. 
-Versio. Version. Release. 16.0
+Versio. Version. Release. 17.0
  
 Copyright 2015 Terveyden ja hyvinvoinnin laitos (THL). Käyttöehdot: Creative Commons Nimeä 4.0 (CC-BY 4.0).
 Copyright 2015 Institutet för hälsa och välfärd (THL). Licens: Creative Commons, Erkännande  4.0 (CC-BY 4.0). 
@@ -50,6 +50,9 @@ igclass_EN.csv Classification: Ingredient class.
 fuclass_FI.csv Luokitus:Ruoankäyttöluokka. 
 fuclass_SV.csv Klassificering: Livsmedel bruk klass. 
 fuclass_EN.csv Classification: Food use class. 
+specdiet_FI.csv Luokitus:Erityisruokavelio. 
+specdiet_SV.csv Klassificering: Specialkost. 
+specdiet_EN.csv Classification: Special diet. 
 eufdname_FI.csv Luokitus:Ravintotekijöiden nimet. 
 eufdname_SV.csv Klassificering:Näringsämnes namn. 
 eufdname_EN.csv Classification:Component names. 
@@ -82,47 +85,51 @@ YHTEYDET. RELATIONER. RELATIONS.
     Valinnainen. Valfri. Optional.  PUBLID <<-- Julkaisu. Publikation. Publication. PUBLID
 
  Ravintoarvo. Näringsvärde. Component value 
-    Viiteavain. Referensnyckel. Reference key. FOODID <<-- Elintarvike. Livsmedel. Food. FOODID
-    Viiteavain. Referensnyckel. Reference key. EUFDNAME <<-- Ravintotekijä. Näringsämne. Component. EUFDNAME
+    Viiteavain. Referensnyckel. Reference key. FOODID <<-- food.FOODID
+    Viiteavain. Referensnyckel. Reference key. EUFDNAME <<-- Component.EUFDNAME
     Valinnaisten luokitusten viiteavain LUOKAN KOODI <<-- LUOKITUKSEN THSCODE
-    Esimerkki: Ravintoarvotyyppi VALTYPE <<-- Ravintoarvotyyppi THSCODE
+    Esimerkki: Ravintoarvotyyppi VALTYPE <<-- valtype.THSCODE
     Valfria klassificeringarnas referensnyckel. KLASS KOD <<-- KLASSIFICERINGARNAS THSCODE
-    Exempel: Näringsvärdes typ VALTYPE <<-- Näringsvärdes typ THSCODE
+    Exempel: Näringsvärdes typ VALTYPE <<-- valtype.THSCODE
     Reference key of optional classifications CODE OF CLASS<<-- THSCODE OF CLASSIFICATION
-    Example: Component value type VALTYPE <<-- Component value type THSCODE
-    Valinnainen viiteavain. Valfri referensnyckel. Optional reference key. PUBLID <<-- Julkaisu. Publikation. Publication. PUBLID
+    Example: Component value type VALTYPE <<-- valtype.THSCODE
+    Valinnainen viiteavain. Valfri referensnyckel. Optional reference key. PUBLID <<-- publication.PUBLID
 
  Ravintotekijä, pääavain. Näringsämne, primarnyckel. Component, primary key. EUFDNAME
     Valinnaisten luokitusten viiteavain LUOKAN KOODI <<-- LUOKITUKSEN THSCODE
-    Esimerkki: Ravintotekijäluokka CMPCLASS <<-- Ravintotekijäluokka THSCODE
+    Esimerkki: Ravintotekijäluokka CMPCLASS <<-- cmpclass.THSCODE
     Valinnaiset luokan ylempi taso tai luokan ylin taso liitetään samalla tavalla
     Valfria klassificeringarnas referensnyckel. KLASS KOD <<-- KLASSIFICERINGARNAS THSCODE
-    Exempel: näringsämnegrupp CMPCLASS <<-- Näringsämnegrupp THSCODE
+    Exempel: näringsämnegrupp CMPCLASS <<-- cmpclass.THSCODE
     Övre nivå av valfri klass eller översta nivån av klass kombineras på samma sätt
     Reference key of optional classifications CODE OF CLASS<<-- THSCODE OF CLASSIFICATION
-    Example: Component group CMPCLASS <<-- Component group THSCODE
+    Example: Component group CMPCLASS <<-- cmpclass.THSCODE
     Higher level of optional class or highest level of class are joined in the same way
 
  Julkaisu, pääavain. Publikation, primärnyckel. Publication, primary key. PUBLID
     Valinnaisten luokitusten viiteavain LUOKAN KOODI <<-- LUOKITUKSEN THSCODE
-    Esimerkki: Julkaisutyyppi REFTYPE <<-- Julkaisutyyppi THSCODE
+    Esimerkki: Julkaisutyyppi REFTYPE <<-- reftype.THSCODE
     Valfria klassificeringarnas referensnyckel. KLASS KOD <<-- KLASSIFICERINGARNAS THSCODE
-    Exempel: Publikations typ REFTYPE <<-- Publikation typ THSCODE
+    Exempel: Publikations typ REFTYPE <<-- reftype.THSCODE
     Reference key of optional classifications CODE OF CLASS<<-- THSCODE OF CLASSIFICATION
-    Example: Publication type REFTYPE <<-- Publication type THSCODE
+    Example: Publication type REFTYPE <<-- reftype.THSCODE
 
  Elintarvikkeen ruokamitat. Livsmedels enheter. Food additional units. (FOOD ADDITIONAL UNIT)
-    Viiteavain. Referensnyckel. Reference key. FOODID <<-- Elintarvike. Livsmedel. Food. FOODID
-    Viiteavain, yksikön koodi. Referensnyckel, enhet kod.  Reference key, unit code. FOODUNIT <<-- Elintarvikkeen yksikkö THSCODE
+    Viiteavain. Referensnyckel. Reference key. FOODID <<-- food.FOODID
+    Viiteavain, yksikön koodi. Referensnyckel, enhet kod.  Reference key, unit code. FOODUNIT <<--  foodunit.THSCODE
+
+ Elintarvikkeen erityisruokavaliot. Livsmedels specialkoster. Special diets of a food item. (SPECDIET)
+    Viiteavain. Referensnyckel. Reference key. FOODID <<-- FOODID <<-- food.FOODID
+    Viiteavain, erityisruokavalion koodi. Referensnyckel,  specialkost, kod.  Reference key, Special diet code. SPECDIET <<-- specdiet.THSCODE
 
  Elintarvikkeen resepti (rivit). Recepts livsmedel (rader). Recipe foods (rows). (CONTRIB FOOD)
-    Elintarvike, jonka reseptiin rivit kuuluvat, viiteavain. Receptets huvudlivsmedel. Mainfood of recipe, reference key.. FOODID <<-- Elintarvike. Livsmedel. Food. FOODID
-    Reseptirivin elintarvike; viiteavain. Receptrads livsmedel, referensnyckel. Recipe row food, reference key. CONFDID <<-- Elintarvike FOODID
-    Viiteavain Yksikön koodi. Referensnyckel, enhet. Unit, reference key. FOODUNIT <<-- Elintarvikkeen yksikkö. Enhet (livsmedel). Unit (food). THSCODE
+    Elintarvike, jonka reseptiin rivit kuuluvat, viiteavain. Receptets huvudlivsmedel. Mainfood of recipe, reference key.. FOODID <<-- food.FOODID
+    Reseptirivin elintarvike; viiteavain. Receptrads livsmedel, referensnyckel. Recipe row food, reference key. CONFDID <<--  food.FOODID
+    Viiteavain Yksikön koodi. Referensnyckel, enhet. Unit, reference key. FOODUNIT <<-- foodunit.THSCODE
 
  Elintarvikkeen nimet (foodname_FI). Livsmedels namn (foodname_SV). Food names (foodname_EN)
  Elintarvikkeen tieteelliset nimet (foodname_TX). Livsmedels vetenskapliga namn (foodname_TX). Food names, scientific (foodname_TX)
-    Viiteavain. Referensnyckel. Reference key. FOODID <<-- Elintarvike. Livsmedel. Food. FOODID
+    Viiteavain. Referensnyckel. Reference key. FOODID <<-- food.FOODID
  
  
 component_value.csv
@@ -162,6 +169,10 @@ foodaddunit.csv
 FOODID (Elintarvikkeen tunnus, numero. Livsmedelsnummer, nummer. Food id, number)
 FOODUNIT (Yksikön koodi, teksti. Enhets kod, text. Unit code, text)
 MASS (Massa (g), numero. Massa (g), nummer. Mass (g), number)
+ 
+specdiet.csv
+FOODID (Elintarvikkeen tunnus, numero. Livsmedelsnummer, nummer. Food id, number)
+SPECDIET (Erityisruokavalion koodi, teksti., Specialkost,text. Special diet, text)
  
 foodname_FI.csv
 foodname_SV.csv

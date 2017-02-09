@@ -5,9 +5,8 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 558;Isotalo K., Kuittinen R..  2000. Kotiruoka. 61. täysin uudistettu painos. Otava;B;E;
 912;Isotalo K., Kuittinen R..  2010. Kotiruoka. 79. painos. Otava;B;E;
 653;Mattila P, Astola J, Kumpulainen J.  2000. Determination of flavonoids in plant material by HPLC with diode-array and electro-array detections. J Agric Food Chem 2000.48:5834-5841;AJ;P;doi: 10.1021/jf000661f
-1124;USDA.  2012. Food composition database, release 24. USDA;F;F;
 676;ICA:n koekeittiö.  2002. Uusi Ruutukokki. WSOY;B;E;
-830;Alprosoya tuotteet. Ruoka 250ml.;L;L;
+830;Alprosoya tuotteet.;L;L;
 868;Shehzad H. .  2005. Parhaita ruokaohjeita Intia. Parragon.;B;E;
 906;USDA.  200. Food composition database, release 13. USDA;F;F;
 909;Puska R, Keppo T. Ruokaa Jess! WSOY Oppimateriaalit. 2008.;B;E;
@@ -17,8 +16,8 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 926;USDA.  2010. Food composition database, release 23. USDA;F;F;
 292;Holland B, Unwin ID, Buss DH.  1992. Fruit and nuts. The Royal Society of Chemistry;B;F;
 1009;Eckes-Granini. 2011. Mehukatti;WW;L;
-1037;Arla Ingman. Ingmariini. 2011;WW;L;
-1049;santamaria.fi;WW;I;
+1037;Arla Ingman. Tuotteet. 2011;WW;L;
+1049;Santamarian tuotteet;WW;I;
 1052;http://www.dronningholm.fi;WW;L;
 1054;kokkikartano.fi;WW;L;
 992;Ravintoraisio. Keiju-tuotteet. 2011;WW;L;
@@ -33,7 +32,6 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 1091;http://www.ullanpakari.fi/;WW;I;
 1092;pirjonpakari.fi;WW;I;
 1097;Lejos, Kitchen joy;WW;L;
-1101;.;WW;L;
 1102;kikkoman;WW;L;
 872;Danish Institute for Food and Veterinary Research.  2009. Danish Food Composition Databank, revision 7.01.;F;F;
 1113;Livsmedelsverket. Livsmedelsdatabasen 2012.;WW;F;
@@ -41,9 +39,9 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 1119;http://www.pororeseptit.fi/;WW;L;
 1005;http://www.becel.fi/Consumer/Home.aspx;WW;L;
 1123;http://www.mtv3.fi/reseptit/index.shtml/friteeratut-juustotaytteiset-kanafileet?1059227;WW;L;
+1124;USDA.  2012. Food composition database, release 24. USDA;F;F;
 1151;http://www.panini.fi/tuotteet/;WW;E;
 1158;Arla Ingman. Tuotteet. 2012;WW;L;
-1164;Tuotenimikohtaisten koodien päivitysliite. murot ja myslit 5/2012;PA;L;
 1183;MTT, jokioinen, kesä 2012 Rintamaitoanalyysit;F;F;
 1187;http://www.rittersport.co.uk;WW;I;
 148;Holland B, Unwin ID, Buss DH.  1991. Vegetables, herbs and spices. The fifth supplement to McCance & Widdowson's The composition of foods. The Royal Society of Chemistry, Ministry of Agriculture & F & F;B;F;
@@ -59,60 +57,69 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 191;Moller A, Saxholt E.  1996. Levnedsmiddeltabeller. Levnedsmiddelstyrelsen;B;F;
 168;Livsmedelsverket.  1996. Livsmedelstabell Kolhydrater. Livsmedelsverket, Uppsala;B;F;
 394;Arnemo M, W Becker, L Bergström, H Enghardt-Barbieri, M Munoz, E-M Ohlander, I Torelm.  2002. Livsmedelstabell - energi och näringsämnen 2002. Livsmedelsverket;B;F;
-145;NEVO.  1996. NEVO Tabel Nederlands voedingsstoffenbestand. Stichting NEVO Voorlichtingsbureau voor de Voeding;B;F;
 162;Gebhardt S, E Holden, M Joanne.  1992. Provisional table on the selenium content of foods. USDA;F;F;
 510;Danish Institute for Food and Veterinary Research.  2005. Danish Food Composition Databank, revision 6.0.;F;F;
 47;Statens livsmedelsverk.  1993. Livsmedels tabell. Energi och näringsämnen. Norstedts tryckeri;B;F;
 486;U.S Department of Agriculture, Agricultural Research Service.  2004. USDA Nutrient  Database for Standard Reference Release 17. U.S Department of Agriculture;F;F;
 1165;Phenol-Explorer, Database on polyphenol content in foods.;F;F;
+145;NEVO.  1996. NEVO Tabel Nederlands voedingsstoffenbestand. Stichting NEVO Voorlichtingsbureau voor de Voeding;B;F;
 261;Mazur W.  2000. Phyto-estrogens: occurrence in foods, and metabolism of lignans in man and pigs.. Helsingin yliopisto;R;P;
 652;Mattila P, Hellström J, Törrönen R.  2006. Phenolic acids in berries, fruits, and beverages. J Agric Food Chem 2006.54:7193-7199;AJ;P;doi: 10.1021/jf0615247
 146;Holland B, Unwin ID, Buss DH.  1989. Milk products and eggs. The fourth supplement to McCance & Widd The composition of foods. The Royal Society of Chemistry, Ministry of Agriculture, FF;B;F;
+1269;The official Danish Food Composition Database
+Danish Food Composition Databank
+New version 7.01 March 2009;WW;F;
 758;Varo P, Nuurtamo M, Saari E, Koivistoinen P.  1980. Mineral element composition of Finnish foods. IV. Flours and bakery products. Acta Agriculturae Scandinavica 1980.30(Suppl 22):37-55;AJ;P;
 746;U.S. Department of Agriculture, Agricultural Research Service.  2008. USDA Nutrient Database for Standard Reference, Release 21. USDA;F;F;
 262;Ollilainen V.  2000. HPLC analysis of vitamin B6 in foods. Agricultural and food science in Finland 1999.8(6);R;P;
 505;U.S. Department of Agriculture, Agricultural Research Service.  2005. USDA Nutrient Database for Standard Reference, Release 18. USDA;F;F;
 274;Karikoski T, Ekström C.  1998. Tärkkelys - aina yhtä ajankohtainen. Kehittyvä elintarvike 1998.(4):13-15;E;C;
 414;Normén L, Bryngelsson S, Johnsson M, Evheden P, Ellegård L, Brants H, Andersson H, Dutta P.  2002. The phytosterol content of some cereal foods commonly consumed in Sweden and in the Netherlands. J Food Compos Anal;AJ;P;doi:10.1006/jfca.2002.1098
+1207;USDA.  2013. Food composition database, release 25 USDA;F;F;
 2;Piironen V.  1986. Tokoferolit ja tokotrienolit elintarvikkeissa ja keskimääräisessä suomalaisessa ruokavaliossa. Helsingin yliopisto, EKT-sarja 1986:726;R;P;
 587;Varo P, Laine R, Veijalainen K, Espo A, Wetterhoff A, Koivistoinen P.  1984. Dietary fibre and available carbohydrates in Finnish vegetables and fruits. Maataloustieteellinen Aikakauskirja 56:49-59;AJ;C;
 1214;Livsmedelsverket. The National Food Administration's food database, version 10/01/2013.;WW;F;
 110;Eurola MH, Ekholm P, Ylinen M, Koivistoinen P, Varo P.  1991. Selenium in Finnish foods after beginning the use of Selenate- supplemented fertilisers. J Sci Food Agric 1991.56:57-70;AJ;P;doi: 10.1002/jsfa.2740560107
 697;U.S. Department of Agriculture, Agricultural Research Service.  2007. USDA Nutrient Database for Standard Reference, Release 20. USDA;F;F;
-128;Statens livsmedelsverk.  1989. Fettsyratabeller för livsmedel oct maträtter. Svenskt Tryck;B;F;
-101;Varo P, E Saari, A Paaso, P Koivistoinen.  1982. Iodine in Finnish foods. Internat J Vit Nutr Res 1982.52:80-89;AJ;P;PMID: 7085204
 417;Zeisel S, Mar M, Howe J, Holden J.  2003. Concentrations of choline-containing compounds and betaine in common foods. J Nutr 2003.133:1302-1307;AJ;P;PMID: 12730414
 258;Adlercreutz H, Mazur W.  1997. Phyto-oestrogens and western diseases. Annals of Medicine 1997.29:95-120.;AJ;P;PMID: 9187225
 425;U.S Department of Agriculture, Agricultural Research Service.  2003. USDA Nutrient  Database for Standard Reference Release 16. U.S Department of Agriculture;F;F;
 409;Arts I, van de Putte B, Hollman P.  2000. Catechin contents of foods commonly consumed in the Netherlands. 1. Fruits, vegetables, staple foods, and processed foods. J Agric Food Chem 2000.48:1746-1751;AJ;P;doi: 10.1021/jf000025h
+1322;USDA. 2015. Food composition database, release 27.;WW;F;
 315;Bolton-Smith C, Price C, Fenton S, Harrington D, Shearer M.  2000. Compilation of a provisional UK database for the phylloquinone (vitamin K1) content of foods. Br J Nutr 2000.83:389-399;AJ;P;doi: 10.1017/S0007114500000490
 153;Salo-Väänänen P.  1996. Elintarvikkeiden proteiinipitoisuuden määrittäminen niiden typpi- ja aminohappopitoisuuksien avulla. Helsingin yliopisto, EKT-sarja 1996.1050;R;P;
 173;USDA.  1997. Nutrient Database for Standard Reference, Release 11-1. USDA;F;F;
+101;Varo P, E Saari, A Paaso, P Koivistoinen.  1982. Iodine in Finnish foods. Internat J Vit Nutr Res 1982.52:80-89;AJ;P;PMID: 7085204
+128;Statens livsmedelsverk.  1989. Fettsyratabeller för livsmedel oct maträtter. Svenskt Tryck;B;F;
 149;Chan W, Brown J, Lee SM, Buss D.  1995. Meat, poultry and game. Supplement to McCance & Widdowson's The composition of foods.. The Royal Society of Chemistry, Ministry of Agriculture & F & F;B;F;
 303;Toivo J, Phillips K, Lampi A-M, Piironen V.  2001. Determination of sterols in foods: recovery of free, esterified and glycosidic sterols. J Food Comp Anal 2001.14:631-643;AJ;P;doi:10.1006/jfca.2001.1019
 19;Varo P, Laine R, Veijalainen K, Pero K, Koivistoinen P.  1984. Dietary fibre and available carbohydrates in Finnish cereal products. Maataloustieteellinen Aikakauskirja 56:39-48;AJ;C;
+1258;Suin J, Kmecl V, Gregorcic (2006). A survey of nitrate and nitrite content of
+fruit and vegetables grown in Slovenia during 1996-2002. Food Additives and Contaminants 23: 385-390.;AJ;C;
+1298;THL. Analyysiohjelma 2014.;F;D;
 400;Piironen V, Toivo J, Lampi A-M.  2002. Plant sterols in cereals and cereal products. Cereal Chemistry 79:148-154;AJ;P;doi:10.1094/CCHEM.2002.79.1.148
 499;Heinonen M, Ollilainen V, Linkola E, Varo P, Koivistoinen P..  1989. Carotenoids and retinoids in Finnish foods: Cereal and bakery products.. Cereal Chem 1989.66(4):270-273.;AJ;P;
 81;Tahvonen R, J Kumpulainen.  1991. Lead and cadmium in berries and vegetables on the Finnish market 1987-1989. J Anal Chem 1991.340:242-244;JI;P;DOI: 10.1007/BF00321776
 158;Plaami S, Kumpulainen J.  1993. Soluble and insoluble dietary fiber and Beta-Glucan contents in domestic and imported breakfast cereals consumed in Finland. J Food Comp Anal 1993.6:307-315;AJ;P;doi:10.1006/jfca.1993.1034
 228;Saastamoinen M, Plaami S, Kumpulainen J.  1989. Pentosan and betaglucan content of Finnish winter rye varieties as compared with rye of six other countries. J Cereal Sci 1989.10:199-207;AJ;P;
 193;Koivu T, Piironen V, Mattila P.  1998. Phylloquinone (Vitamin K1) in cereal products. Cereal Chem 1998.75(1):113-6;AJ;P;doi:10.1094/CCHEM.1998.75.1.113
-159;Eurola M, Hietaniemi M..  2000. Seleenityöryhmän raportti. Seurantatulokset vuosilta 1997-1999. Maatalouden tutkimuskeskuksen julkaisuja, sarja B 24;R;D;
-147;Holland B, Unwin ID, Buss DH.  1988. Cereal and cereal products. The third supplement to McCance & Widdowson's The composition of foods. The Royal Society of Chemistry, Ministry of Agriculture & F & F;B;F;
+1330;Vuorisalo L-M. Viljatuotteiden tokolit ja folaatti. Maisterin tutkielma. EKT-sarja 1393, Soveltavan kemian ja mikrobiologian laitos, Helsingin yliopisto.;R;C;
 230;Hägg M, Kumpulainen J.  1993. Thiamine and riboflavine contents in domestic and imported cereal products in Finland. J Food Compos Anal 1993.6:299-306;AJ;P;doi:10.1006/jfca.1993.1033
 651;Mattila P, Pihlava J, Hellström J.  2005. Contents of phenolic acids, alkyl- and alkenylrecorcinols, and avenantharamides in commercial grain products. J Agric Food Chem 2005.53:8290-8295;AJ;P;doi:10.1016/j.jfca.2006.05.007 
-50;Suojanen A.  1993. Jauhojen täydentäminen lakkaa. EV-viesti 5:15;E;C;
 254;Mazur W, Adlercreutz H.  1998. Natural and anthropogenic environmental oestrogens, the scientific bias for risk assessment. Pure & Applied chemistry 1998.70:1759-1776;AJ;P;doi:10.1351/pac199870091759
-185;Souci SW, Fachmann W, Kraut H.  1994. Die Zusammensetzung der Lebensmittel Nährwert-Tabellen. Medpharm GmbH Scientific Publishers;B;F;
+147;Holland B, Unwin ID, Buss DH.  1988. Cereal and cereal products. The third supplement to McCance & Widdowson's The composition of foods. The Royal Society of Chemistry, Ministry of Agriculture & F & F;B;F;
+50;Suojanen A.  1993. Jauhojen täydentäminen lakkaa. EV-viesti 5:15;E;C;
 335;Plessi M, Bertelli D, Monzani A, Simonetti S, Neri A, Damiani P.  1999. Dietary fiber and some elements in nuts and wheat brans. J Food Compos Anal 1999.12:91-96;AJ;P;doi:10.1006/jfca.1999.0812
 59;Holland B, Welch A, Unwin ID, Buss DH, Paul AA, Southgate DAT.  1991. McCance and Widddowson's The Composition of Food Fifth revised and extended edition. The Royal Society of Chemistry and Ministry of AFF;B;F;
 460;Zwart de F, Slow S, Payne R, Lever M, George P, Gerrard J, Chambers S..  2003. Glycine betaine and glycine betaine analogues in common foods. Food Chemistry 2003.83:197-204;AJ;P;doi:10.1016/S0308-8146(03)00063-3
+185;Souci SW, Fachmann W, Kraut H.  1994. Die Zusammensetzung der Lebensmittel Nährwert-Tabellen. Medpharm GmbH Scientific Publishers;B;F;
+159;Eurola M, Hietaniemi M..  2000. Seleenityöryhmän raportti. Seurantatulokset vuosilta 1997-1999. Maatalouden tutkimuskeskuksen julkaisuja, sarja B 24;R;D;
 86;Ekholm P, Ylinen M, Koivistoinen P, Varo P.  1995. Selenium concentration of Finnish foods: Effects of reducing the amount of selenate in fertilizers. Agricultural Science in Finland 1995.4:377-384;AJ;C;
 413;Määttä K, Lampi A-M, Petterson J, Fogelfors B, Piironen V, Kamal-Eldin A.  1999. Phytosterol content in seven oat cultivars grown at three locations in Sweden. J Sci Food Agric 1999.79:1021-1027;AJ;P;doi: 10.1002/(SICI)1097-0010(19990515)79:7<1021::AID-JSFA316>3.0.CO.2-E
 227;Saastamoinen M.  1995. Effects of environmental factors on the betaglucan content of two oat varieties. Acta Agric Scand Sect B Soil and Plant Sci 1995.45:181-7;AJ;P;
 256;Mazur W.  1998. Phytoestrogen content in foods. Bailliere's clinical endrocrinology a metabolism 1998.12:729-42;AB;P;doi:10.1016/S0950-351X(98)80013-X
+1260;USDA.  2014. Food composition database, release 26 USDA;F;F;
 319;Shearer M, Bach A, Kohlmeier M.  1996. Chemistry, nutritional sources, tissue distribution and metabolis of vitamin K with special reference to bone health. J Nutr 1996.126:1181S-1186S;AJ;P;PMID: 8642453
-1207;USDA.  2013. Food composition database, release 25 USDA;F;F;
 215;Livsmedelsverket.  1998. K-vitamin i livsmedel. Livsmedelsverket Rapport 4/1998;R;F;
 276;U.S Department of Agriculture, Agricultural Research Service.  1999. USDA Nutrient  Database for Standard Reference Release 13. U.S Department of Agriculture;F;F;
 213;Euroopan yhteisö.  1995. Viljajalosteiden jalostuskertoimet. Maa- ja metsätalousministeriö;E;D;
@@ -120,8 +127,8 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 92;Hägg M, Kumpulainen J.  1994. Thiamine and riboflavin contents in Finnish pig, heifer, and cow livers and in pork loin. J Food Comp Anal 1994.7:301-306;AJ;P;doi:10.1006/jfca.1994.1032
 476;Piironen V, Toivo J, Puupponen-Pimiä R, Lampi A-M.  2003. Plant sterols in vegetables, fruits and berries. J Sci Food Agric 2003.83:330-337;AJ;P;doi: 10.1002/jsfa.1316
 459;Food standards agency and Institute of food research.  2003. McCance and Widdowson's The Composition of foods. Royal Society of Chemistry;B;F;
+1329;Livsmedelverkets livsmedelsdatabas version 20150304;WW;F;
 15;Heinonen M,  Ollilainen V, Linkola E, Varo P,  Koivistoinen P.  1988. Carotenoids and retinoids in Finnish foods: Vegetables, Fruits and Berries. J Agric Food Chem 1989.37:655-658;AJ;P;doi: 10.1021/jf00087a017
-58;Niemi E, Hallikainen A.  1993. Kotimaisten ja ulkomaisten kasvisten nitraatti- ja raskasmetallipitoisuudet. Elintarvikeviraston Tutkimuksia 1993.11;R;D;
 249;Hägg M, Häkkinen U, Kumpulainen J, Ahvenainen R and Hurme E.  1998. Effects of preparation procedures, packaging and storage on nutrient retention in peeled potatoes. J Sci Food Agric 1998.77:519-526;AJ;P;10.1002/(SICI)1097-0010(199808)77:4<519::AID-JSFA75>3.0.CO.2-C
 650;Mattila P, Hellström J.  2007. Phenolic acids in potatoes, vegetables, and some of their products. J Food Comp Anal 2007.20:152-160;AJ;P;doi:10.1016/j.jfca.2006.05.007
 156;Vahteristo L, Lehikoinen K,  Ollilainen V,  Varo P.  1997. Application of an HPLC assay for the determination of folate derivatives in some vegetables, fruits and berries consumed in Finland.. Food Chemistry 1997.59:589-597;AJ;P;doi:10.1016/S0308-8146(96)00318-4  
@@ -137,6 +144,7 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 4;Souci SW, Fachman W, Kraut H.  1986. Food Composition and Nutrition Tables 1986/87. Wissenschaftlige Verlagsgesellschaft mbH;B;F;
 336;Heinonen M.  1990. Carotenoids and provitamin A activity of carrot (Daucus carota L.) cultivars. J Agric Food Chem 1990.38:609-12;AJ;P;doi: 10.1021/jf00093a005
 85;Laitinen S, Virtanen  SM, Räsänen L, Penttilä  P-L.  1993. Calculated dietary intakes of nitrate and nitrite by young Finns. Food Additives and Contaminants 1993.10:469-477;AJ;P;PMID: 8405586
+58;Niemi E, Hallikainen A.  1993. Kotimaisten ja ulkomaisten kasvisten nitraatti- ja raskasmetallipitoisuudet. Elintarvikeviraston Tutkimuksia 1993.11;R;D;
 302;Normén L, Johnsson M, Andersson H, Gameren van Y, Dutta P.  1999. Plant sterols in vegetables and fruits commonly consumed in Sweden. Eur J Nutr 1999.38:84-89;AJ;P;doi: 10.1007/s003940050048
 138;Herrmann K.  1976. Flavonols and flavonoes in food plants: a review. J Food Technol 1976.11:433-448;AJ;P;
 94;Hägg M, Ylikoski S, Kumpulainen J.  1994. Vitamin C and Alfa- and Beta-Carotene contents in Vegetables consumed in Finland during 1988-1989 and 1992-1993. J Food Comp Anal 1994.7:252-259;AJ;P;doi:10.1006/jfca.1994.1028
@@ -149,7 +157,7 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 395;Mattila P, Lampi A-M, Ronkainen R, Toivo J, Piironen V.  2002. Sterol and vitamin D2 contents in some wild and cultivated mushrooms. Food Chemistry 2002.76:293-298;AJ;P;doi:10.1016/S0308-8146(01)00275-8
 404;Mattila P, Könkö K, Eurola M, Pihlava J-P, Astola J, Vahteristo L, Hietaniemi V, Kumpulainen J, Valtonen M, Piironen V.  2001. Contents of vitamins, mineral elements, and some phenolic compounds in cultivated mushrooms. J Agric Food Chem 2001.49:2343-2348;AJ;P;doi: 10.1021/jf001525d
 403;Mattila P, Salo-Väänänen P, Könkö K, Aro H, Jalava T.  2002. Basic composition and amino acid contents of mushrooms cultivated in Finland. J Agric Food Chem 2002.50:6419-6422;AJ;P;doi: 10.1021/jf020608m
-295;Ministry of Agriculture, fisheries and food.  1998. Fatty acids Supplement to McCance & Widdowson's The composition of foods. MAFF & RSC;B;F;
+1324;Livsmedelverkets livsmedelsdatabas verison 20150119;WW;F;
 515;Varo P, Lähelmä O, Nuurtamo M, Saari E, Koivistoinen P..  1980. Mineral Element Composition of Finnish Foods VII Potato, Vegetables, Fruits, Berries, Nuts and Mushrooms. Acta Agriculturae Scandinavica 1980.Suppl 22:89-113;AJ;P;
 131;Niemi E, Hallikainen A.  1996. Elintarvikkeena käytettävien siementen syaanivety- ja kadmiumpitoisuudet. Lisäaineiden käyttö ketsupeissa. Elintarvikevirasto Tutkimuksia 1996.3;R;D;
 169;Livsmedelsverket.  1996. Karotenoider i livsmedel i Sverige. Livsmedelsverket Rapport 1996.12;R;F;
@@ -157,6 +165,7 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 259;Mazur WM, Duke J, Wähälä K, Rasku S,  Adelrcreutz H.  1998. Isoflavonoids and lignans in legumes: nutritional and health aspects  in humans. Nutritional Biochemistry 1998.9:193-200;AJ;P;doi:10.1016/S0955-2863(97)00184-8
 167;Livsmedelsverket.  1996. Livsmedelstabell Aminosyror. Livsmedelsverket, Uppsala;B;F;
 654;Nutrient Data Laboratory.  2004. USDA database for the proanthocyanid content of selected foods.;F;F;
+295;Ministry of Agriculture, fisheries and food.  1998. Fatty acids Supplement to McCance & Widdowson's The composition of foods. MAFF & RSC;B;F;
 908;USDA. Database fot teh proanthocyanidin content of selected foods;F;F;
 253;Mazur W, Fotsis T, Wähälä K, Ojala S, Salakka A, Adlercreutz H.  1996. Isotope dilution gas chromatographic - mass spectrometric method for the determination of isoflavonoids, coumestrol and lignans. Analytical biochemistry 1996.233:169-180;AJ;P;doi:10.1006/abio.1996.0025
 616;U.S. Department of Agriculture, Agricultural Research Service.  2006. USDA Nutrient Database for Standard Reference, Release 19. USDA;F;F;
@@ -166,12 +175,13 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 423;Yoshida H, Hirakawa Y, Murakami C, Mizushina Y, Yamade T.  2003. Variation in the content of tocopherols and distribution of fatty acids within soya bean seeds (Glycine max L.). J Food Composition and Analysis 2003.16:429-440;AJ;P;doi:10.1016/S0889-1575(03)00028-0
 296;Salvini S, Parpinel M, Gnagnarella P, Maisonneuve P, Turrini A.  1998. Banca dati di composizione degli alimenti per studi epidemiologici in Italia. Instituto Europeo di Oncologia;B;F;
 95;Haila K, Kumpulainen J, Häkkinen U, Tahvonen R.  1992. Sugars and organic acids in berries and fruits consumed in Finland during 1987-1989. J Food Comp Anal 1992.5:108-111;AJ;P;doi:10.1016/0889-1575(92)90025-F
+1257;Elintarvikevirasto 2013. Kvantitatiivinen riskinarviointi lasten ja aikuisten altistumisesta nitraatille ja
+nitriitille Eviran tutkimuksia 2/2013;R;D;
 418;Vahteristo L, Kariluoto S, Bärlund S, Kärkkäinen M , Lamberg-Allardt C, Salovaara H, Piironen V.  Functionality of endegenous folates from rye and orange juice using human in vivo model. Eur J Clin Nutr 2002.41:271-278;AJ;P;doi: 10.1007/s00394-002-0385-z
 197;Häkkinen S, Kärenlampi S, Heinonen M, Mykkänen H, Törrönen R.  1999. Content of flavonols quercetin, myricetin, and kaempferol in 25 edible berries. J Agric Food Chem 1999.47:2274-2279;AJ;P;doi: 10.1021/jf9811065
 63;Stöhr H, Herrmann K.  1975. Die phenolischen inhaltstoffe des obstes. VI. Die phenolischen inhaltstoffe der Johannisbeeren, Stachelbeere.. Z. Lebensm. Unters.-Forsch. 1975.159:31-37;AJ;P;doi: 10.1007/BF01089877
 405;Kallio H, Hakala M, Pelkkikangas A-M, Lapveteläinen A.  2000. Sugars and acids of strawberry varieties. Eur Food res Techol 2000.212:81-85;AJ;P;doi: 10.1007/s002170000244
 140;Stöhr H, Herrmann K.  1975. Die phenolischen Inhaltsstoffe des Obstes V. Die phenolischen Inhaltsstoffe der Erdbeeren und deren Verände. Z Lebensm. Unters. Forsch. 1975.159:341-348;AJ;P;doi: 10.1007/BF01787078
-66;Hägg M, Ylikoski S, Kumpulainen J.  1995. Vitamin C content in fruits and berries consumed in Finland. J Food Comp Anal 1995.8:12-20;AJ;P;doi:10.1006/jfca.1995.1003
 379;Yang B, Kallio H.  2001. Fatty acid composition of lipids in Sea Buckthorn (Hippophae rhamnoides L.) berries of different origins. J Agric Food Chem 2001.49:1939-47;AJ;P;doi: 10.1021/jf001059s
 272;USDA.  1999. Food composition database, release 13. USDA;F;F;
 267;Salminen Risto.  1997. Kasvisterolit sekä kolesteroli ravintorasvoissa. Helsingin yliopisto, EKT-sarja 1997.1098;R;C;
@@ -202,6 +212,7 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 195;Knuuttila M, Tuominen R.  1997. Sianlihan ravintoainetutkimus - tutkimusraportti. Lihateollisuuden Tutkimuskeskus;R;D;
 7;Ollilainen V,  Heinonen M,  Linkola E,  Varo P, Koivistoinen P.  1987. Carotenoids and retinoids in Finnish foods: Meat and Meat Products. J Food Comp Anal 1988.1:178-188;AJ;P;doi:10.1016/0889-1575(88)90022-1
 317;Hirauchi K, Sakano T, Notsumoto S, Nagaoka T, Morimoto A, Fujimoto K, Masuda S, Suzuki Y.  1989. Measurement of K vitamins in animal tisuue by high-performance liquid chromatography with fluorescence detection. J Chromatoraphy 1989.497:131-137;AJ;P;doi:10.1016/0378-4347(89)80012-X
+1270;Livsmedelsverkets livsmedelsdatabas version 2014-01-28;WW;F;
 248;Knuuttila M, Griinari M, Rantala J, Tuominen R.  1999. Naudanlihan ravintoainesisältö. Lihateollisuuden tutkimuskeskus;R;D;
 219;Johansson G.  1997. Näringsvärden på svensk nötkött. Scan Köttforskningsinstitutet, Rapport August 1997;R;D;
 166;Livsmedelsverket.  1996. Livsmedelstabell Mineralämnen och spårelement. Livsmedelsverket, Uppsala;B;F;
@@ -219,24 +230,25 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 478;Nuurtamo M, Varo P, Saari E, Koivistoinen P.  1980. Mineral element composition of Finnish foods. VI. Fish and fish products. Acta Agriculturae Scandinavica 1980.30(Suppl 22):77-87;AJ;P;
 232;EELA MMMEEO.  1998. Eläimistä saatavien elintarvikkeiden vierasainetutkimukset 1997. Eläinlääkintä- ja elintarvikelaitos;R;D;
 98;Vuorinen PJ, Paasivirta J, Vuorinen M, Peuranen S, Hoikka J.  1993. Lohen ja meritaimenen ympäristömyrkkypitoisuudet ja lohen alkio- ja poikaskuolleisuus. Kalatutkimuksia 65;R;D;
-297;Elintarvikevirasto.  1992. Kirjolohi ravintona. Aistittava laatu, mikrobiologiset tekijät, ravintoarvo ja vieraat aineet. Elintarvikevirasto Tutkimuksia 13/1992;R;D;
 334;Foedevaredirektoratet.  1999. Overvågning af tilsaetningsstoffer.  Undersoegelse af svoldioxid og nitrit/nitrat i levnedsmidler. Del III.. FoedevareRapport 1999:11;R;D;
-100;Ekholm P, Viksten J, Suojanen A, Varo P.  1994. Saavatko suomalaiset sopivasti jodia?. Suomen Lääkärilehti 1994.49:2546-2549;AJ;P;
 390;Arts I, B van de Putte, P Hollman.  2000. Catechin contents of foods commonly consumed in the Netherlands. 2. Tea, wine, fruit juices, and chocolate milk.. J Agric Food Chem 2000:48:1752-7;AJ;P;doi: 10.1021/jf000026+
 255;Mazur W, Wähälä K, Rasku S, Salakka A, Hase T, Adlercreutz H.  1998. Lignan and isoflavonoid concentrations in tea and coffee. Br J Nutr 1998.79:37-45;AJ;P;doi: 10.1079/BJN19980007
 299;Zacheus OM, Martikainen PJ.  1997. Physicochemical quality of drinking and hot waters in Finnish buildings originated from groundwater or surface water plants. The Science of the Total Environment 1997.205:1-10;AJ;P;doi:10.1016/S0048-9697(97)00160-5
 231;Kujala-Räty K.  1998. Talousveden laaturekisteri. Suomen ympäristö 181/1998;R;D;
-1211;The official Danish Food Composition Database. Danish Food Composition Databank. New version 7.01 March 2009;WW;F;
+1211;The official Danish Food Composition Database
+Danish Food Composition Databank
+New version 7.01 March 2009;WW;F;
 410;Arts I, van de Putte B, Hollman P.  2000. Catechin contents of foods commonly consumed in The Netherlands. 2. Tea, wine, fruit juices, and chololate milk. J Agric Food Chem 2000.48:1752-1757;AJ;P;doi: 10.1021/jf000026+
 179;Katan MB, P Focl, MP Merkus.  1989. The hypercholesterolemic factor in boiled coffee is a lipid. X Internat Symposium on Drugs Affecting Lipid Metabolism;E;C;
 137;Balentine DA.  1992. Manufacturing and chemistry of tea. ACS Symp Series 1992.506:102-129;AB;C;
+1256;Ysart G, Miller P, Barrett G, Farrington D, Lawrance P, Harrison N (1999). Dietary
+exposures to nitrate in the UK. Food Additives and Contaminants 16(12):521-532.;AJ;C;
 340;U.S Department of Agriculture, Agricultural Research Service.  2001. USDA Nutrient  Database for Standard Reference Release 14. U.S Department of Agriculture;F;F;
 925;Mattila P, Alanko T, Pihlava J, Hellström J, Eurola M, Aro H, Piironen V, Korhonen H. Ruusunmarjojen ravintosisältö ja bioaktiiviset yhdisteet. Maa- ja elintarviketalous 2005.72.;R;D;
-894;Mattila P, Kumpulainen J. Julkaisemattomia flavonoidituloksia. 2006.;P;D;
+66;Hägg M, Ylikoski S, Kumpulainen J.  1995. Vitamin C content in fruits and berries consumed in Finland. J Food Comp Anal 1995.8:12-20;AJ;P;doi:10.1006/jfca.1995.1003
 69;Vinci G, Botre F, Mele F.  1995. Ascorbic acid in exotic fruits: a liquid chromatographic investigation. Food Chemistry 1995.53:211-214;AJ;P;doi:10.1016/0308-8146(95)90791-5
 577;Saxholt, Möller, Hess Ygil.  2006. Danish Food Composition Databank revision 6.0. Danish Institute for Food and Veterinary Research;F;F;
 60;Tahvonen R.  1994. Contents of selected elements in some fruits, berries, and vegetables on the Finnish Market in 1987-1989. J Food Comp Anal 1993.6:75-86;AJ;P;doi:10.1006/jfca.1993.1009
-1188;Mattila P. Julkaisemattomia polyfenolituloksia 2012.;P;D;
 399;U.S Department of Agriculture, Agricultural Research Service.  2002. USDA Nutrient  Database for Standard Reference Release 15. U.S Department of Agriculture;F;F;
 560;Heinonen M,  Ollilainen V, Linkola E,  Varo P, Koivistoinen P.  1988. Retinoids and carotenoids in Finnish foods: ready-to-eat foods. J Food Comp Anal 1988.1:221-230;AJ;P;doi:10.1016/0889-1575(88)90003-8
 791;Danish Institute for Food and Veterinary Research.  2009. Danish Food Composition Databank, revision 7.0.;F;F;
@@ -246,12 +258,11 @@ PUBLID;CITATION;REFTYPE;ACQTYPE;DOI
 648;Eläinlääkintä- ja elintarviketutkimuslaitos.  2005. Kananmunan rasvahappokoostumus.;E;D;
 994;Raisio. Sunnuntai-tuotteet. 2011;F;L;
 995;Raisio. Bunge Makuisa. 2011;F;L;
-1002;Raisio. Keiju kevytlevitteet. 2011;F;L;
 1213;Löytyy google-booksina. ks. lisätiedot;B;C;
 1081;Callaway J.C. 2004. Hempseed as a nutritional resource: An overview.;AJ;C;
 273;Callaway J, Tennilä T, Pate D.  1997. Occurence of omega-3 stearidonic acid (cis-6,,9,12,15-octadeca- tetraenoic acid) in hemp seed. J Internat Hemp Association 1997.3:61-3;AJ;C;
+1351;Öhvik V, Malmborg A, Mattison I, Wretling S, Åstrand C. Fisk, skaldjur och fiskprodukter -analys av näringsämnen. Livsmedelsverket, Rapport 1/2012.;R;D;
 1248;Livsmedelsverket. Fish, shellfish and fish products -analysis of nutrients. National Food Agency Report SSeries no 1/2012;R;A;
-176;Hyvönen L, Eskelinen P, Soivio A, Lindgren S, Järvisalo O.  1989. Rehun rasvan määrän ja laadun vaikutus kirjolohen lihan rasvan määrään ja laatuun. Suomen Lohenkasvattajain liitto, Julkaisuja 1989.15;R;D;
 1074;Polar Sun Products. Soyappétit. Soijarouhe tumma ja vaalea. Internet-sivut;WW;L;
 257;Dwyer J, Goldin B, Saul N, Gualtieri L, Barakat S, Adlercreutz H.  1994. Tofu and soy drinks contain phytoestrogens. J Am Dietet Assoc 1994.94:739-43;AJ;P;doi:10.1016/0002-8223(94)91939-9
 479;Syväoja E-L, Piironen V, Varo P, Koivistoinen P, Salminen K..  1985. Tocopherols and tocotrienols in Finnish foods: Human milk and infant formulas. Internat J Vit Nutr Res 1985.55:159-166.;AJ;P;

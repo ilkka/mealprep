@@ -50,7 +50,7 @@ VANAC;vanillinsyra;SV
 SORTL;sorbitol;SV
 XYLTL;xylitol;SV
 BIOT;biotin;SV
-FOL;folat (HPLC);SV
+FOL;folat, total;SV
 FOLCH3H4;5-CH3-H4-folat;SV
 FOLFRE;folat, fri;SV
 FOLH4;H4-folat;SV
@@ -344,13 +344,16 @@ F22DUN;fettsyra 22:oidentifierad;SV
 F23D0;fettsyra 23:0;SV
 GLN;glutamin;SV
 HISTN;histamin;SV
+MANTL;mannitol;SV
 PHETN;fenyletylamin;SV
 PSACNC;polysackarider, icke-cellulosa;SV
 PUTRSC;putrescin;SV
+RAFS;raffinos;SV
 SEROTN;serotonin;SV
 SPERDN;spermidin;SV
 SPERN;spermin;SV
 TOCPHT;tokoferoler, totalt;SV
+TRES;trehalos;SV
 TRYPN;tryptamin;SV
 TYRA;tyramin;SV
 VITB6;vitamin B6, totalt;SV

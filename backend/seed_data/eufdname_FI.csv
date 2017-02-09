@@ -50,7 +50,7 @@ VANAC;vanilliinihappo;FI
 SORTL;sorbitoli;FI
 XYLTL;ksylitoli;FI
 BIOT;biotiini;FI
-FOL;folaatti (HPLC);FI
+FOL;folaatti, kokonais-;FI
 FOLCH3H4;5-CH3-H4-folaatti;FI
 FOLFRE;folaatti vapaa;FI
 FOLH4;H4-folaatti;FI
@@ -345,13 +345,16 @@ F22DUN;rasvahappo 22;FI
 F23D0;rasvahapppo 23:0;FI
 GLN;glutamiini;FI
 HISTN;histamiini;FI
+MANTL;mannitoli;FI
 PHETN;fenyylietyyliamiini;FI
 PSACNC;polysakkaridi, ei-selluloosa;FI
 PUTRSC;putreskiini;FI
+RAFS;raffinoosi;FI
 SEROTN;serotoniini;FI
 SPERDN;spermidiini;FI
 SPERN;spermiini;FI
 TOCPHT;tokoferolit yhteensä;FI
+TRES;trehaloosi;FI
 TRYPN;tryptamiini;FI
 TYRA;tyramiini;FI
 VITB6;B6-vitamiini;FI

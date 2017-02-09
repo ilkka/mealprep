@@ -50,7 +50,7 @@ VANAC;vanillic acid;EN
 SORTL;sorbitol;EN
 XYLTL;xylitol;EN
 BIOT;biotin (vitamin H);EN
-FOL;folate (HPLC);EN
+FOL;folate, total;EN
 FOLCH3H4;5-CH3-H4-folate;EN
 FOLFRE;folate, free;EN
 FOLH4;H4-folate;EN
@@ -345,13 +345,16 @@ F22DUN;fatty acid 22:unidentified;EN
 F23D0;fatty acid 23:0 (tricosanoic acid);EN
 GLN;glutamine;EN
 HISTN;histamine;EN
+MANTL;mannitol;EN
 PHETN;phenylethylamine;EN
 PSACNC;polysaccharides, non-cellulosic;EN
 PUTRSC;putrescine;EN
+RAFS;raffinose;EN
 SEROTN;serotonin;EN
 SPERDN;spermidine;EN
 SPERN;spermine;EN
 TOCPHT;tocopherols, total;EN
+TRES;trehalose;EN
 TRYPN;tryptamine;EN
 TYRA;tyramine;EN
 VITB6;vitamin B-6, total;EN
