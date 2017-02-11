@@ -37,7 +37,7 @@ defmodule MealprepBackend.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:cowboy, "~> 1.0"},
      {:csv, "~> 1.2"},
-     {:cors_plug, "~> 0.1.4"},
+     {:cors_plug, "~> 1.2"},
      {:distillery, "~> 0.9"},
      {:credo, "~> 0.6", only: [:dev, :test]},
      {:dialyxir, "~> 0.4", only: [:dev]}]
