@@ -10,7 +10,8 @@ defmodule MealprepBackend.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
-     deps: deps]
+     deps: deps,
+     dialyzer: [plt_add_deps: :transitive]]
   end
 
   # Configuration for the OTP application.
@@ -35,7 +36,10 @@ defmodule MealprepBackend.Mixfile do
      {:postgrex, "~> 0.11.0"},
      {:cowboy, "~> 1.0"},
      {:csv, "~> 1.2"},
-     {:cors_plug, "~> 0.1.4"}]
+     {:cors_plug, "~> 0.1.4"},
+     {:distillery, "~> 0.9"},
+     {:credo, "~> 0.6", only: [:dev, :test]},
+     {:dialyxir, "~> 0.4", only: [:dev]}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
