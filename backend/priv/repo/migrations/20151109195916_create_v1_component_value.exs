@@ -8,7 +8,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.ComponentValue do
       add :component_id, references(:components)
       add :ingredient_id, references(:ingredients)
 
-      timestamps
+      timestamps()
     end
 
   end

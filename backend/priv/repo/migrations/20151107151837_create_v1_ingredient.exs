@@ -7,7 +7,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.Ingredient do
       add :edible_portion, :integer
       add :ingredientclass_id, references(:ingredientclasses)
 
-      timestamps
+      timestamps()
     end
 
   end

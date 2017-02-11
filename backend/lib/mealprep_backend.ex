@@ -10,7 +10,7 @@ defmodule MealprepBackend do
       # Start the endpoint when the application starts
       supervisor(MealprepBackend.Endpoint, []),
       # Start the Ecto repository
-      worker(MealprepBackend.Repo, []),
+      supervisor(MealprepBackend.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(MealprepBackend.Worker, [arg1, arg2, arg3]),
     ]

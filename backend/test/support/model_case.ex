@@ -24,8 +24,10 @@ defmodule MealprepBackend.ModelCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MealprepBackend.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(MealprepBackend.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(MealprepBackend.Repo, {:shared, self()})
     end
 
     :ok

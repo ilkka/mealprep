@@ -8,7 +8,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.IngredientClass do
 
       add :parent_id, references(:ingredientclasses)
 
-      timestamps
+      timestamps()
     end
 
   end

@@ -5,11 +5,11 @@ defmodule MealprepBackend.V1.Component do
     field :name, :string
     field :thscode, :string
     field :visible, :boolean
-    
+
     belongs_to :unit, MealprepBackend.V1.Unit
     belongs_to :componentclass, MealprepBackend.V1.ComponentClass
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(name)
@@ -21,7 +21,7 @@ defmodule MealprepBackend.V1.Component do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
   end

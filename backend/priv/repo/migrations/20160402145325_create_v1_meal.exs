@@ -5,7 +5,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.Meal do
     create table(:meals) do
       add :name, :string
 
-      timestamps
+      timestamps()
     end
 
   end

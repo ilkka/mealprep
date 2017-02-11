@@ -6,7 +6,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.Unit do
       add :name, :string
       add :thscode, :string
 
-      timestamps
+      timestamps()
     end
 
   end

@@ -4,13 +4,13 @@ defmodule MealprepBackend.Mixfile do
   def project do
     [app: :mealprep_backend,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     aliases: aliases,
-     deps: deps,
+     aliases: aliases(),
+     deps: deps(),
      dialyzer: [plt_add_deps: :transitive]]
   end
 
@@ -19,7 +19,7 @@ defmodule MealprepBackend.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {MealprepBackend, []},
-     applications: [:phoenix, :cowboy, :logger,
+     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger,
                     :phoenix_ecto, :postgrex]]
   end
 
@@ -31,9 +31,10 @@ defmodule MealprepBackend.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.6"},
-     {:phoenix_ecto, "~> 1.1"},
-     {:postgrex, "~> 0.11.0"},
+    [{:phoenix, "~> 1.2.1"},
+     {:phoenix_pubsub, "~> 1.0"},
+     {:phoenix_ecto, "~> 3.0"},
+     {:postgrex, ">= 0.0.0"},
      {:cowboy, "~> 1.0"},
      {:csv, "~> 1.2"},
      {:cors_plug, "~> 0.1.4"},
@@ -50,6 +51,7 @@ defmodule MealprepBackend.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

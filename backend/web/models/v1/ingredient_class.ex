@@ -8,7 +8,7 @@ defmodule MealprepBackend.V1.IngredientClass do
     has_many :ingredients, MealprepBackend.V1.Ingredient
     belongs_to :parent, MealprepBackend.V1.IngredientClass
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(name)
@@ -20,7 +20,7 @@ defmodule MealprepBackend.V1.IngredientClass do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
   end

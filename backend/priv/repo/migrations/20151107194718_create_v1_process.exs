@@ -5,7 +5,7 @@ defmodule MealprepBackend.Repo.Migrations.CreateV1.Process do
     create table(:processes) do
       add :name, :string
       add :thscode, :string
-      timestamps
+      timestamps()
     end
 
   end
