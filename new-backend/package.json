@@ -1,0 +1,24 @@
+{
+  "name": "new-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/hapi": "^16.0.0",
+    "@types/joi": "^10.0.0",
+    "@types/load-json-file": "^2.0.5",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.6"
+  },
+  "dependencies": {
+    "hapi": "^16.1.0",
+    "joi": "^10.2.2",
+    "load-json-file": "^2.0.0"
+  }
+}
