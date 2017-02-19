@@ -27,8 +27,8 @@ import * as styles from "./IngredientBrowser.css"
           <h3>Ravintosisältö per {{ selectedIngredient.edible_portion }} g</h3>
           <dl>
             <template v-for="component in selectedIngredient.components">
-              <dt>{{ component.name }}</dt>
-              <dd>{{ component.value }} {{ component.unit }}</dd>
+              <dt>{{ component.component.name }}</dt>
+              <dd>{{ component.value }} {{ component.component.unit }}</dd>
             </template>
           </dl>
         </template>

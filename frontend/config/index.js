@@ -24,6 +24,9 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://localhost:4000'
+      },
+      '/graphql': {
+        target: 'http://localhost:5000'
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
