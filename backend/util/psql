@@ -1,3 +1,0 @@
-#!/bin/bash
-set -e -o pipefail
-docker run -i --rm --net=host postgres psql "$@"
