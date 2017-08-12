@@ -28,12 +28,29 @@ alias Mealprep.Nutrition.{
 ]
 |> Enum.each(fn(lang) -> Repo.insert!(lang) end)
 
-# Insert food units
+# Insert food units, Finnish first
 File.stream!(Path.expand("../../seed_data/foodunit_FI.csv", __DIR__))
 |> CSV.decode!(separator: ?;)
 |> Stream.drop(1)
 |> Enum.each(fn([thscode, description, _]) ->
     lang = Repo.get_by!(Language, ietfTag: "fi-FI")
     unit = Repo.insert!(%FoodUnit{thscode: thscode})
+    Repo.insert!(%FoodUnitTr{language_id: lang.id, food_unit_id: unit.id, description: description})
+end)
+# Then other languages
+File.stream!(Path.expand("../../seed_data/foodunit_SV.csv", __DIR__))
+|> CSV.decode!(separator: ?;)
+|> Stream.drop(1)
+|> Enum.each(fn([thscode, description, _]) ->
+    lang = Repo.get_by!(Language, ietfTag: "sv-FI")
+    unit = Repo.get_by!(FoodUnit, thscode: thscode)
+    Repo.insert!(%FoodUnitTr{language_id: lang.id, food_unit_id: unit.id, description: description})
+end)
+File.stream!(Path.expand("../../seed_data/foodunit_EN.csv", __DIR__))
+|> CSV.decode!(separator: ?;)
+|> Stream.drop(1)
+|> Enum.each(fn([thscode, description, _]) ->
+    lang = Repo.get_by!(Language, ietfTag: "en-US")
+    unit = Repo.get_by!(FoodUnit, thscode: thscode)
     Repo.insert!(%FoodUnitTr{language_id: lang.id, food_unit_id: unit.id, description: description})
 end)
