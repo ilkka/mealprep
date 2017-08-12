@@ -7,7 +7,6 @@ defmodule Mealprep.Language do
   schema "languages" do
     field :englishName, :string
     field :ietfTag, :string
-    field :isoCode, :string
     field :nativeName, :string
 
     timestamps()
@@ -16,7 +15,7 @@ defmodule Mealprep.Language do
   @doc false
   def changeset(%Language{} = language, attrs) do
     language
-    |> cast(attrs, [:isoCode, :ietfTag, :nativeName, :englishName])
-    |> validate_required([:isoCode, :ietfTag, :nativeName, :englishName])
+    |> cast(attrs, [:ietfTag, :nativeName, :englishName])
+    |> validate_required([:ietfTag, :nativeName, :englishName])
   end
 end

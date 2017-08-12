@@ -3,7 +3,6 @@ defmodule Mealprep.Repo.Migrations.CreateLanguages do
 
   def change do
     create table(:languages) do
-      add :isoCode, :string
       add :ietfTag, :string
       add :nativeName, :string
       add :englishName, :string
@@ -11,5 +10,6 @@ defmodule Mealprep.Repo.Migrations.CreateLanguages do
       timestamps()
     end
 
+    create index(:languages, [:ietfTag], unique: true)
   end
 end

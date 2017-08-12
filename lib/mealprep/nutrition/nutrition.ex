@@ -9,15 +9,15 @@ defmodule Mealprep.Nutrition do
   alias Mealprep.Nutrition.FoodUnit
 
   @doc """
-  Returns the list of foodunits.
+  Returns the list of food_units.
 
   ## Examples
 
-      iex> list_foodunits()
+      iex> list_food_units()
       [%FoodUnit{}, ...]
 
   """
-  def list_foodunits do
+  def list_food_units do
     Repo.all(FoodUnit)
   end
 

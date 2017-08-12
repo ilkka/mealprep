@@ -1,8 +1,8 @@
-defmodule Mealprep.Repo.Migrations.CreateFoodunits do
+defmodule Mealprep.Repo.Migrations.CreateFood_Units do
   use Ecto.Migration
 
   def change do
-    create table(:foodunits) do
+    create table(:food_units) do
       add :thscode, :string
 
       timestamps()

@@ -3,7 +3,7 @@ defmodule Mealprep.NutritionTest do
 
   alias Mealprep.Nutrition
 
-  describe "foodunits" do
+  describe "food_units" do
     alias Mealprep.Nutrition.FoodUnit
 
     @valid_attrs %{thscode: "some thscode"}
@@ -19,9 +19,9 @@ defmodule Mealprep.NutritionTest do
       food_unit
     end
 
-    test "list_foodunits/0 returns all foodunits" do
+    test "list_food_units/0 returns all food_units" do
       food_unit = food_unit_fixture()
-      assert Nutrition.list_foodunits() == [food_unit]
+      assert Nutrition.list_food_units() == [food_unit]
     end
 
     test "get_food_unit!/1 returns the food_unit with given id" do

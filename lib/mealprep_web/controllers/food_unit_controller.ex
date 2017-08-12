@@ -5,8 +5,8 @@ defmodule MealprepWeb.FoodUnitController do
   alias Mealprep.Nutrition.FoodUnit
 
   def index(conn, _params) do
-    foodunits = Nutrition.list_foodunits()
-    render(conn, "index.html", foodunits: foodunits)
+    food_units = Nutrition.list_food_units()
+    render(conn, "index.html", food_units: food_units)
   end
 
   def new(conn, _params) do

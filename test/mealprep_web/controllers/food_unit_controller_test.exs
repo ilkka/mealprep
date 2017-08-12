@@ -13,16 +13,16 @@ defmodule MealprepWeb.FoodUnitControllerTest do
   end
 
   describe "index" do
-    test "lists all foodunits", %{conn: conn} do
+    test "lists all food_units", %{conn: conn} do
       conn = get conn, food_unit_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Foodunits"
+      assert html_response(conn, 200) =~ "Listing Food Units"
     end
   end
 
   describe "new food_unit" do
     test "renders form", %{conn: conn} do
       conn = get conn, food_unit_path(conn, :new)
-      assert html_response(conn, 200) =~ "New Food unit"
+      assert html_response(conn, 200) =~ "New Food Unit"
     end
   end
 

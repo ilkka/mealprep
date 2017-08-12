@@ -1,4 +1,4 @@
-<h2>Listing Foodunits</h2>
+<h2>Listing Food units</h2>
 
 <table class="table">
   <thead>
@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for food_unit <- @foodunits do %>
+<%= for food_unit <- @food_units do %>
     <tr>
       <td><%= food_unit.thscode %></td>
 
