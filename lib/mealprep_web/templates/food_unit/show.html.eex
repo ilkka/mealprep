@@ -1,0 +1,13 @@
+<h2>Show Food unit</h2>
+
+<ul>
+
+  <li>
+    <strong>Thscode:</strong>
+    <%= @food_unit.thscode %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: food_unit_path(@conn, :edit, @food_unit) %></span>
+<span><%= link "Back", to: food_unit_path(@conn, :index) %></span>
