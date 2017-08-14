@@ -11,6 +11,21 @@ defmodule Mealprep.Nutrition do
     FoodUnitTr
   }
 
+  # True if translation is for a language with an ietf tag of lang.
+  defp has_lang(translation, lang) do
+    translation.language.ietfTag == lang
+  end
+
+  # Localize unit to given language. Assumes translations preloaded.
+  defp localize_food_unit(unit, lang) do
+    with %FoodUnit{food_unit_trs: trs} <- unit,
+         %FoodUnitTr{description: desc} <- Enum.find(trs, nil, &(has_lang(&1, lang))) do
+      %{unit | description: desc}
+    else
+      nil -> %{unit | description: unit.thscode}
+    end
+  end
+
   @doc """
   Returns the list of food_units. The results will
   be localized according to the lang parameter, which should
@@ -19,20 +34,14 @@ defmodule Mealprep.Nutrition do
 
   ## Examples
 
-      iex> list_food_units()
+      iex> list_food_units("sv-FI")
       [%FoodUnit{}, ...]
 
   """
   def list_food_units(lang) do
     Repo.all(FoodUnit)
     |> Repo.preload([food_unit_trs: [:language]])
-    |> Enum.map(fn(%FoodUnit{food_unit_trs: trs} = unit) ->
-      with %FoodUnitTr{description: desc} <- Enum.find(trs, nil, fn(tr) -> tr.language.ietfTag == lang end) do
-        %{unit | description: desc}
-      else
-        nil -> %{unit | description: unit.thscode}
-      end
-    end)
+    |> Enum.map(&(localize_food_unit(&1, lang)))
   end
 
   @doc """
@@ -42,14 +51,18 @@ defmodule Mealprep.Nutrition do
 
   ## Examples
 
-      iex> get_food_unit!(123)
+      iex> get_food_unit!(123, "fi-FI")
       %FoodUnit{}
 
-      iex> get_food_unit!(456)
+      iex> get_food_unit!(456, "sv-FI")
       ** (Ecto.NoResultsError)
 
   """
-  def get_food_unit!(id), do: Repo.get!(FoodUnit, id)
+  def get_food_unit!(id, lang) do
+    Repo.get!(FoodUnit, id)
+    |> Repo.preload([food_unit_trs: [:language]])
+    |> localize_food_unit(lang)
+  end
 
   @doc """
   Creates a food_unit.
