@@ -6,6 +6,7 @@ defmodule Mealprep.Nutrition.FoodUnit do
 
   schema "food_units" do
     field :thscode, :string
+    field :description, :string, virtual: true
     has_many :food_unit_trs, FoodUnitTr
 
     timestamps()

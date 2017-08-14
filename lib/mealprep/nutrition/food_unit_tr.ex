@@ -1,11 +1,12 @@
 defmodule Mealprep.Nutrition.FoodUnitTr do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Mealprep.Language
   alias Mealprep.Nutrition.{FoodUnit, FoodUnitTr}
 
   schema "food_unit_trs" do
     field :description, :string
-    field :language_id, :id
+    belongs_to :language, Language
     belongs_to :food_unit, FoodUnit
 
     timestamps()

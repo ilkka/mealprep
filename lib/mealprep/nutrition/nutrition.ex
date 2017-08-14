@@ -6,10 +6,16 @@ defmodule Mealprep.Nutrition do
   import Ecto.Query, warn: false
   alias Mealprep.Repo
 
-  alias Mealprep.Nutrition.FoodUnit
+  alias Mealprep.Nutrition.{
+    FoodUnit,
+    FoodUnitTr
+  }
 
   @doc """
-  Returns the list of food_units.
+  Returns the list of food_units. The results will
+  be localized according to the lang parameter, which should
+  be an IETF language tag. All available localisations are present
+  and accessible through the food_unit_trs field.
 
   ## Examples
 
@@ -17,8 +23,16 @@ defmodule Mealprep.Nutrition do
       [%FoodUnit{}, ...]
 
   """
-  def list_food_units do
+  def list_food_units(lang) do
     Repo.all(FoodUnit)
+    |> Repo.preload([food_unit_trs: [:language]])
+    |> Enum.map(fn(%FoodUnit{food_unit_trs: trs} = unit) ->
+      with %FoodUnitTr{description: desc} <- Enum.find(trs, nil, fn(tr) -> tr.language.ietfTag == lang end) do
+        %{unit | description: desc}
+      else
+        nil -> %{unit | description: unit.thscode}
+      end
+    end)
   end
 
   @doc """
