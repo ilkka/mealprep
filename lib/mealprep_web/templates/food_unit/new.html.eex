@@ -1,5 +1,0 @@
-<h2>New Food unit</h2>
-
-<%= render "form.html", Map.put(assigns, :action, food_unit_path(@conn, :create)) %>
-
-<span><%= link "Back", to: food_unit_path(@conn, :index) %></span>

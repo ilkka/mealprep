@@ -18,9 +18,9 @@ defmodule MealprepWeb.Router do
 
     get "/", PageController, :index
 
-    scope "/nutrition" do
-      resources "/food_units", FoodUnitController
-    end
+    # scope "/nutrition" do
+    #   resources "/food_units", FoodUnitController
+    # end
   end
 
   # Other scopes may use custom stacks.
